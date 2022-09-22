@@ -1,0 +1,74 @@
+.polisAccordion {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s;
+  min-height: 64px;
+
+  .content {
+    max-height: 0;
+    transition: all 0.25s;
+
+    .identity {
+      position: relative;
+      padding: 0 14px;
+    }
+
+    .coverage {
+      padding: 0 30px;
+      background: linear-gradient(180deg, #e4f4f9 0%, #effafd 93.23%);
+
+      * {
+        opacity: 0;
+      }
+    }
+  }
+
+  .polis1,
+  .polis2,
+  .polis3 {
+    position: relative;
+    background-blend-mode: multiply;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    border-radius: 10px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .polis1 {
+    background: linear-gradient(180deg, #37aff8 0%, #107fc2 100%);
+  }
+
+  .polis2 {
+    background: linear-gradient(180deg, #44bc88 0%, #32986e 100%);
+  }
+
+  .polis3 {
+    background: linear-gradient(180deg, #8369ff 0%, #4029ad 100%);
+  }
+
+  * {
+    transition: all 0.25s;
+  }
+
+  &.open .content {
+    max-height: 100vh;
+
+    .identity {
+      padding: 20px 14px;
+    }
+
+    .coverage {
+      padding: 20px 30px;
+
+      * {
+        opacity: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+@import "~modern-normalize/modern-normalize.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+body {
+  padding-top: 68px;
+}
+
+.none {
+  display: none;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+video {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.body-text {
+  color: #828282;
+  font-size: 14px;
+  line-height: 1.4;
+
+  &.small {
+    font-size: 12px;
+  }
+}
+
+.info-text {
+  color: #4f4f4f;
+  font-size: 12px;
+  line-height: 1.17;
+  margin-bottom: 14px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  margin: 0;
+}
+
+.logo-cermati {
+  position: relative;
+
+  img {
+    display: block;
+    width: 80px;
+  }
+}

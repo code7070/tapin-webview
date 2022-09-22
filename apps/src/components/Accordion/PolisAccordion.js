@@ -106,7 +106,7 @@ const InsuranceCoverage = ({ isOpen }) => {
             const startPos = dateSort.indexOf(polis.startDate);
             const endPos = dateSort.indexOf(polis.endDate);
             const width = `${(endPos - startPos) * 20}%`;
-            const left = `${startPos * 20}%`;
+            const left = `calc(${startPos * 20}% - ${startPos * 5}px)`;
             return (
               <div
                 className={style[`polis${num}`]}

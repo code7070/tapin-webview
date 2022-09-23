@@ -31,6 +31,11 @@ export const isFunction = (varFunction) => {
   return false;
 };
 
+export const runFunction = (fn, backup) => {
+  if (isFunction(fn)) fn();
+  else if (isFunction(backup)) backup();
+};
+
 export const scrollToTop = () => doScroll(document.body, 500, 100);
 
 const setTime = (range) => {

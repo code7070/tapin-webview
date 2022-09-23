@@ -106,7 +106,6 @@ const InsuranceCoverage = ({ isOpen }) => {
   const polis = [...polisData];
 
   polis.length = pPolis;
-  console.log({ pPolis, polis });
 
   let dateSort = [];
   polis.map((x) => {
@@ -114,8 +113,6 @@ const InsuranceCoverage = ({ isOpen }) => {
     dateSort.push(x.endDate);
     dateSort.sort();
   });
-
-  console.log({ dateSort });
 
   return (
     <div className={style.coverage}>
@@ -152,7 +149,6 @@ const InsuranceCoverage = ({ isOpen }) => {
               left = `calc(${startPos * 20}% - ${startPos * 5}px)`;
               // left = `calc(${startPos * 32}% - ${startPos * 5}px)`;
             }
-            console.log({ width, name: data.name });
             return (
               <div className={className} style={{ width, left }} key={num}>
                 Polis {num}

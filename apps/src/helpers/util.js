@@ -101,5 +101,5 @@ export const convertRawDate = (rawDate = 1) => {
   const date = new Date(rawDate);
   const retDate = date.getDate();
   const retMonth = date.getMonth() + 1;
-  return `${retDate}/${retMonth}`;
+  return `${retDate < 10 ? `0${retDate}` : retDate}/${retMonth}`;
 };

@@ -4,6 +4,10 @@
   transition: all 0.25s;
   min-height: 64px;
 
+  * {
+    transition: all 0.25s;
+  }
+
   .content {
     max-height: 0;
     transition: all 0.25s;
@@ -16,10 +20,10 @@
     .coverage {
       padding: 0 30px;
       background: linear-gradient(180deg, #e4f4f9 0%, #effafd 93.23%);
+    }
 
-      * {
-        opacity: 0;
-      }
+    .coverage * {
+      opacity: 0;
     }
   }
 
@@ -37,7 +41,7 @@
     font-weight: bold;
     border-radius: 10px;
     letter-spacing: 1px;
-    margin-bottom: 10px;
+    margin: 10px 0;
   }
 
   .polis1 {
@@ -52,12 +56,8 @@
     background: linear-gradient(180deg, #8369ff 0%, #4029ad 100%);
   }
 
-  * {
-    transition: all 0.25s;
-  }
-
   &.open .content {
-    max-height: 100vh;
+    max-height: 300vh;
 
     .identity {
       padding: 20px 14px;

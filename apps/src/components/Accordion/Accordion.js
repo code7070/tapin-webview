@@ -16,17 +16,18 @@ export default function Accordion({
     setOpen(isOpen);
   }, [isOpen]);
 
+  const color = open ? "50" : "200";
+
   return (
     <div className={`mb-2.5 ${style.accordion} ${open ? style.opened : ""}`}>
       <button
-        className={`btn outline-none border-0 rounded-none block w-full overflow-hidden text-ellipsis flex justify-between normal-case font-normal text-lg py-5 px-7 h-auto bg-ottoBlue-900 hover:bg-ottoBlue-700 ${
-          open ? "text-ottoBlue-50" : "text-ottoBlue-200"
+        className={`btn outline-none border-0 rounded-none block w-full overflow-hidden text-ellipsis flex justify-between normal-case font-normal text-lg py-5 px-7 h-auto bg-ottoBlue-900 hover:bg-ottoBlue-700 ${`text-ottoBlue-${color}`}
         }`}
         onClick={onClick}
       >
         <div>{title}</div>
         <div
-          className={`${style.symbol} flex [&>*]:ease-in-out [&>*]:duration-500 [&>*]:bg-ottoBlue-200 [&>*]:w-px [&>*]:h-2`}
+          className={`flex [&>*]:ease-in-out [&>*]:duration-500 [&>*]:bg-ottoBlue-${color} [&>*]:w-px [&>*]:h-2`}
         >
           <div className={`translate-x-px ${open ? "rotate-90" : ""}`} />
           <div className={`rotate-90`} />

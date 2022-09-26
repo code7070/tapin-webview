@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import CookieBrowser from "js-cookie";
 
 function easing(t) {
@@ -108,3 +109,10 @@ export const convertRawDate = (rawDate = 1) => {
   const retMonth = date.getMonth() + 1;
   return `${retDate < 10 ? `0${retDate}` : retDate}/${retMonth}`;
 };
+
+export const propTypesNode = [
+  PropTypes.arrayOf(PropTypes.node),
+  PropTypes.node,
+];
+
+export const propTypesChildren = PropTypes.oneOfType(propTypesNode);

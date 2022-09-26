@@ -26,8 +26,10 @@ export default function Modal({ isOpen = false, onClose, title, children }) {
       ariaHideApp={false}
       isOpen={opened}
       contentLabel={title}
-      shouldCloseOnEsc
       onRequestClose={close}
+      shouldCloseOnEsc
+      onAfterOpen={() => (document.body.style.overflow = "hidden")}
+      onAfterClose={() => (document.body.style.overflow = "auto")}
       style={{
         overlay: { zIndex: "999", backgroundColor: "rgba(0, 0, 0, 0.5)" },
         content: {

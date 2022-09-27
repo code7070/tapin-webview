@@ -54,52 +54,7 @@ const InsuranceProvider = () => {
   );
 };
 
-const polisData = [
-  {
-    name: "Polis 1",
-    startDate: 1662634800000,
-    endDate: 1665162000000,
-    certificate: {
-      fileName: "Ketentuan_Polis_My_CI_Protection.pdf",
-      file: "./assets/sample-file/GG_2.0_Front_End_Class_Final_Project.pdf",
-    },
-    transcation: {
-      name: 111,
-      fileName: "Sertifikat_Polis_My_CI_Protection_QRIS_341-111.pdf",
-      file: "./assets/sample-file/GG_2.0_Front_End_Class_Final_Project.pdf",
-    },
-  },
-  {
-    name: "Polis 2",
-    startDate: 1664102100000,
-    endDate: 1666630800000,
-    certificate: {
-      fileName: "Ketentuan_Polis_My_CI_Protection.pdf",
-      file: "./assets/sample-file/GG_2.0_Front_End_Class_Final_Project.pdf",
-    },
-    transcation: {
-      name: 222,
-      fileName: "Sertifikat_Polis_My_CI_Protection_QRIS_341-111.pdf",
-      file: "./assets/sample-file/GG_2.0_Front_End_Class_Final_Project.pdf",
-    },
-  },
-  {
-    name: "Polis 3",
-    startDate: 1664962200000,
-    endDate: 1667581200000,
-    certificate: {
-      fileName: "Ketentuan_Polis_My_CI_Protection.pdf",
-      file: "./assets/sample-file/GG_2.0_Front_End_Class_Final_Project.pdf",
-    },
-    transcation: {
-      name: 333,
-      fileName: "Sertifikat_Polis_My_CI_Protection_QRIS_341-111.pdf",
-      file: "./assets/sample-file/GG_2.0_Front_End_Class_Final_Project.pdf",
-    },
-  },
-];
-
-const InsuranceCoverage = ({ isOpen }) => {
+const InsuranceCoverage = ({ isOpen, polisData }) => {
   const { search } = useLocation();
   const { polis: pPolis = 1 } = parse(search);
 
@@ -163,21 +118,32 @@ const InsuranceCoverage = ({ isOpen }) => {
 
 InsuranceCoverage.propTypes = {
   isOpen: PropTypes.bool,
+  polisData: PropTypes.array,
 };
 
-const PolisItem = ({ title, linkText, linkHref }) => {
+const PolisItem = ({ title, linkText, linkHref, inactive }) => {
+  let color = "text-ottoBlue-200";
+  let colorTitle = "text-ottoBlue-100";
+  if (inactive) {
+    color = "text-ottoGrey-300 pointer-events-none";
+    colorTitle = color;
+  }
+
   return (
     <div className={`py-2.5 px-5 w-full flex hover:bg-slate-100`}>
       <div className="pr-4 flex-1">
-        <div className="font-bold">{title}</div>
-        <div className="text-ottoBlue-200 hover:underline">
-          <a href={linkHref} target="_blank" rel="noreferrer">
-            {linkText}
-          </a>
-        </div>
+        <div className={`${colorTitle} font-semibold text-sm`}>{title}</div>
+        <a
+          href={linkHref}
+          target="_blank"
+          rel="noreferrer"
+          className={`${color} hover:underline`}
+        >
+          {linkText}
+        </a>
       </div>
       <div>
-        <Icon type="PdfIcon" />
+        <Icon type={`PdfIcon${inactive ? "Disabled" : ""}`} />
       </div>
     </div>
   );
@@ -188,9 +154,10 @@ PolisItem.propTypes = {
   linkText: PropTypes.string,
   linkHref: PropTypes.string,
   margin: PropTypes.bool,
+  inactive: PropTypes.bool,
 };
 
-const PolisFile = () => {
+const PolisFile = ({ inactive, polisData }) => {
   const { search } = useLocation();
   const { polis: pPolis = 1 } = parse(search);
 
@@ -206,18 +173,20 @@ const PolisFile = () => {
           <div key={item.startDate} className="pt-2.5">
             <div>
               <div className="px-5 text-xs text-ottoGrey-300">
-                {convertRawDate(item.startDate)}
+                {convertRawDate(item.startDate, true, true)}
               </div>
               <PolisItem
                 title={`Tanda Bukti Transaksi ${item.transcation.name}`}
                 linkText={item.transcation.fileName}
                 linkHref={item.transcation.file}
                 margin
+                inactive={inactive}
               />
               <PolisItem
                 title={`Sertifikat Asuransi`}
                 linkText={item.certificate.fileName}
                 linkHref={`https://aktiva-relay.ap-south-1.linodeobjects.com/public/e0eb0a77-01d6-4385-86ca-ca26d09b7f44/NPWP-PT%20Aktiva%20Kreasi%20Investama.pdf`}
+                inactive={inactive}
               />
               {!isLast && (
                 <div
@@ -239,20 +208,31 @@ const PolisFile = () => {
   );
 };
 
-export default function PolisAccordion({ title = "Title" }) {
-  const [isOpen, setOpen] = useState(false);
+PolisFile.propTypes = {
+  inactive: PropTypes.bool,
+  polisData: PropTypes.array,
+};
+
+export default function PolisAccordion({
+  title = "Title",
+  inactive = false,
+  polisData = [],
+}) {
+  const [isOpen, setOpen] = useState(inactive);
 
   const toggle = () => setOpen(!isOpen);
 
-  const tailwind = `rounded-md border border-ottoGrey-500`;
+  const tailwind = `rounded-md border border-ottoGrey-500 mb-4`;
   const classOpen = isOpen ? style.open : "";
 
   return (
     <div className={`${style.polisAccordion} ${classOpen} ${tailwind}`}>
-      <Title onClick={toggle} isOpen={isOpen} title={title} />
+      {!inactive && <Title onClick={toggle} isOpen={isOpen} title={title} />}
       <div className={style.content}>
-        <InsuranceCoverage isOpen={isOpen} />
-        <PolisFile />
+        {!inactive && (
+          <InsuranceCoverage polisData={polisData} isOpen={isOpen} />
+        )}
+        <PolisFile polisData={polisData} inactive={inactive} />
         <PolisOwner />
         <InsuranceProvider />
       </div>
@@ -262,4 +242,6 @@ export default function PolisAccordion({ title = "Title" }) {
 
 PolisAccordion.propTypes = {
   title: PropTypes.string,
+  inactive: PropTypes.bool,
+  polisData: PropTypes.array,
 };

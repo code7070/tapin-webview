@@ -149,7 +149,7 @@ export default function InsuranceProduct() {
           Untuk informasi lebih lanjut terkait dengan produk My CI Protection,
           Tertanggung dapat menghubungi Contact Center di 1500 079 di hari Senin
           – Jumat pukul 08.30 – 17.00 atau email ke contact.center@equity.id
-          atau kunjungi website PT Equity Life Indonesia di www.equity.co.id{" "}
+          atau kunjungi website PT Equity Life Indonesia di www.equity.co.id
         </div>
       </div>
     </div>

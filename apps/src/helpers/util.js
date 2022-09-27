@@ -102,12 +102,30 @@ export const getFormattedDate = (dateData) => {
   return `${date} ${monthName}`;
 };
 
-export const convertRawDate = (rawDate = 1) => {
+const underTenZero = (number = 0) => {
+  const num = parseInt(number, 10);
+  return num < 10 ? `0${num}` : num;
+};
+
+export const convertRawDate = (
+  rawDate = 1,
+  withYear = false,
+  withHour = false
+) => {
   if (!rawDate) return "-";
   const date = new Date(rawDate);
   const retDate = date.getDate();
   const retMonth = date.getMonth() + 1;
-  return `${retDate < 10 ? `0${retDate}` : retDate}/${retMonth}`;
+  const retYear = date.getFullYear();
+  const time = `${date.getHours()}:${date.getMinutes()}`;
+
+  let defRet = `${underTenZero(retDate)}/${underTenZero(retMonth)}`;
+  if (withYear) defRet = `${defRet}/${retYear}`;
+
+  let fullRet = defRet;
+  if (withHour) fullRet = `${defRet} - ${time}`;
+
+  return fullRet;
 };
 
 export const propTypesNode = [

@@ -55,7 +55,7 @@ export default function InsuranceProduct() {
             isOpen={isOpen === "syarat"}
             onClick={() => toggleOpen("syarat")}
           >
-            <div className="body-text">
+            <div className="body-text text-justify">
               <div className={headStyle}>
                 Berikut adalah Syarat dan Ketentuan yang harus diperhatikan bagi
                 Tertanggung jika hendak membeli produk My CI Protection:
@@ -97,7 +97,7 @@ export default function InsuranceProduct() {
             isOpen={isOpen === "klaim"}
             onClick={() => toggleOpen("klaim")}
           >
-            <div className="body-text">
+            <div className="body-text text-justify">
               <div className={headStyle}>
                 Berikut adalah Tata Cara Klaim yang harus diperhatikan bagi
                 Tertanggung jika hendak mengajukan klaim produk My CI

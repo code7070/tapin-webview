@@ -117,7 +117,9 @@ export const convertRawDate = (
   const retDate = date.getDate();
   const retMonth = date.getMonth() + 1;
   const retYear = date.getFullYear();
-  const time = `${date.getHours()}:${date.getMinutes()}`;
+  const time = `${underTenZero(date.getHours())}:${underTenZero(
+    date.getMinutes()
+  )}`;
 
   let defRet = `${underTenZero(retDate)}/${underTenZero(retMonth)}`;
   if (withYear) defRet = `${defRet}/${retYear}`;

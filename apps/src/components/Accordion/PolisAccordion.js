@@ -130,19 +130,19 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
   }
 
   return (
-    <div className={`py-2.5 px-5 w-full flex hover:bg-slate-100`}>
-      <div className="pr-4 flex-1">
+    <div className="flex w-full overflow-hidden py-2.5 px-5 w-full hover:bg-slate-100">
+      <div className="pr-4 flex-1 w-4/5">
         <div className={`${colorTitle} font-semibold text-sm`}>{title}</div>
         <a
           href={linkHref}
           target="_blank"
           rel="noreferrer"
-          className={`${color} hover:underline`}
+          className={`${color} text-sm hover:underline block w-full break-words`}
         >
           {linkText}
         </a>
       </div>
-      <div>
+      <div className="w-1/12">
         <Icon type={`PdfIcon${inactive ? "Disabled" : ""}`} />
       </div>
     </div>

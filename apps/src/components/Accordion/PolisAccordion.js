@@ -103,7 +103,9 @@ const InsuranceCoverage = ({ isOpen, polisData, inactive }) => {
               // width = `${(endPos - startPos) * 20}%`;
               const countWidth = (polis.length / (dateSort.length - 1)) * 100;
               width = `${Math.ceil(countWidth)}%`;
-              left = `calc(${startPos * 20}% - ${startPos * 5}px)`;
+              // left = `calc(${startPos * 20}% - ${startPos * 5}px)`;
+              left = `${(100 / (dateSort.length - 1)) * startPos}%`;
+              console.log(num, dateSort.length, 100 / (dateSort.length - 1));
               // left = `calc(${startPos * 32}% - ${startPos * 5}px)`;
             }
             return (
@@ -221,7 +223,7 @@ export default function PolisAccordion({
   inactive = false,
   polisData = [],
 }) {
-  const [isOpen, setOpen] = useState(inactive);
+  const [isOpen, setOpen] = useState(false);
 
   const toggle = () => setOpen(!isOpen);
 

@@ -54,9 +54,11 @@ const InsuranceProvider = () => {
   );
 };
 
-const InsuranceCoverage = ({ isOpen, polisData }) => {
+const InsuranceCoverage = ({ isOpen, polisData, inactive }) => {
   const { search } = useLocation();
   const { polis: pPolis = 1 } = parse(search);
+
+  if (inactive) return "";
 
   const polis = [...polisData];
 
@@ -119,6 +121,7 @@ const InsuranceCoverage = ({ isOpen, polisData }) => {
 InsuranceCoverage.propTypes = {
   isOpen: PropTypes.bool,
   polisData: PropTypes.array,
+  inactive: PropTypes.bool,
 };
 
 const PolisItem = ({ title, linkText, linkHref, inactive }) => {
@@ -227,11 +230,13 @@ export default function PolisAccordion({
 
   return (
     <div className={`${style.polisAccordion} ${classOpen} ${tailwind}`}>
-      {!inactive && <Title onClick={toggle} isOpen={isOpen} title={title} />}
+      <Title onClick={toggle} isOpen={isOpen} title={title} />
       <div className={style.content}>
-        {!inactive && (
-          <InsuranceCoverage polisData={polisData} isOpen={isOpen} />
-        )}
+        <InsuranceCoverage
+          inactive={inactive}
+          polisData={polisData}
+          isOpen={isOpen}
+        />
         <PolisFile polisData={polisData} inactive={inactive} />
         <PolisOwner />
         <InsuranceProvider />

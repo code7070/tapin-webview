@@ -31,12 +31,10 @@ export default function InsuranceTab() {
   const navigate = useNavigate();
   const parsed = parse(search);
 
-  const man = () => {
-    navigate({ pathname: path, search: "tab=detail" }, { replace: true });
-  };
-  const doc = () => {
-    navigate({ pathname: path, search: "tab=dokumen" }, { replace: true });
-  };
+  const nav = (to) => navigate({ pathname: path, search: `tab=${to}` });
+
+  const man = () => nav("detail");
+  const doc = () => nav("dokumen");
 
   return (
     <div className="insuranceTab w-full flex items-center">

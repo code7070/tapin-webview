@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { convertRawDate } from "../../helpers/util";
 import Icon from "../Icon/Icon";
+import InsuranceCoverage from "./InsuranceCoverage";
 import style from "./PolisAccordion.module.scss";
 
 const Title = ({ title, onClick, isOpen }) => {
@@ -52,78 +53,6 @@ const InsuranceProvider = () => {
       </div>
     </div>
   );
-};
-
-const InsuranceCoverage = ({ isOpen, polisData, inactive }) => {
-  const { search } = useLocation();
-  const { polis: pPolis = 1 } = parse(search);
-
-  if (inactive) return "";
-
-  const polis = [...polisData];
-
-  polis.length = pPolis;
-
-  let dateSort = [];
-  polis.map((x) => {
-    dateSort.push(x.startDate);
-    dateSort.push(x.endDate);
-    dateSort.sort();
-  });
-
-  return (
-    <div className={style.coverage}>
-      <div className="text-center font-bold text-xs text-ottoBlue-100">
-        Nilai Akumulasi Pertanggungan
-      </div>
-      <div
-        style={{ position: "relative" }}
-        className={isOpen ? "my-5" : "my-0"}
-      >
-        <div className="flex justify-between text-ottoGrey-300">
-          {dateSort.map((date, index) => {
-            const num = index + 1;
-            return (
-              <div key={num} className="flex flex-col items-center">
-                <div className="h-24 w-px bg-ottoGrey-500" />
-                <span className="text-xs">{convertRawDate(date)}</span>
-              </div>
-            );
-          })}
-        </div>
-        <div className="absolute left-0 top-0 right-0">
-          {polis.map((data, index) => {
-            const num = index + 1;
-            const startPos = dateSort.indexOf(data.startDate);
-            // const endPos = dateSort.indexOf(data.endDate);
-            let width = `0%`;
-            let left = `0%`;
-            const className = style[`polis${num}`];
-            if (isOpen) {
-              // width = `${(endPos - startPos) * 20}%`;
-              const countWidth = (polis.length / (dateSort.length - 1)) * 100;
-              width = `${Math.ceil(countWidth)}%`;
-              // left = `calc(${startPos * 20}% - ${startPos * 5}px)`;
-              left = `${(100 / (dateSort.length - 1)) * startPos}%`;
-              console.log(num, dateSort.length, 100 / (dateSort.length - 1));
-              // left = `calc(${startPos * 32}% - ${startPos * 5}px)`;
-            }
-            return (
-              <div className={className} style={{ width, left }} key={num}>
-                Polis {num}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-InsuranceCoverage.propTypes = {
-  isOpen: PropTypes.bool,
-  polisData: PropTypes.array,
-  inactive: PropTypes.bool,
 };
 
 const PolisItem = ({ title, linkText, linkHref, inactive }) => {

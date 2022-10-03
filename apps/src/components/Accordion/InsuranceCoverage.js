@@ -27,14 +27,8 @@ const InsuranceCoverage = ({ isOpen, polisData, inactive }) => {
   const numSort = [];
   forNum.map((x) => {
     const count = [];
-    console.log("OPERATION: ", convert(x));
     polis.map((polis, ind) => {
       if (x >= polis.startDate && x < polis.endDate) {
-        console.log(`--- Date ${convert(x)}`);
-        console.log(`--- higher than ${convert(polis.startDate)}`);
-        console.log(`--- lower than ${convert(polis.endDate)}`);
-        console.log("Length: ", polis.length);
-
         // Cause 2 leng pos data
         if (polis.length < 3) {
           if (ind > 0 && x !== polis[ind - 1].endDate) count.push(1);
@@ -42,10 +36,10 @@ const InsuranceCoverage = ({ isOpen, polisData, inactive }) => {
         } else count.push(1);
       }
     });
-    console.log(`Date: ${convert(x)}, Actives: ${count.length}`);
-    numSort.push({ date: x, count: count.length });
-    return console.log("===================================");
+    return numSort.push({ date: x, count: count.length });
   });
+
+  const gridWidth = `${100 / dateSort.length}%`;
 
   return (
     <div className={style.coverage}>
@@ -56,12 +50,12 @@ const InsuranceCoverage = ({ isOpen, polisData, inactive }) => {
         style={{ position: "relative" }}
         className={isOpen ? "my-5" : "my-0"}
       >
-        <div className="flex justify-center text-ottoGrey-300">
+        <div className="flex justify-start text-ottoGrey-300">
           {numSort.map((i, index) => (
             <div
               key={index}
-              className="text-xs h-4 text-center"
-              style={{ width: `calc(100%/${forNum.length})` }}
+              className="text-xs h-4 text-center "
+              style={{ width: gridWidth, transform: "translate(50%, 0)" }}
             >
               {i.count} Juta
             </div>
@@ -73,16 +67,11 @@ const InsuranceCoverage = ({ isOpen, polisData, inactive }) => {
             return (
               <div
                 key={num}
-                className="flex flex-col items-start"
-                style={{ transform: "translate(50%, 0)" }}
+                className="flex flex-col items-start bg-blue-100 "
+                style={{ width: gridWidth }}
               >
                 <div className="h-24 w-px bg-ottoGrey-500" />
-                <span
-                  className="text-xs"
-                  style={{ transform: "translate(-50%, 0)" }}
-                >
-                  {convert(date)}
-                </span>
+                <span className="text-xs">{convert(date)}</span>
               </div>
             );
           })}
@@ -94,20 +83,26 @@ const InsuranceCoverage = ({ isOpen, polisData, inactive }) => {
           {polis.map((data, index) => {
             const num = index + 1;
             const startPos = dateSort.indexOf(data.startDate);
-            // const endPos = dateSort.indexOf(data.endDate);
+            const endPos = dateSort.indexOf(data.endDate);
             let width = `0%`;
             let left = `0%`;
             const className = style[`polis${num}`];
             if (isOpen) {
               // width = `${(endPos - startPos) * 20}%`;
-              const countWidth = (polis.length / (dateSort.length - 1)) * 100;
-              width = `${Math.ceil(countWidth)}%`;
+              // const countWidth = (polis.length / (dateSort.length - 1)) * 100;
+              // const countWidth = 100 / polis.length;
+              const countWidth = (100 / dateSort.length) * endPos;
+              width = `${countWidth}%`;
               // left = `calc(${startPos * 20}% - ${startPos * 5}px)`;
-              left = `${(100 / (dateSort.length - 1)) * startPos}%`;
+              left = `${(100 / forNum) * startPos}%`;
               // left = `calc(${startPos * 32}% - ${startPos * 5}px)`;
             }
             return (
-              <div className={className} style={{ width, left }} key={num}>
+              <div
+                className={className}
+                style={{ width, maxWidth: "50%", left }}
+                key={num}
+              >
                 Polis {num}
               </div>
             );

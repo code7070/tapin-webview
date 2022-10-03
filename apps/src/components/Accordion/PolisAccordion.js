@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { convertRawDate } from "../../helpers/util";
 import Icon from "../Icon/Icon";
-import InsuranceCoverage from "./InsuranceCoverage";
+// import InsuranceCoverage from "./InsuranceCoverage";
+import InsuranceCoverageNew from "./InsuranceCoverageNew";
 import style from "./PolisAccordion.module.scss";
 
 const Title = ({ title, onClick, isOpen }) => {
@@ -163,7 +164,7 @@ export default function PolisAccordion({
     <div className={`${style.polisAccordion} ${classOpen} ${tailwind}`}>
       <Title onClick={toggle} isOpen={isOpen} title={title} />
       <div className={style.content}>
-        <InsuranceCoverage
+        <InsuranceCoverageNew
           inactive={inactive}
           polisData={polisData}
           isOpen={isOpen}

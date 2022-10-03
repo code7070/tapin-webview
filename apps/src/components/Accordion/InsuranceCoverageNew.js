@@ -6,7 +6,7 @@ import style from "./PolisAccordion.module.scss";
 
 function InsuranceCoverageNew({ polisData, isOpen, inactive }) {
   const { search } = useLocation();
-  const { polis: pPolis = 1 } = parse(search);
+  const { polis: pPolis = 3 } = parse(search);
 
   if (inactive) return "";
 

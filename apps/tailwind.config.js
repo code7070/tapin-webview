@@ -3,7 +3,7 @@
 // const colors = require("tailwindcss/colors");
 
 module.exports = {
-  content: ["./src/**/*.{html,js}", "./src/**/**/*.{html,js}"],
+  plugins: [require("daisyui")],
   theme: {
     extend: {
       colors: {
@@ -29,10 +29,6 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
-  safelist: [
-    // {pattern:/(bg|text|border)-ottoBlue(Purple|Pink|Orange|Yellow|Lime|Mint|Test|Test2)/}
-  ],
   daisyui: {
     themes: [
       {
@@ -43,4 +39,5 @@ module.exports = {
       },
     ],
   },
+  content: ["./src/**/*.{html,js}", "./src/**/**/*.{html,js}"],
 };

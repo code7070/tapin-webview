@@ -1,6 +1,3 @@
-@tailwind base;
-@tailwind components;
-
 .accordion {
   position: relative;
   margin-bottom: 10px;
@@ -14,18 +11,10 @@
     padding: 0 20px;
   }
 
-  .symbol {
-    @apply bg-ottoBlue-200 ease-in-out duration-500 w-px h-2;
-  }
-
   &.opened {
     .content {
       padding: 20px;
       max-height: 100vh;
-    }
-
-    .symbol {
-      @apply bg-ottoBlue-400;
     }
   }
 }

@@ -41,6 +41,12 @@ const Test = () => {
             >
               Insurance Detail
             </Link>
+            <Link
+              className="text-blue-700 mx-2 hover:underline hover:text-blue-500"
+              to="/huy"
+            >
+              Huy
+            </Link>
           </li>
         </ul>
       </Boxs>

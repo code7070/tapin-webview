@@ -25,7 +25,7 @@ const ClickToAction = ({ tab }) => {
 
   return (
     <>
-      <Button large classExtend="normal-case" onClick={onClick}>
+      <Button large onClick={onClick}>
         {text}
       </Button>
       <PopupContact isOpen={isOpen} onClose={close} />

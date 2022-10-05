@@ -17,10 +17,9 @@ export default function Accordion({
   }, [isOpen]);
 
   let colors = "text-ottoBlue-200";
-  let bg = "bg-ottoBlue-200";
+
   if (open) {
     colors = "text-ottoBlue-400";
-    bg = "bg-ottoBlue-400";
   }
 
   return (
@@ -34,11 +33,13 @@ export default function Accordion({
         >
           {title}
         </div>
-        <div
-          className={`flex [&>*]:ease-in-out [&>*]:duration-500 [&>*]:${bg} [&>*]:w-px [&>*]:h-2`}
-        >
-          <div className={`translate-x-px ${open ? "rotate-90" : ""}`} />
-          <div className={`rotate-90`} />
+        <div className="flex">
+          <div
+            className={`${style.symbol} translate-x-px ${
+              open ? "rotate-90" : ""
+            }`}
+          />
+          <div className={`${style.symbol} rotate-90`} />
         </div>
       </button>
       <div className={style.content}>{children}</div>

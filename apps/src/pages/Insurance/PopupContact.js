@@ -55,10 +55,26 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
         icon="Home"
         linkHref="comgooglemaps://?q=PT+Equity+Life+Indonesia&center=@-6.2109142,106.8186699&zoom=17"
       />
+      <br />
       <ContactBox
         name="Alamat - maps://"
         icon="Home"
         linkHref="maps://?q=PT+Equity+Life+Indonesia&sll=-6.2109142,106.8186699&z=17"
+      />
+      <ContactBox
+        name="Alamat - maps://"
+        icon="Home"
+        linkHref="maps://?q=PT+Equity+Life+Indonesia&ll=-6.2109142,106.8186699&z=17"
+      />
+      <ContactBox
+        name="Alamat - maps://"
+        icon="Home"
+        linkHref="maps://?q=PT+Equity+Life+Indonesia&ll=-6.2109142,106.8186699&z=17"
+      />
+      <ContactBox
+        name="Alamat - maps://"
+        icon="Home"
+        linkHref="maps://?address=PT+Equity+Life+Indonesia,Jakarta,Indonesia"
       />
     </Modal>
   );

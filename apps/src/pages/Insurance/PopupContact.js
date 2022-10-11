@@ -58,7 +58,7 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
       <ContactBox
         name="Alamat - maps://"
         icon="Home"
-        linkHref="maps://?q=PT+Equity+Life+Indonesia&sll=@-6.2109142,106.8186699&z=17"
+        linkHref="maps://?q=PT+Equity+Life+Indonesia&sll=-6.2109142,106.8186699&z=17"
       />
     </Modal>
   );

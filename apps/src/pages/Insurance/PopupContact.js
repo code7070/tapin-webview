@@ -16,7 +16,7 @@ const ContactBox = ({ name, icon, linkText, linkHref }) => {
           href={linkHref}
           className="text-sm text-ottoBlue-200 hover:underline"
         >
-          {linkHref || linkText}
+          {linkText || linkHref}
         </a>
       </div>
     </div>
@@ -30,14 +30,22 @@ ContactBox.propTypes = {
   linkHref: PropTypes.string,
 };
 
+let device = "unlisted";
 export default function PopupContact({ isOpen = true, onClose = () => {} }) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="PT Equity Life">
-      <ContactBox name="Telepon" icon="Phone" linkHref="tel:1500-709" />
+      <div className="mb-8 text-center">Device: {device}</div>
+      <ContactBox
+        name="Telepon"
+        icon="Phone"
+        linkHref="tel:1500-709"
+        linkText="1500-709"
+      />
       <ContactBox
         name="Email"
         icon="Email"
         linkHref="mailto:contact.center@equity.id"
+        linkText="contact.center@equity.id"
       />
       <ContactBox name="Website" icon="Web" linkHref="https://equity.co.id" />
       <ContactBox

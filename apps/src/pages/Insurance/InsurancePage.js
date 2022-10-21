@@ -2,13 +2,11 @@ import Header from "../../components/Header/Header";
 import PropTypes from "prop-types";
 import InsuranceTab from "./InsuranceTab";
 import { useLocation } from "react-router-dom";
-import { parse } from "query-string";
 import { useState } from "react";
-import InsuranceProduct from "./InsuranceProduct";
-import InsurancePolis from "./InsurancePolis";
-import style from "./InsuranceDetail.module.scss";
+import style from "./InsurancePage.module.scss";
 import Button from "../../components/Button/Button";
 import PopupContact from "./PopupContact";
+import { propTypesChildren } from "../../helpers/util";
 
 const ClickToAction = ({ tab }) => {
   const [isOpen, setOpen] = useState(false);
@@ -37,21 +35,18 @@ ClickToAction.propTypes = {
   tab: PropTypes.string,
 };
 
-export default function InsuranceDetail() {
-  const { search } = useLocation();
-  const { tab } = parse(search);
+export default function InsurancePage({ children }) {
+  const { pathname: path } = useLocation();
 
-  console.log(tab);
-
-  let view = <InsuranceProduct />;
-  if (tab === "dokumen") view = <InsurancePolis />;
+  let activeTab = "detail";
+  if (path.includes("/dokumen")) activeTab = "dokumen";
 
   return (
     <section className={style.insuranceDetail}>
       <Header title="My Critical Illness Protection" />
       <div className="max-w-lg mx-auto pb-28">
         <InsuranceTab />
-        {view}
+        {children}
         <div className="px-5">
           <div className="info-text">
             *Produk dan jasa keuangan formal ditawarkan oleh lembaga jasa
@@ -73,8 +68,12 @@ export default function InsuranceDetail() {
           transition: "0.15s ease-in-out",
         }}
       >
-        <ClickToAction tab={tab} />
+        <ClickToAction tab={activeTab} />
       </div>
     </section>
   );
 }
+
+InsurancePage.propTypes = {
+  children: propTypesChildren,
+};

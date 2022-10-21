@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Accordion from "../../components/Accordion/Accordion";
-import style from "./InsuranceDetail.module.scss";
+import style from "./InsurancePage.module.scss";
 
 export default function InsuranceProduct() {
   const [isOpen, setOpen] = useState(false);

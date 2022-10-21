@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import { parse } from "query-string";
 import { useLocation, useNavigate } from "react-router-dom";
-import style from "./InsuranceDetail.module.scss";
+import style from "./InsurancePage.module.scss";
 
 const TabItem = ({ children = "Tab Item", isActive = false, onClick }) => {
   const activeClass = "border-ottoBlue-300 text-ottoGrey-200";
@@ -27,21 +26,23 @@ TabItem.propTypes = {
 };
 
 export default function InsuranceTab() {
-  const { pathname: path, search } = useLocation();
+  const { pathname: path } = useLocation();
   const navigate = useNavigate();
-  const parsed = parse(search);
 
-  const nav = (to) => navigate({ pathname: path, search: `tab=${to}` });
+  const nav = (to) => navigate(`/insurance/ci/${to}`);
 
   const man = () => nav("detail");
   const doc = () => nav("dokumen");
 
+  let activeTab = "detail";
+  if (path.includes("/dokumen")) activeTab = "dokumen";
+
   return (
     <div className="insuranceTab w-full flex items-center">
-      <TabItem isActive={parsed.tab !== "dokumen"} onClick={man}>
+      <TabItem isActive={activeTab === "detail"} onClick={man}>
         Detail Manfaat
       </TabItem>
-      <TabItem isActive={parsed.tab === "dokumen"} onClick={doc}>
+      <TabItem isActive={activeTab === "dokumen"} onClick={doc}>
         Dokumen Polis
       </TabItem>
     </div>

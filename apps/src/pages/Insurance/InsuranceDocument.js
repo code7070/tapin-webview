@@ -45,7 +45,7 @@ const polisData = [
   },
 ];
 
-export default function InsurancePolis() {
+export default function InsuranceDocument() {
   return (
     <div className="p-5">
       <div className="p-2.5 mb-16">

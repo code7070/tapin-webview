@@ -26,10 +26,10 @@ TabItem.propTypes = {
 };
 
 export default function InsuranceTab() {
-  const { pathname: path } = useLocation();
+  const { search, pathname: path } = useLocation();
   const navigate = useNavigate();
 
-  const nav = (to) => navigate(`/insurance/ci/${to}`);
+  const nav = (to) => navigate(`/insurance/ci/${to}${search}`);
 
   const man = () => nav("detail");
   const doc = () => nav("dokumen");

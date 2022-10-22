@@ -136,3 +136,26 @@ export const propTypesNode = [
 ];
 
 export const propTypesChildren = PropTypes.oneOfType(propTypesNode);
+
+export function detectBrowser(defaultValue = "Unlisted") {
+  let userAgent = navigator.userAgent;
+  let browserName = defaultValue;
+
+  if (userAgent.match(/chrome|chromium|crios/i)) {
+    browserName = "Chrome";
+  } else if (userAgent.match(/firefox|fxios/i)) {
+    browserName = "Firefox";
+  } else if (userAgent.match(/safari/i)) {
+    browserName = "Safari";
+  } else if (userAgent.match(/opr\//i)) {
+    browserName = "Opera";
+  } else if (userAgent.match(/edg/i)) {
+    browserName = "Edge";
+  } else if (userAgent.match(/android/i)) {
+    browserName = "Android";
+  } else if (userAgent.match(/iphone/i)) {
+    browserName = "iPhone";
+  }
+
+  return browserName;
+}

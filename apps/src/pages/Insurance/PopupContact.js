@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
 import Modal from "../../components/Modal/Modal";
 import Icon from "../../components/Icon/Icon";
+import { useLocation } from "react-router-dom";
+import { parse } from "query-string";
+import { detectBrowser } from "../../helpers/util";
 
 const ContactBox = ({ name, icon, linkText, linkHref }) => {
   return (
@@ -30,11 +33,28 @@ ContactBox.propTypes = {
   linkHref: PropTypes.string,
 };
 
-let device = "unlisted";
+const linkAddress = {
+  unlisted:
+    "https://maps.google.com/?q=PT+Equity+Life+Indonesia/@-6.2109142,106.8186699,17z",
+  android:
+    "https://maps.google.com/?q=PT+Equity+Life+Indonesia/@-6.2109142,106.8186699,17z",
+  ios: "maps://?q=PT+Equity+Life+Indonesia&ll=-6.2109142,106.8186699&z=17",
+  apple: "maps://?q=PT+Equity+Life+Indonesia&ll=-6.2109142,106.8186699&z=17",
+  mac: "maps://?q=PT+Equity+Life+Indonesia&ll=-6.2109142,106.8186699&z=17",
+  ipad: "maps://?q=PT+Equity+Life+Indonesia&ll=-6.2109142,106.8186699&z=17",
+};
+
 export default function PopupContact({ isOpen = true, onClose = () => {} }) {
+  const { search } = useLocation();
+  const { device = "unlisted" } = parse(search);
+
+  let deviceType = `${detectBrowser(device)}`.toLowerCase();
+  console.log({ deviceType });
+  const addressLink = linkAddress[deviceType];
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="PT Equity Life">
-      <div className="mb-8 text-center">Device: {device}</div>
+      <div className="mb-8 text-center">Device: {deviceType}</div>
       <ContactBox
         name="Telepon"
         icon="Phone"
@@ -48,6 +68,14 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
         linkText="contact.center@equity.id"
       />
       <ContactBox name="Website" icon="Web" linkHref="https://equity.co.id" />
+      <ContactBox
+        name="Alamat"
+        icon="Home"
+        linkHref={addressLink}
+        linkText="PT Equity Life Indonesia, Sahid Sudirman Center lantai 43 Jl. Jend Sudirman No. 86, Jakarta 10220"
+      />
+      <hr />
+      <br />
       <ContactBox
         name="Alamat - maps.google.com/?q="
         icon="Home"

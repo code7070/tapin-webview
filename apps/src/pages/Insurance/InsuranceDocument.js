@@ -1,4 +1,5 @@
 import PolisAccordion from "../../components/Accordion/PolisAccordion";
+import InsurancePage from "./InsurancePage";
 
 const polisData = [
   {
@@ -47,18 +48,20 @@ const polisData = [
 
 export default function InsuranceDocument() {
   return (
-    <div className="p-5">
-      <div className="p-2.5 mb-16">
-        <PolisAccordion
-          title="My_CI_Protection_QRIS_392343"
-          polisData={polisData}
-        />
-        <PolisAccordion
-          title="Inactive Insurance"
-          polisData={polisData}
-          inactive
-        />
+    <InsurancePage>
+      <div className="p-5">
+        <div className="p-2.5 mb-16">
+          <PolisAccordion
+            title="My_CI_Protection_QRIS_392343"
+            polisData={polisData}
+          />
+          <PolisAccordion
+            title="Inactive Insurance"
+            polisData={polisData}
+            inactive
+          />
+        </div>
       </div>
-    </div>
+    </InsurancePage>
   );
 }

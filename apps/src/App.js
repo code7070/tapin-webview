@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./scss/global.scss";
 
 const Test = lazy(() => import("./pages/Test/Test"));
@@ -14,6 +14,7 @@ const App = () => (
           <Route index element={<Test />} />
           <Route path="insurance">
             <Route path="ci">
+              <Route index element={<Navigate replace to="detail" />} />
               <Route path="detail" element={<Product />} />
               <Route path="dokumen" element={<Document />} />
             </Route>

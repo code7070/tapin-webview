@@ -42,6 +42,7 @@ const linkAddress = {
   apple: "maps://?q=PT+Equity+Life+Indonesia&ll=-6.2109142,106.8186699&z=17",
   mac: "maps://?q=PT+Equity+Life+Indonesia&ll=-6.2109142,106.8186699&z=17",
   ipad: "maps://?q=PT+Equity+Life+Indonesia&ll=-6.2109142,106.8186699&z=17",
+  iphone: "maps://?q=PT+Equity+Life+Indonesia&ll=-6.2109142,106.8186699&z=17",
 };
 
 export default function PopupContact({ isOpen = true, onClose = () => {} }) {

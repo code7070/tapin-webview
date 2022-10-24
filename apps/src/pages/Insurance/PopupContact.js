@@ -34,10 +34,8 @@ ContactBox.propTypes = {
 };
 
 const linkAddress = {
-  unlisted:
-    "https://maps.google.com/?q=PT+Equity+Life+Indonesia/@-6.2109142,106.8186699,17z",
-  android:
-    "https://maps.google.com/?q=PT+Equity+Life+Indonesia/@-6.2109142,106.8186699,17z",
+  unlisted: "https://goo.gl/maps/EZ5kbEMzgpKgZjYF7",
+  android: "https://goo.gl/maps/EZ5kbEMzgpKgZjYF7",
   ios: "maps://?address=Jl.%20Jend.%20Sudirman%20No.%2086,%20Central%20Jakarta,%20Jakarta%2010220,%20Indonesia&auid=6459330042965116742&ll=-6.210914,106.818670&lsp=9902$t=m",
   apple:
     "maps://?address=Jl.%20Jend.%20Sudirman%20No.%2086,%20Central%20Jakarta,%20Jakarta%2010220,%20Indonesia&auid=6459330042965116742&ll=-6.210914,106.818670&lsp=9902$t=m",

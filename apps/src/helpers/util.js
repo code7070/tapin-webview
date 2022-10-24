@@ -138,8 +138,9 @@ export const propTypesNode = [
 export const propTypesChildren = PropTypes.oneOfType(propTypesNode);
 
 export function detectBrowser(defaultValue = "Unlisted") {
-  let userAgent = navigator.userAgent;
+  let userAgent = window.navigator.userAgent;
   let browserName = defaultValue;
+  console.log(userAgent);
 
   // if (userAgent.match(/chrome|chromium|crios/i)) {
   //   browserName = "Chrome";
@@ -158,6 +159,7 @@ export function detectBrowser(defaultValue = "Unlisted") {
   // }
   if (userAgent.match(/android/i)) browserName = "Android";
   else if (userAgent.match(/iphone/i)) browserName = "iPhone";
+  else if (userAgent.match(/ipad/i)) browserName = "iPad";
 
   return browserName;
 }

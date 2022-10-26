@@ -24,9 +24,9 @@
 
 ### 1. Version
 
-| Date       | Version | Author                                               | Changelog       |
-| ---------- | ------- | ---------------------------------------------------- | --------------- |
-| 2022-10-05 | 1.0.0   | Aditya Pratama Nur, Claudio Antonius, Chaerul Marwan | Initial release |
+| Date       | Version | Author                   | Changelog                |
+| ---------- | ------- | ------------------------ | ------------------------ |
+| 2022-10-05 | 1.0.0   | Aditya Pratama Nur, Jojo | pre-release, development |
 
 [**Back to contents**](#contents)
 

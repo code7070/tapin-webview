@@ -154,51 +154,47 @@ These properties file can be leverage to handle more environment in the future, 
 
 ==as **development**==
 
-- copy env project apps
+- Copy Dockerfile
 
-  ```
-  cp apps/.env.staging.example apps/.env
-  ```
+```
+cp Dockerfile.dev Dockerfile
+```
 
-- install and build
-  ```
-  yarn install
-  yarn build
-  ```
-- starting project first time
+- Build docker image
 
-  ```
-  pm2 start middleware/server.js -n web
-  ```
+```
+docker build -t ottopay-web:latest .
+```
 
-- restart project
-  ```
-  pm2 restart web
-  ```
+- Create docker container and run container
+
+```
+docker run --rm -d -it --name ottopay-web -p 3001:3001 ottopay-web:latest
+```
+
+\*note 3001 = the port used to serve the application
 
 ==as **production**==
 
-- copy env project apps
+- Copy Dockerfile
 
-  ```
-  cp apps/.env.production.example apps/.env
-  ```
+```
+cp Dockerfile.prd Dockerfile
+```
 
-- install and build
-  ```
-  yarn install
-  yarn build
-  ```
-- starting project first time
+- Build docker image
 
-  ```
-  pm2 start middleware/server.js -n web
-  ```
+```
+docker build -t ottopay-web:latest .
+```
 
-- restart project
-  ```
-  pm2 restart web
-  ```
+- Create docker container and run container
+
+```
+docker run --rm -d -it --name ottopay-web -p 3001:3001 ottopay-web:latest
+```
+
+\*note 3001 = the port used to serve the application
 
 [**Back to contents**](#contents)
 
@@ -211,10 +207,11 @@ These properties file can be leverage to handle more environment in the future, 
 
 ### 16. Author
 
-| Name               | Role                | Email                       | Capabilities  |
-| ------------------ | ------------------- | --------------------------- | ------------- |
-| Aditya Pratama Nur | Tech Lead           | aditya@weekendinc.com       | Web Developer |
-| Jojo               | Front End Developer | aditya.abdul@weekendinc.com | Web Developer |
+| Name               | Role                | Email                           | Capabilities  |
+| ------------------ | ------------------- | ------------------------------- | ------------- |
+| Aditya Pratama Nur | Tech Lead           | aditya@weekendinc.com           | Web Developer |
+| Claudio Antonius   | Front End Developer | claudio.antonius@weekendinc.com | Web Developer |
+| Chaerul Marwan     | Front End Developer | chaerul.marwan@weekendinc.com   | Web Developer |
 
 [**Back to contents**](#contents)
 

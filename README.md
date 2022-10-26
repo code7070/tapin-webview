@@ -45,8 +45,8 @@ Furthermore, it will have even more feature.
 
 You can access Tap-in Webview
 
-- staging [tapin-webview-apps-hgg9.vercel.app](https://tapin-webview-apps-hgg9.vercel.app/insurance/ci)
-- repository [here](https://andromeda.ottopay.id/pt-rtsm-ottopay/bp-fe-web).
+- staging [staging-tapin.otto.id](staging-tapin.otto.id/insurance/ci)
+- repository [here](https://gitlab.pede.id/weekend/fe/webview-tapin-insurances).
 
 [**Back to contents**](#contents)
 
@@ -150,55 +150,51 @@ These properties file can be leverage to handle more environment in the future, 
 
 [**Back to contents**](#contents)
 
-### 14. Running application
+## 14. Running application
 
 ==as **development**==
 
-- copy env project apps
+- Copy Dockerfile
 
-  ```
-  cp apps/.env.staging.example apps/.env
-  ```
+```
+cp Dockerfile.dev Dockerfile
+```
 
-- install and build
-  ```
-  yarn install
-  yarn build
-  ```
-- starting project first time
+- Build docker image
 
-  ```
-  pm2 start middleware/server.js -n web
-  ```
+```
+docker build -t webview-tapin:latest .
+```
 
-- restart project
-  ```
-  pm2 restart web
-  ```
+- Create docker container and run container
+
+```
+docker run --rm -d -it --name webview-tapin -p 4000:4000 webview-tapin:latest
+```
+
+\*note 4000 = the port used to serve the application
 
 ==as **production**==
 
-- copy env project apps
+- Copy Dockerfile
 
-  ```
-  cp apps/.env.production.example apps/.env
-  ```
+```
+cp Dockerfile.prd Dockerfile
+```
 
-- install and build
-  ```
-  yarn install
-  yarn build
-  ```
-- starting project first time
+- Build docker image
 
-  ```
-  pm2 start middleware/server.js -n web
-  ```
+```
+docker build -t webview-tapin:latest .
+```
 
-- restart project
-  ```
-  pm2 restart web
-  ```
+- Create docker container and run container
+
+```
+docker run --rm -d -it --name webview-tapin -p 4000:4000 webview-tapin:latest
+```
+
+\*note 4000 = the port used to serve the application
 
 [**Back to contents**](#contents)
 
@@ -215,23 +211,5 @@ These properties file can be leverage to handle more environment in the future, 
 | ------------------ | ------------------- | --------------------------- | ------------- |
 | Aditya Pratama Nur | Tech Lead           | aditya@weekendinc.com       | Web Developer |
 | Jojo               | Front End Developer | aditya.abdul@weekendinc.com | Web Developer |
-
-[**Back to contents**](#contents)
-
-### 17. Timeline
-
-N/A
-
-[**Back to contents**](#contents)
-
-### 18. Tasks
-
-N/A
-
-[**Back to contents**](#contents)
-
-### 19. Testscripts
-
-N/A
 
 [**Back to contents**](#contents)

@@ -53,8 +53,7 @@ You can access Tap-in Webview
 ### 4. Technology stack
 
 - React : A JavaScript library for building user interfaces, link [here](https://reactjs.org/).
-- Wieldy : is a complete React admin template & starter-kit that follows Ant Design Concept and implements Ant Design framework to develop a react app., link [here](https://g-axon.com/wieldy-ant-design-react-redux-admin-template/).
-- Ant Design : A design system for enterprise-level products. Create an efficient and enjoyable work experience, link [here](https://ant.design/).
+- Tailwind: A utility-first CSS framework packed with classes that can be composed to build any design, directly in your markup.
 
 [**Back to contents**](#contents)
 

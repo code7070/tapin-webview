@@ -171,7 +171,7 @@ docker build -t webview-tapin:latest .
 docker run --rm -d -it --name webview-tapin -p 4000:4000 webview-tapin:latest
 ```
 
-\*note 4000 = the port used to serve the application
+\*note 3000 = the port used to serve the application
 
 ==as **production**==
 
@@ -193,7 +193,7 @@ docker build -t webview-tapin:latest .
 docker run --rm -d -it --name webview-tapin -p 4000:4000 webview-tapin:latest
 ```
 
-\*note 4000 = the port used to serve the application
+\*note 3000 = the port used to serve the application
 
 [**Back to contents**](#contents)
 

@@ -45,7 +45,7 @@ Furthermore, it will have even more feature.
 
 You can access Tap-in Webview
 
-- staging [staging-tapin.otto.id](staging-tapin.otto.id/insurance/ci)
+- staging [staging-tapin.otto.id](https://staging-tapin.otto.id/insurance/ci)
 - repository [here](https://gitlab.pede.id/weekend/fe/webview-tapin-insurances).
 
 [**Back to contents**](#contents)
@@ -95,13 +95,12 @@ N/A
 
 ### 11. Project structure
 
-> **middleware** : folder that containing file to running build result
+**middleware** : folder that containing file to running build result
 
-> **apps/build** : folder that containing build result
-
-> **apps/src** : folder that containing source code, resources
-
-> **apps/public** : folder that containing images, icons or media
+**apps** : folder that cointaining project <br />
+&nbsp;&nbsp;- **/build** : containing build result <br />
+&nbsp;&nbsp;- **/src** : containing source code, resources <br />
+&nbsp;&nbsp;- **/public** : containing images, icons or media <br />
 
 [**Back to contents**](#contents)
 

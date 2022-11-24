@@ -30,11 +30,8 @@ export default function InsuranceProduct() {
             My CI (Critical Illness) Protection
           </div>
           <div className="body-text mb-5">
-            Produk Asuransi yang dipasarkan adalah Asuransi Penyakit Kritis
-            kumpulan, yaitu produk Asuransi yang memberikan manfaat perlindungan
-            terhadap salah satu dari 3 (tiga) jenis penyakit kritis yang
-            dipertanggungkan. Program ini adalah kerjasama antara Otto dan
-            Equity Life Indonesia.
+            Produk asuransi yang memberikan manfaat perlindungan terhadap salah
+            satu dari 3 (tiga) jenis Penyakit Kritis yang dipertanggungkan.
           </div>
           <div className="mb-10">
             <Accordion
@@ -44,12 +41,12 @@ export default function InsuranceProduct() {
             >
               <div className="body-text text-justify">
                 Jika Tertanggung untuk pertama kalinya didiagnosis salah satu
-                penyakit kritis yang dipertanggungkan dalam Sertifikat Asuransi
-                dan terjadi dalam Masa Asuransi, maka Penanggung akan memberikan
-                Manfaat Asuransi sebesar 100% Uang Pertanggungan dan selanjutnya
-                Kepesertaan Asuransi berakhir. Jenis penyakit kritis yang
-                dipertanggungkan sebagai berikut: stroke, kanker dan serangan
-                jantung.
+                penyakit dari 3 (tiga) kritis yang dipertanggungkan dalam
+                Sertifikat Asuransi dan terjadi dalam Masa Asuransi, maka
+                Penanggung akan memberikan Manfaat Asuransi sebesar 100% Uang
+                Pertanggungan dan selanjutnya Kepesertaan Asuransi berakhir.
+                Jenis penyakit kritis yang dipertanggungkan sebagai berikut:
+                stroke, kanker dan serangan jantung.
               </div>
             </Accordion>
             <Accordion
@@ -67,7 +64,8 @@ export default function InsuranceProduct() {
                   <li>Masa asuransi Anda adalah 1 bulan</li>
                   <li>Uang pertanggungan Anda adalah Rp1.000.000</li>
                   <li>
-                    Anda hanya dapat memiliki maksimum 3 (tiga) Sertifikat
+                    Anda hanya dapat memiliki maksimum{" "}
+                    <span className="font-semibold">3 (tiga)</span> Sertifikat
                     Asuransi dalam 1 periode yang beririsan dengan maksimal
                     akumulasi Uang Pertanggungan yang dapat dibayarkan per
                     Tertanggung sebesar Rp3.000.000 (tiga juta rupiah)
@@ -78,18 +76,21 @@ export default function InsuranceProduct() {
                     pernah mengajukan klaim manfaat ini
                   </li>
                   <li>
-                    Dengan memperhatikan ketentuan maksimum akumulasi Uang
-                    Pertanggungan yang berlaku, klaim atas nama Anda terhadap
-                    produk asuransi ini hanya dapat dilakukan 1 (satu) kali
-                    selama periode asuransi. Mohon abaikan penawaran selanjutnya
-                    jika Anda sudah pernah mendapatkan/mengajukan pembayaran
-                    Manfaat Asuransi terkait produk ini sebelumnya.
+                    Dengan memperhatikan ketentuan{" "}
+                    <span className="font-semibold">maksimum</span> akumulasi
+                    Uang Pertanggungan yang berlaku, klaim atas nama Anda
+                    terhadap produk asuransi ini hanya dapat dilakukan 1 (satu)
+                    kali selama periode asuransi. Mohon abaikan penawaran
+                    selanjutnya jika Anda sudah pernah mendapatkan/mengajukan
+                    pembayaran Manfaat Asuransi terkait produk ini sebelumnya.
                   </li>
                   <li>
-                    Manfaat Asuransi tidak akan dibayarkan untuk setiap
+                    Manfaat Asuransi tidak akan dibayarkan untuk{" "}
+                    <span className="font-semibold">setiap</span>&nbsp;
                     peristiwa yang disebabkan karena atau menjadi akibat dari
                     keadaan/penyakit yang telah ada sebelum tanggal berlakunya
-                    asuransi (Pre-Existing Condition).
+                    asuransi{" "}
+                    <span className="italic">(Pre-Existing Condition)</span>.
                   </li>
                 </ul>
               </div>
@@ -110,7 +111,16 @@ export default function InsuranceProduct() {
                     Lengkapi persyaratan dan dokumen klaim yang tercantum pada
                     dokumen klaim di bawah ini atau dapat menghubungi Contact
                     Center kami di 1500 079 (Senin – Jumat, Pukul 08.30–17.00)
-                    maupun via website Equity Life Indonesia (www.equity.co.id).
+                    maupun via website Equity Life Indonesia{" "}
+                    <a
+                      href="https://equity.co.id"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="hover:underline"
+                    >
+                      (www.equity.co.id)
+                    </a>
+                    .
                   </li>
                   <li>
                     Pastikan Anda memberikan formulir dan dokumen klaim secara
@@ -150,9 +160,22 @@ export default function InsuranceProduct() {
           <div className="body-text">
             Untuk informasi lebih lanjut terkait dengan produk My CI Protection,
             Tertanggung dapat menghubungi Contact Center di 1500 079 di hari
-            Senin – Jumat pukul 08.30 – 17.00 atau email ke
-            contact.center@equity.id atau kunjungi website PT Equity Life
-            Indonesia di www.equity.co.id
+            Senin – Jumat pukul 08.30 – 17.00 atau email ke{" "}
+            <a
+              href="mailto:contact.center@equity.id"
+              className="hover:underline"
+            >
+              contact.center@equity.id
+            </a>{" "}
+            atau kunjungi website PT Equity Life Indonesia di{" "}
+            <a
+              href="https://equity.co.id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              www.equity.co.id
+            </a>
           </div>
         </div>
       </div>

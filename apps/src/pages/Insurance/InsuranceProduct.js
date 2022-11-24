@@ -32,6 +32,8 @@ export default function InsuranceProduct() {
           <div className="body-text mb-5">
             Produk asuransi yang memberikan manfaat perlindungan terhadap salah
             satu dari 3 (tiga) jenis Penyakit Kritis yang dipertanggungkan.
+            Produk Critical Illness ini adalah produk yang dipasang pada
+            transaksi QRIS.
           </div>
           <div className="mb-10">
             <Accordion

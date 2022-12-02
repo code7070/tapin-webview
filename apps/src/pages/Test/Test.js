@@ -45,7 +45,7 @@ const Test = () => {
               className="text-blue-700 mx-2 hover:underline hover:text-blue-500"
               to="/huy"
             >
-              Huy
+              Huy - deploy dev
             </Link>
           </li>
         </ul>

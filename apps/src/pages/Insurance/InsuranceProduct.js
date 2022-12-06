@@ -105,7 +105,7 @@ export default function InsuranceProduct() {
               <div className="body-text text-justify">
                 <div className={headStyle}>
                   Berikut adalah Tata Cara Klaim yang harus diperhatikan bagi
-                  Tertanggung jika hendak mengajukan klaim produk My CI
+                  Tertanggung jika hendak mengajukan klaim Program My CI
                   Protection:
                 </div>
                 <ul className={listStyle}>

@@ -14,7 +14,7 @@ const appEnvironment = process.env.REACT_APP_ENVIRONMENT;
 const appName = process.env.REACT_APP_NAME;
 const appSecretKey = process.env.REACT_APP_SECRET_KEY;
 const appDeviceType = process.env.REACT_APP_DEVICE_TYPE;
-const appTokenHeader = process.env.REACT_APP_TOKEN_HEADER;
+const appTokenHeader = process.env.REACT_APP_TOKEN_HEADER || "Authorization";
 
 const urlGetToken = "api/token/get";
 const urlRefreshToken = "api/token/get";

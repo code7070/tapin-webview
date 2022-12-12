@@ -188,7 +188,7 @@ const MainService = new ApiTree(RootService, [
         const newPayload = { ...payload };
         newPayload.headers = {
           ...payload.headers,
-          [appTokenHeader]: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
           "X-TRACE-ID": v4(),
         };
         next(newPayload);

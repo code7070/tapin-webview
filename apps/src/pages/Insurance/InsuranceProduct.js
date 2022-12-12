@@ -59,7 +59,8 @@ export default function InsuranceProduct() {
               <div className="body-text text-justify">
                 <div className={headStyle}>
                   Berikut adalah Syarat dan Ketentuan yang harus diperhatikan
-                  bagi Tertanggung jika hendak membeli produk My CI Protection:
+                  bagi Tertanggung jika hendak mengikuti Program My CI
+                  Protection:
                 </div>
                 <ul className={listStyle}>
                   <li>Anda berusia 17-59 tahun</li>

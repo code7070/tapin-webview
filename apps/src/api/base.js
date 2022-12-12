@@ -1,7 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+
 import { ApiService, ApiTree } from "@apicase/services";
 import fetch from "@apicase/adapter-fetch";
 import Cookies from "js-cookie";
 import apiList from "./list";
+import { v4 } from "uuid";
 
 // VARIABLE LIST
 // make sure match for your APP
@@ -184,7 +188,8 @@ const MainService = new ApiTree(RootService, [
         const newPayload = { ...payload };
         newPayload.headers = {
           ...payload.headers,
-          [appTokenHeader]: token,
+          [appTokenHeader]: `Bearer ${token}`,
+          "X-TRACE-ID": v4(),
         };
         next(newPayload);
       },

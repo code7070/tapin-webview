@@ -113,7 +113,7 @@ export const convertRawDate = (
   withHour = false
 ) => {
   if (!rawDate) return "-";
-  const date = new Date(rawDate);
+  const date = new Date(parseInt(rawDate, 10));
   const retDate = date.getDate();
   const retMonth = date.getMonth() + 1;
   const retYear = date.getFullYear();

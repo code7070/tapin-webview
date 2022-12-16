@@ -69,7 +69,7 @@ export const transactionPlanList = ({ code = 200 }) => {
       isDelete: false,
       partnerReferenceNo: "1",
       productId: 1,
-      receiptNo: "1-125",
+      receiptNo: "1-129",
       transactionAmount: 1000,
       transactionDate: "",
       transactionStatus: "",

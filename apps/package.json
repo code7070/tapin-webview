@@ -54,6 +54,7 @@
   "scripts": {
     "build-icon": "svgr --icon --replace-attr-values '#000=currentColor' --out-dir src/components/Icon/assets/build/ src/components/Icon/assets/src/",
     "build-js": "GENERATE_SOURCEMAP=false react-scripts build",
+    "win-build-js": "set GENERATE_SOURCEMAP=false && react-scripts build",
     "compress-image": "node addons/compress-image.js",
     "convert-image": "node addons/convert-image.js",
     "copy-to-deploy": "cpx 'build/**/*' build_deploy -C",
@@ -62,6 +63,7 @@
     "start": "yarn start-js",
     "start-secure": "HTTPS=true yarn start-js",
     "build": "yarn build-js && yarn copy-to-deploy && npm run compress-image",
+    "winBuild": "yarn win-build-js && yarn copy-to-deploy && npm run compress-image",
     "deploy": "node ../middleware/server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

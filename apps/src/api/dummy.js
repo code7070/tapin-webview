@@ -4,7 +4,7 @@ const insurancePlans = [
   {
     id: 1,
     customerId: "123",
-    coverageAmount: 1000000,
+    coverageAmount: 2500000,
     coverageStart: "2022-09-08T11:00:00.000Z",
     coverageEnd: "2022-10-07T17:00:00.000Z",
     isDelete: false,
@@ -60,7 +60,7 @@ const insurancePlans = [
   {
     id: 3,
     customerId: "123",
-    coverageAmount: 1000000,
+    coverageAmount: 1500000,
     coverageStart: "2022-10-05T09:30:00.000Z",
     coverageEnd: "2022-11-04T17:00:00.000Z",
     isDelete: false,

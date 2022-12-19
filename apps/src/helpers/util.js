@@ -163,3 +163,16 @@ export function detectBrowser(defaultValue = "Unlisted") {
 
   return browserName;
 }
+
+export function convertIntl(num) {
+  return Intl.NumberFormat("id-ID", {
+    maximumFractionDigits: 2,
+    notation: "compact",
+  }).format(num);
+}
+
+export function numMillion(num = 0) {
+  // let word = "";
+  // const number = `${parseInt(num, 10)}`;
+  return convertIntl(parseInt(num, 10)).replace("jt", "Juta");
+}

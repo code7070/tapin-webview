@@ -3,6 +3,7 @@ import { parse } from "query-string";
 import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import style from "./PolisAccordion.module.scss";
+import { numMillion } from "helpers/util";
 
 const DateLine = ({ position = "left", date = "" }) => {
   let transform = "";
@@ -27,7 +28,7 @@ const GridView = ({ forNum, grid, coverage, dateSort = [] }) =>
     <div className="flex relative">
       {forNum.map((x, index) => {
         const width = `${grid}%`;
-        const coverageValue = `${coverage[index]} Juta`;
+        const coverageValue = numMillion(coverage[index]);
         return (
           <div key={x} style={{ width }} className={`relative h-24`}>
             <div className={style.polisCoverageAmmount}>{coverageValue}</div>
@@ -94,10 +95,10 @@ function PolisAccordionGraph({ polisData, isOpen, inactive }) {
   const coverage = [];
   forNum.map((date) => {
     let x = [];
-    polis.map(({ coverageEnd, coverageStart }) => {
-      if (date >= coverageStart && date < coverageEnd) x.push(1);
+    polis.map(({ coverageEnd, coverageStart, coverageAmount }) => {
+      if (date >= coverageStart && date < coverageEnd) x.push(coverageAmount);
     });
-    return coverage.push(x.length);
+    return coverage.push(x.reduce((prev, curr) => prev + curr));
   });
 
   let cutter = forNum;

@@ -20,7 +20,7 @@ export default function PolisAccordion({
   return (
     <div className={`${style.polisAccordion} ${classOpen} ${tailwind}`}>
       <PolisTitle
-        loading={polisData === false}
+        loading={!polisData || polisData.length < 1}
         onClick={toggle}
         isOpen={isOpen}
         title={title}

@@ -72,3 +72,15 @@
     }
   }
 }
+
+.polisCoverageAmmount {
+  @apply text-xs text-center font-semibold text-[10px] text-ottoBlue-500;
+
+  transform: translate(0, -50%);
+}
+
+.polisTextDate {
+  @apply text-[10px] font-extrabold text-ottoBlue-150 mt-2.5;
+
+  transform: translate(-50%, 0);
+}

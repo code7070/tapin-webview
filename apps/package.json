@@ -9,6 +9,7 @@
     "@apicase/core": "^0.17.0",
     "@apicase/services": "^0.8.1",
     "daisyui": "^2.27.0",
+    "date-fns": "^2.29.3",
     "dotenv": "^8.2.0",
     "helmet": "^4.4.1",
     "js-cookie": "^2.2.0",

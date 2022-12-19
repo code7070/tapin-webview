@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { parse } from "query-string";
 import { useLocation } from "react-router-dom";
-import { convertRawDate } from "../../../helpers/util";
+import { format } from "date-fns";
 import Icon from "../../Icon/Icon";
 
 const PolisAccordionItem = ({ title, linkText, linkHref, inactive }) => {
@@ -56,7 +56,7 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
           <div key={item.coverageStart} className="pt-2.5">
             <div>
               <div className="px-5 text-xs text-ottoGrey-300">
-                {convertRawDate(item.coverageStart, true, true)}
+                {format(new Date(item.coverageStart), "dd/MM/yyy - H:mm")}
               </div>
               <PolisAccordionItem
                 title={`Tanda Bukti Transaksi ${number}`}

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { parse } from "query-string";
 import { useLocation } from "react-router-dom";
-import { convertRawDate as convert } from "../../../helpers/util";
+import { format } from "date-fns";
 import style from "./PolisAccordion.module.scss";
 
 const DateLine = ({ position = "left", date = "" }) => {
@@ -10,11 +10,8 @@ const DateLine = ({ position = "left", date = "" }) => {
   return (
     <div className={`absolute ${position}-0 top-0`} style={{ transform }}>
       <div className="w-px h-24 bg-ottoGrey-700" />
-      <div
-        className="text-[10px] font-extrabold text-ottoBlue-150 mt-2.5"
-        style={{ transform: "translate(-50%, 0)" }}
-      >
-        {convert(date)}
+      <div className={style.polisTextDate}>
+        {format(new Date(date), "dd/MM")}
       </div>
     </div>
   );
@@ -33,12 +30,7 @@ const GridView = ({ forNum, grid, coverage, dateSort = [] }) =>
         const coverageValue = `${coverage[index]} Juta`;
         return (
           <div key={x} style={{ width }} className={`relative h-24`}>
-            <div
-              className="text-xs text-center font-semibold text-[10px] text-ottoBlue-500"
-              style={{ transform: "translate(0, -50%)" }}
-            >
-              {coverageValue}
-            </div>
+            <div className={style.polisCoverageAmmount}>{coverageValue}</div>
             <DateLine date={dateSort[index]} />
             {index + 2 === dateSort.length && (
               <DateLine position="right" date={dateSort[index + 1]} />
@@ -57,7 +49,6 @@ GridView.propTypes = {
 };
 
 const PolisBar = ({ item, index, dateSort, isOpen, grid }) => {
-  console.log("POLIS MAP: ", index, item);
   const num = index + 1;
   const startPos = dateSort.indexOf(item.coverageStart);
   const endPos = dateSort.indexOf(item.coverageEnd);

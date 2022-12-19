@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
-import { transactionPlanList } from "../../api/dummy";
+import { insurancePlanList } from "../../api/dummy";
 import PolisAccordion from "../../components/Accordion/PolisAccordion/PolisAccordion";
 import InsurancePage from "./InsurancePage";
 
@@ -11,7 +11,7 @@ export default function InsuranceDocument() {
 
   useEffect(() => {
     setTimeout(() => {
-      setPolis(transactionPlanList);
+      setPolis(insurancePlanList);
     }, 500);
   }, []);
 

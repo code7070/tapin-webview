@@ -3,36 +3,30 @@ import { parse } from "query-string";
 import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import Icon from "components/Icon/Icon";
+import style from "./PolisAccordion.module.scss";
 
-const PolisAccordionItem = ({ title, linkText, linkHref, inactive }) => {
-  let color = "text-ottoBlue-200";
-  let colorTitle = "text-ottoBlue-100";
-  if (inactive) {
-    color = "text-ottoGrey-300 pointer-events-none";
-    colorTitle = color;
-  }
+const PolisItem = ({ title, linkText, linkHref, inactive }) => {
+  const offClass = inactive ? style.inactive : "";
+  const fname = `${offClass} ${style.polisFileName}`;
+  const flink = `${offClass} ${style.polisFileLink}`;
+  const iconType = `PdfIcon${inactive ? "Disabled" : ""}`;
 
   return (
-    <div className="flex w-full overflow-hidden py-2.5 px-5 w-full hover:bg-slate-100">
-      <div className="pr-4 flex-1 w-4/5">
-        <div className={`${colorTitle} font-semibold text-sm`}>{title}</div>
-        <a
-          href={linkHref}
-          target="_blank"
-          rel="noreferrer"
-          className={`${color} text-sm hover:underline block w-full break-words`}
-        >
+    <div className={style.polisFileItem}>
+      <div className={style.polisFileWord}>
+        <div className={fname}>{title}</div>
+        <a href={linkHref} target="_blank" rel="noreferrer" className={flink}>
           {linkText}
         </a>
       </div>
       <div className="w-1/12">
-        <Icon type={`PdfIcon${inactive ? "Disabled" : ""}`} />
+        <Icon type={iconType} />
       </div>
     </div>
   );
 };
 
-PolisAccordionItem.propTypes = {
+PolisItem.propTypes = {
   title: PropTypes.string,
   linkText: PropTypes.string,
   linkHref: PropTypes.string,
@@ -55,17 +49,17 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
         return (
           <div key={item.coverageStart} className="pt-2.5">
             <div>
-              <div className="px-5 text-xs text-ottoGrey-300">
+              <div className={style.polisTransactionDate}>
                 {format(new Date(item.coverageStart), "dd/MM/yyy - H:mm")}
               </div>
-              <PolisAccordionItem
+              <PolisItem
                 title={`Tanda Bukti Transaksi ${number}`}
                 linkText={item.transcationProof}
                 linkHref={item.transcationProof}
                 margin
                 inactive={inactive}
               />
-              <PolisAccordionItem
+              <PolisItem
                 title={`Sertifikat Asuransi ${number}`}
                 linkText={item.certificateCertificate}
                 linkHref={item.insuranceCertificate}

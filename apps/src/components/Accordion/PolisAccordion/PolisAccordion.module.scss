@@ -73,6 +73,33 @@
   }
 }
 
+.polisTransactionDate {
+  @apply px-5 text-xs text-ottoGrey-300;
+}
+
+.polisFileItem {
+  @apply flex w-full overflow-hidden py-2.5 px-5 w-full hover:bg-slate-100;
+}
+
+.polisFileWord {
+  @apply pr-4 flex-1 w-4/5;
+}
+
+.polisFileName {
+  @apply text-ottoBlue-100 font-semibold text-sm;
+}
+
+.polisFileLink {
+  @apply text-ottoBlue-200 text-sm hover:underline block w-full break-words;
+}
+
+.polisFileName,
+.polisFileLink {
+  &.inactive {
+    @apply text-ottoGrey-300 pointer-events-none;
+  }
+}
+
 .polisCoverageAmmount {
   @apply text-xs text-center font-semibold text-[10px] text-ottoBlue-500;
 

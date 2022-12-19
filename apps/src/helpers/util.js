@@ -140,7 +140,7 @@ export const propTypesChildren = PropTypes.oneOfType(propTypesNode);
 export function detectBrowser(defaultValue = "Unlisted") {
   let userAgent = window.navigator.userAgent;
   let browserName = defaultValue;
-  console.log(userAgent);
+  // console.log(userAgent);
 
   // if (userAgent.match(/chrome|chromium|crios/i)) {
   //   browserName = "Chrome";

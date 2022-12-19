@@ -3,7 +3,7 @@ import { useState } from "react";
 import PolisGraph from "./PolisAccordionGraph";
 import style from "./PolisAccordion.module.scss";
 import { PolisOwner, PolisProvider, PolisTitle } from "./PolisAccordionViews";
-import PolisAccordionFile from "./PolisAccordionFile";
+import PolisFile from "./PolisFile";
 
 export default function PolisAccordion({
   title = "Title",
@@ -31,7 +31,7 @@ export default function PolisAccordion({
           polisData={polisData || []}
           isOpen={isOpen}
         />
-        <PolisAccordionFile polisData={polisData || []} inactive={inactive} />
+        <PolisFile polisData={polisData || []} inactive={inactive} />
         <PolisOwner />
         <PolisProvider />
       </div>

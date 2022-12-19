@@ -1,19 +1,35 @@
+/* eslint-disable no-unused-vars */
+
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { insurancePlanList } from "api/dummy";
 import { PolisAccordion } from "components";
 import InsurancePage from "./InsurancePage";
 
-/* eslint-disable no-unused-vars */
-
 export default function InsuranceDocument() {
   const [polis, setPolis] = useState(false);
 
+  const [activePolis, setActivePolis] = useState(false);
+  const [inactivePolis, setInactivePolis] = useState(false);
+
   useEffect(() => {
-    setTimeout(() => {
-      setPolis(insurancePlanList);
-    }, 500);
+    setTimeout(setPolis, 500, insurancePlanList);
   }, []);
+
+  useEffect(() => {
+    if (polis && polis.insurancePlans) {
+      const list = polis.insurancePlans;
+      const now = new Date();
+      list.map((item) => {
+        const target = item.coverageEnd;
+        // console.log(
+        //   "List Map: ",
+        //   new Date(target),
+        //   diffDays(new Date(target), now)
+        // );
+      });
+    }
+  }, [polis]);
 
   const planList = polis && polis.insurancePlans;
   const isPolisExist = polis && planList && planList.length > 0;

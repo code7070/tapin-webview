@@ -28,7 +28,8 @@ const GridView = ({ forNum, grid, coverage, dateSort = [] }) =>
     <div className="flex relative">
       {forNum.map((x, index) => {
         const width = `${grid}%`;
-        const coverageValue = numMillion(coverage[index]);
+        const coverageValue =
+          coverage[index] > 0 ? numMillion(coverage[index]) : "-";
         return (
           <div key={x} style={{ width }} className={`relative h-24`}>
             <div className={style.polisCoverageAmmount}>{coverageValue}</div>
@@ -98,7 +99,7 @@ function PolisAccordionGraph({ polisData, isOpen, inactive }) {
     polis.map(({ coverageEnd, coverageStart, coverageAmount }) => {
       if (date >= coverageStart && date < coverageEnd) x.push(coverageAmount);
     });
-    return coverage.push(x.reduce((prev, curr) => prev + curr));
+    return x.length && coverage.push(x.reduce((prev, curr) => prev + curr));
   });
 
   let cutter = forNum;

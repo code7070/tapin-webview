@@ -51,7 +51,7 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
   const { device = "unlisted" } = parse(search);
 
   let deviceType = `${detectBrowser(device)}`.toLowerCase();
-  console.log({ deviceType });
+  // console.log({ deviceType });
   const addressLink = linkAddress[deviceType];
 
   return (

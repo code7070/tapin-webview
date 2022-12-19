@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import Button from "../Button/Button";
-import Icon from "../Icon/Icon";
+import { Button, Icon } from "components";
 import style from "./Header.module.scss";
 
 export default function Header({ title = "Header Title" }) {

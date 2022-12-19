@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
 import PropTypes from "prop-types";
-import { runFunction } from "../../helpers/util";
-import Icon from "../Icon/Icon";
+import { runFunction } from "helpers/util";
+import Icon from "components/Icon/Icon";
 
 export default function Modal({ isOpen = false, onClose, title, children }) {
   const [opened, setOpened] = useState(isOpen);

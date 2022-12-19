@@ -1,12 +1,11 @@
-import Header from "../../components/Header/Header";
 import PropTypes from "prop-types";
 import InsuranceTab from "./InsuranceTab";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import { Header, Button } from "components";
 import style from "./InsurancePage.module.scss";
-import Button from "../../components/Button/Button";
 import PopupContact from "./PopupContact";
-import { propTypesChildren } from "../../helpers/util";
+import { propTypesChildren } from "helpers/util";
 
 const ClickToAction = ({ tab }) => {
   const [isOpen, setOpen] = useState(false);

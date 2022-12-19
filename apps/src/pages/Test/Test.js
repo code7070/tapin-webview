@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button/Button";
-import Header from "../../components/Header/Header";
-import Image from "../../components/Image/Image";
+import { Button, Header, Image } from "components";
 import styles from "./Test.module.scss";
 
 const Boxs = ({ title = "Title default", children }) => {

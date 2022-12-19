@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
-import Modal from "../../components/Modal/Modal";
-import Icon from "../../components/Icon/Icon";
 import { useLocation } from "react-router-dom";
 import { parse } from "query-string";
-import { detectBrowser } from "../../helpers/util";
+import { Modal, Icon } from "components";
+import { detectBrowser } from "helpers/util";
 
 const ContactBox = ({ name, icon, linkText, linkHref }) => {
   return (

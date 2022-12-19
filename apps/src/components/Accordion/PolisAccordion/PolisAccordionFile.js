@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { parse } from "query-string";
 import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
-import Icon from "../../Icon/Icon";
+import Icon from "components/Icon/Icon";
 
 const PolisAccordionItem = ({ title, linkText, linkHref, inactive }) => {
   let color = "text-ottoBlue-200";

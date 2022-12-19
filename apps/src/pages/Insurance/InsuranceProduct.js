@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Accordion from "../../components/Accordion/Accordion";
+import { Accordion } from "components";
 import InsurancePage from "./InsurancePage";
 import style from "./InsurancePage.module.scss";
 

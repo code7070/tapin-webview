@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
-import { insurancePlanList } from "../../api/dummy";
-import PolisAccordion from "../../components/Accordion/PolisAccordion/PolisAccordion";
+import { insurancePlanList } from "api/dummy";
+import { PolisAccordion } from "components";
 import InsurancePage from "./InsurancePage";
 
 /* eslint-disable no-unused-vars */

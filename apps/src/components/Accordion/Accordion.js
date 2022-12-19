@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
+import { propTypesChildren } from "helpers/util";
 import { useEffect, useState } from "react";
-import { propTypesChildren } from "../../helpers/util";
 import style from "./Accordion.module.scss";
 
 export default function Accordion({

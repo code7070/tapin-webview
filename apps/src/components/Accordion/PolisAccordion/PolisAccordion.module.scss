@@ -77,6 +77,26 @@
   @apply px-5 text-xs text-ottoGrey-300;
 }
 
+.polisFileGroup {
+  @apply relative pt-6;
+
+  &::after {
+    content: "";
+    @apply bg-ottoGrey-500 my-2.5 absolute left-[50%] h-px;
+
+    width: calc(100% - 40px);
+    transform: translate(-50%, 0);
+  }
+
+  &:last-child {
+    @apply pb-0;
+
+    &::after {
+      content: initial;
+    }
+  }
+}
+
 .polisFileItem {
   @apply flex w-full overflow-hidden py-2.5 px-5 w-full hover:bg-slate-100;
 }

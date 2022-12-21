@@ -44,37 +44,26 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
   return (
     <div>
       {polis.map((item, index) => {
-        const isLast = index === polis.length - 1;
+        // const isLast = index === polis.length - 1;
         const number = index + 1;
         return (
-          <div key={item.coverageStart} className="pt-2.5">
-            <div>
-              <div className={style.polisTransactionDate}>
-                {format(new Date(item.coverageStart), "dd/MM/yyy - H:mm")}
-              </div>
-              <PolisItem
-                title={`Tanda Bukti Transaksi ${number}`}
-                linkText={item.transcationProof}
-                linkHref={item.transcationProof}
-                margin
-                inactive={inactive}
-              />
-              <PolisItem
-                title={`Sertifikat Asuransi ${number}`}
-                linkText={item.certificateCertificate}
-                linkHref={item.insuranceCertificate}
-                inactive={inactive}
-              />
-              {!isLast && (
-                <div
-                  className="bg-ottoGrey-500 my-2.5 relative left-[50%] h-px"
-                  style={{
-                    width: "calc(100% - 40px)",
-                    transform: "translate(-50%, 0)",
-                  }}
-                />
-              )}
+          <div key={item.coverageStart} className={style.polisFileGroup}>
+            <div className={style.polisTransactionDate}>
+              {format(new Date(item.coverageStart), "dd/MM/yyy - H:mm")}
             </div>
+            <PolisItem
+              title={`Tanda Bukti Transaksi ${number}`}
+              linkText={item.transcationProof}
+              linkHref={item.transcationProof}
+              margin
+              inactive={inactive}
+            />
+            <PolisItem
+              title={`Sertifikat Asuransi ${number}`}
+              linkText={item.certificateCertificate}
+              linkHref={item.insuranceCertificate}
+              inactive={inactive}
+            />
           </div>
         );
       })}

@@ -1,8 +1,6 @@
 .polisAccordion {
-  position: relative;
-  overflow: hidden;
   transition: all 0.25s;
-  min-height: 64px;
+  @apply relative overflow-hidden rounded-md border border-ottoGrey-500 mb-4 min-h-[64px];
 
   * {
     transition: all 0.25s;

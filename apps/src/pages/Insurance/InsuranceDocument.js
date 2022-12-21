@@ -28,13 +28,7 @@ export default function InsuranceDocument() {
         const diff = diffDays(now, new Date(target));
         if (diff > -1) inactive.push(item);
         else active.push(item);
-        console.log(
-          "List Map: ",
-          new Date(target),
-          diffDays(now, new Date(target))
-        );
       });
-      console.log({ active, inactive });
       setActivePolis(active);
       setInactivePolis(inactive);
     }

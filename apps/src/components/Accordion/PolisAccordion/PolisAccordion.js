@@ -4,6 +4,7 @@ import PolisGraph from "./PolisAccordionGraph";
 import style from "./PolisAccordion.module.scss";
 import { PolisOwner, PolisProvider, PolisTitle } from "./PolisAccordionViews";
 import PolisFile from "./PolisFile";
+import Skeleton from "react-loading-skeleton";
 
 export default function PolisAccordion({
   title = "Title",
@@ -12,15 +13,18 @@ export default function PolisAccordion({
 }) {
   const [isOpen, setOpen] = useState(false);
 
+  const noPolis = !polisData || polisData.length < 1;
+  if (!polisData) return <Skeleton width="100%" height={64} />;
+  else if (noPolis) return "";
+
   const toggle = () => setOpen(!isOpen);
 
-  const tailwind = `rounded-md border border-ottoGrey-500 mb-4`;
   const classOpen = isOpen ? style.open : "";
 
   return (
-    <div className={`${style.polisAccordion} ${classOpen} ${tailwind}`}>
+    <div className={`${style.polisAccordion} ${classOpen}`}>
       <PolisTitle
-        loading={!polisData || polisData.length < 1}
+        loading={noPolis}
         onClick={toggle}
         isOpen={isOpen}
         title={title}

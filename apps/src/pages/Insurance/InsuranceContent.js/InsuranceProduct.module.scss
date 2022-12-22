@@ -1,0 +1,27 @@
+.banner {
+  position: relative;
+  margin: 0 auto;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+.heading {
+  @apply font-bold mb-5;
+}
+
+.productWord {
+  position: relative;
+  padding: 30px 20px;
+}
+
+.productTitle {
+  @apply font-semibold text-ottoBlue-300 mb-2.5;
+  font-size: 22px;
+}
+
+.description {
+  @apply text-justify;
+}

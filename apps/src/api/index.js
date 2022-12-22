@@ -1,8 +1,9 @@
+/* eslint-disable */
 import MainService from "./base";
 
 const convertToFormData = (formData, data, previousKey) => {
   if (data instanceof Object) {
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach((key) => {
       const value = data[key];
       if (value instanceof Blob && !Array.isArray(value)) {
         formData.append(key, value, getFilename(value.name));
@@ -15,7 +16,7 @@ const convertToFormData = (formData, data, previousKey) => {
         key = `${previousKey}[${key}]`;
       }
       if (Array.isArray(value)) {
-        value.forEach(val => {
+        value.forEach((val) => {
           formData.append(`${key}[]`, val);
         });
       } else {
@@ -23,7 +24,7 @@ const convertToFormData = (formData, data, previousKey) => {
       }
     });
   }
-}
+};
 
 const handleGeneralError = (error) => console.log("General Error", error);
 const handleGETRequest = async (api, { ...body }) => {
@@ -32,14 +33,12 @@ const handleGETRequest = async (api, { ...body }) => {
       body: { data, error, code },
     },
   } = await MainService(api)
-    .doRequest({ body: { ...body } })
+    .doRequest({ query: { ...body } })
     .then((result) => result)
     .catch((errorGeneral) => {
       handleGeneralError(errorGeneral);
       return {
-        result: {
-          body: { data: null, error: null },
-        },
+        result: { body: { data: null, error: null } },
         errorJS: errorGeneral,
       };
     });
@@ -57,7 +56,7 @@ const handlePOSTRequest = async (api, body, asFormData = false) => {
 
   if (asFormData) {
     // https://stackoverflow.com/a/43101878
-    convertToFormData(formData, body);
+    // convertToFormData(formData, body);
     actualBody = formData;
   }
 
@@ -106,3 +105,9 @@ export const getArticleDetail = (id) =>
 export const createArticle = (data) => handlePOSTRequest("createArticle", data);
 
 export const getToken = (data) => handlePOSTRequest("getToken", data);
+
+export const getInsurancePlans = ({ id, insuranceId }) =>
+  handleGETRequest("insurancePlans", {
+    customerId: `${id}`,
+    insuranceProductId: `${insuranceId}`,
+  });

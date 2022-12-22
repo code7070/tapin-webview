@@ -1,0 +1,8 @@
+.tab {
+  @apply relative py-5 flex-1 border-b-2 border-transparent;
+
+  &.active {
+    @apply border-ottoBlue-300 text-ottoGrey-200;
+    background: linear-gradient(180deg, #ebeff0 0%, #f7f7f7 93.23%);
+  }
+}

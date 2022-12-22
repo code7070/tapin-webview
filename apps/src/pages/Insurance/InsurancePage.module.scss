@@ -2,35 +2,13 @@
   position: relative;
 }
 
-.tab {
-  position: relative;
-  padding: 18px 0;
-
-  &.active {
-    background: linear-gradient(180deg, #ebeff0 0%, #f7f7f7 93.23%);
-  }
-}
-
-.banner {
-  position: relative;
-  margin: 0 auto;
-
-  img {
-    display: block;
-    width: 100%;
-  }
-}
-
-.productWord {
-  position: relative;
-  padding: 30px 20px;
-}
-
-.productTitle {
-  font-size: 22px;
-  margin: 0 0 10px;
-}
-
 .actionButton {
   position: fixed;
+}
+
+.ctaWrapper {
+  @apply fixed bottom-0 left-0 right-0 w-full flex items-center justify-center p-5 bg-white;
+
+  box-shadow: 0 0 0 rgb(0 0 0 / 10%);
+  transition: 0.15s ease-in-out;
 }

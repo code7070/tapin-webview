@@ -1,4 +1,54 @@
 /* eslint-disable no-unused-vars */
+const insurances = [
+  {
+    id: 1,
+    customerId: "a2fc63dc-550a-4434-8c87-d2de5a2bc303",
+    no: "ELI0001",
+    price: "20000",
+    transactioProof: "BUKTI_TRANSAKSI_20221012062129.pdf",
+    insuranceCertificate: "ELI_INSURANCE_CERTIFICATE_20221012062129.pdf",
+    coverageAmount: "1000000",
+    coverageStart: "2022-11-11T06:21:29.000Z",
+    coverageEnd: "2022-11-11T06:21:29.000Z",
+    date: "2022-11-11T06:21:29.000Z",
+    paymentDate: "2022-11-11T06:21:29.000Z",
+    createdDate: "2022-11-11T06:21:29.000Z",
+    updatedDate: "2022-11-11T06:21:29.000Z",
+    status: "Pending",
+    insuranceProduct: {
+      name: "Critical Illnes",
+      price: "20000",
+      provider: {
+        name: "ELI",
+        company: "PT A",
+      },
+    },
+  },
+  {
+    id: 2,
+    customerId: "a2fc63dc-550a-4434-8c87-d2de5a2bc303",
+    no: "ELI0002",
+    price: "20000",
+    transactioProof: "BUKTI_TRANSAKSI_20221012062129.pdf",
+    insuranceCertificate: "ELI_INSURANCE_CERTIFICATE_20221012062129.pdf",
+    coverageAmount: "1000000",
+    coverageStart: "2022-11-11T06:21:29.000Z",
+    coverageEnd: "2022-11-11T06:21:29.000Z",
+    date: "2022-11-11T06:21:29.000Z",
+    paymentDate: "2022-11-11T06:21:29.000Z",
+    createdDate: "2022-11-11T06:21:29.000Z",
+    updatedDate: "2022-11-11T06:21:29.000Z",
+    status: "Pending",
+    insuranceProduct: {
+      name: "Critical Illnes",
+      price: "20000",
+      provider: {
+        name: "ELI",
+        company: "PT A",
+      },
+    },
+  },
+];
 
 const insurancePlans = [
   {
@@ -97,10 +147,7 @@ const resPlan400 = {
   paging: {},
 };
 
-export const insurancePlanList = ({ code = 200 }) => {
-  if (code === 200) return { meta: { code: "200" }, insurancePlans };
-  return resPlan400;
-};
+export const insurancePlanList = { meta: { code: "200" }, insurancePlans };
 
 export const insurancePlanDetail = ({ code = 200, id = 1 }) => {
   if (typeof id === "number" && code === 200)

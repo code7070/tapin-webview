@@ -8,6 +8,7 @@ const { default: Header } = require("./Header/Header");
 const { default: Button } = require("./Button/Button");
 const { default: Modal } = require("./Modal/Modal");
 const { default: Image } = require("./Image/Image");
+const { default: LinkNewTab } = require("./Link/LinkNewTab");
 
 export {
   Accordion,
@@ -18,4 +19,5 @@ export {
   Button,
   Modal,
   Image,
+  LinkNewTab,
 };

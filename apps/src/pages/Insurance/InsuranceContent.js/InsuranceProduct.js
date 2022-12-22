@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Accordion } from "components";
-import InsurancePage from "./InsurancePage";
-import style from "./InsurancePage.module.scss";
+import style from "./InsuranceProduct.module.scss";
+import { Accordion, LinkNewTab } from "components";
+import InsurancePage from "../InsurancePage";
 
 export default function InsuranceProduct() {
   const [isOpen, setOpen] = useState(false);
@@ -11,8 +11,9 @@ export default function InsuranceProduct() {
     else setOpen(false);
   };
 
-  const headStyle = "font-bold mb-5";
   const listStyle = "list-disc [&>*]:leading-normal [&>*]:mb-4";
+  const description = `${style.description} body-text`;
+  const headStyle = style.heading;
 
   return (
     <InsurancePage>
@@ -24,9 +25,7 @@ export default function InsuranceProduct() {
           />
         </div>
         <div className={style.productWord}>
-          <div
-            className={`${style.productTitle} font-semibold text-ottoBlue-300`}
-          >
+          <div className={style.productTitle}>
             My CI (Critical Illness) Protection
           </div>
           <div className="body-text mb-5">
@@ -41,7 +40,7 @@ export default function InsuranceProduct() {
               isOpen={isOpen === "manfaat"}
               onClick={() => toggleOpen("manfaat")}
             >
-              <div className="body-text text-justify">
+              <div className={description}>
                 Jika Tertanggung untuk pertama kalinya didiagnosis salah satu
                 penyakit dari 3 (tiga) kritis yang dipertanggungkan dalam
                 Sertifikat Asuransi dan terjadi dalam Masa Asuransi, maka
@@ -56,7 +55,7 @@ export default function InsuranceProduct() {
               isOpen={isOpen === "syarat"}
               onClick={() => toggleOpen("syarat")}
             >
-              <div className="body-text text-justify">
+              <div className={description}>
                 <div className={headStyle}>
                   Berikut adalah Syarat dan Ketentuan yang harus diperhatikan
                   bagi Tertanggung jika hendak mengikuti Program My CI
@@ -103,7 +102,7 @@ export default function InsuranceProduct() {
               isOpen={isOpen === "klaim"}
               onClick={() => toggleOpen("klaim")}
             >
-              <div className="body-text text-justify">
+              <div className={description}>
                 <div className={headStyle}>
                   Berikut adalah Tata Cara Klaim yang harus diperhatikan bagi
                   Tertanggung jika hendak mengajukan klaim Program My CI
@@ -115,14 +114,9 @@ export default function InsuranceProduct() {
                     dokumen klaim di bawah ini atau dapat menghubungi Contact
                     Center kami di 1500 079 (Senin – Jumat, Pukul 08.30–17.00)
                     maupun via website Equity Life Indonesia{" "}
-                    <a
-                      href="https://equity.co.id"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="hover:underline"
-                    >
+                    <LinkNewTab href="https://equity.co.id">
                       (www.equity.co.id)
-                    </a>
+                    </LinkNewTab>
                     .
                   </li>
                   <li>
@@ -171,14 +165,9 @@ export default function InsuranceProduct() {
               contact.center@equity.id
             </a>{" "}
             atau kunjungi website PT Equity Life Indonesia di{" "}
-            <a
-              href="https://equity.co.id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline"
-            >
+            <LinkNewTab href="https://equity.co.id">
               www.equity.co.id
-            </a>
+            </LinkNewTab>
           </div>
         </div>
       </div>

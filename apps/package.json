@@ -8,6 +8,7 @@
     "@apicase/adapter-fetch": "^0.15.1",
     "@apicase/core": "^0.17.0",
     "@apicase/services": "^0.8.1",
+    "@reduxjs/toolkit": "^1.9.1",
     "daisyui": "^2.27.0",
     "date-fns": "^2.29.3",
     "dotenv": "^8.2.0",
@@ -21,6 +22,7 @@
     "react-helmet": "^6.1.0",
     "react-loading-skeleton": "^3.1.0",
     "react-modal": "^3.15.1",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "uuid": "^9.0.0"
@@ -48,9 +50,11 @@
     "sass": "^1.54.8",
     "stylelint": "^14.8.0",
     "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^29.0.0",
     "stylelint-config-standard-scss": "^3.0.0",
     "stylelint-config-tailwindcss": "^0.0.6",
     "stylelint-prettier": "^2.0.0",
+    "stylelint-scss": "^4.3.0",
     "tailwindcss": "^3.1.8"
   },
   "scripts": {

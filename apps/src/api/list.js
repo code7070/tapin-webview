@@ -26,6 +26,15 @@ const apiList = [
       },
     ],
   },
+  {
+    url: "v1",
+    children: [
+      {
+        name: "insurancePlans",
+        url: "insurancePlans",
+      },
+    ],
+  },
 ];
 
 export default apiList;

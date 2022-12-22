@@ -93,7 +93,12 @@ function PolisAccordionGraph({ polisData, isOpen, inactive }) {
       if (date >= coverageStartDate && date < coverageEndDate)
         x.push(coverageAmount);
     });
-    return x.length && coverage.push(x.reduce((prev, curr) => prev + curr));
+    return (
+      x.length &&
+      coverage.push(
+        x.reduce((prev, curr) => parseInt(prev, 10) + parseInt(curr, 10))
+      )
+    );
   });
 
   let cutter = forNum;

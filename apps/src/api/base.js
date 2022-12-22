@@ -54,7 +54,6 @@ const do400 = (result) => {
   const { meta } = result.body;
   const errText = `Error ${meta.code} - ${meta.title}`;
   alert(errText);
-  console.log("API Error: ", errText);
 };
 // END OF ADDITIONAL ERROR STATES
 

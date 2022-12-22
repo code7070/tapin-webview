@@ -36,9 +36,10 @@ function useInsurancePlans() {
       if (res && res.insurancePlan) processing(res.insurancePlan);
       console.log("Return Insurance Plans: ", res);
     };
-    if (!parsed.customerId || !parsed.insuranceId)
+    if (!parsed.customerId || !parsed.insuranceId) {
+      dispatch(setInsurancePlans({ active: [], inactive: [] }));
       alert("Customer or Insurance information required");
-    else if (!plans.active && !plans.inactive) hit();
+    } else if (!plans.active && !plans.inactive) hit();
   }, [parsed.customerId, parsed.insuranceId, dispatch, plans]);
 
   return "";

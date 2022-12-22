@@ -1,6 +1,4 @@
 import PropTypes from "prop-types";
-import { parse } from "query-string";
-import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import style from "./PolisAccordion.module.scss";
 import { numMillion } from "helpers/util";
@@ -52,8 +50,8 @@ GridView.propTypes = {
 
 const PolisBar = ({ item, index, dateSort, isOpen, grid }) => {
   const num = index + 1;
-  const startPos = dateSort.indexOf(item.coverageStart);
-  const endPos = dateSort.indexOf(item.coverageEnd);
+  const startPos = dateSort.indexOf(item.coverageStartDate);
+  const endPos = dateSort.indexOf(item.coverageEndDate);
   let width = `0%`;
   if (isOpen) width = `${(endPos - startPos) * grid}%`;
   const barClass = style[`polis${num}`];
@@ -75,18 +73,13 @@ PolisBar.propTypes = {
 };
 
 function PolisAccordionGraph({ polisData, isOpen, inactive }) {
-  const { search } = useLocation();
-  const { polis: pPolis = 3 } = parse(search);
-
   if (inactive) return "";
-
   const polis = [...polisData];
-  polis.length = pPolis;
 
   const dateSort = [];
   polis.map((x) => {
-    dateSort.push(x.coverageStart);
-    dateSort.push(x.coverageEnd);
+    dateSort.push(x.coverageStartDate);
+    dateSort.push(x.coverageEndDate);
     dateSort.sort();
   });
 
@@ -96,8 +89,9 @@ function PolisAccordionGraph({ polisData, isOpen, inactive }) {
   const coverage = [];
   forNum.map((date) => {
     let x = [];
-    polis.map(({ coverageEnd, coverageStart, coverageAmount }) => {
-      if (date >= coverageStart && date < coverageEnd) x.push(coverageAmount);
+    polis.map(({ coverageEndDate, coverageStartDate, coverageAmount }) => {
+      if (date >= coverageStartDate && date < coverageEndDate)
+        x.push(coverageAmount);
     });
     return x.length && coverage.push(x.reduce((prev, curr) => prev + curr));
   });

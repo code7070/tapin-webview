@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { insurancePlanList } from "api/dummy";
+// import { insurancePlanList } from "api/dummy";
 import { differenceInDays as diffDays } from "date-fns";
 import { setInsurancePlans } from "pages/Insurance/insurancePlansSlice";
 import { getInsurancePlans } from "api";
@@ -14,38 +14,32 @@ function useInsurancePlans() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const hit = async () => {
-      console.log("Hit insurance plans...");
-      const { data, error } = await getInsurancePlans({
-        id: parsed.costumerId || "943f9bd0-7484-4af2-82ca-68f09b3dbd5b",
-        insuranceId: parsed.insuranceId || "1",
-      });
-      console.log("Return Insurance Plans: ", data, error);
-    };
-
-    hit();
-  }, [parsed.costumerId, parsed.insuranceId]);
-
-  useEffect(() => {
-    const polis = insurancePlanList;
-    const hasData = polis && polis.insurancePlans;
-    if (hasData && !plans.active && !plans.inactive) {
-      const list = polis.insurancePlans;
+    const processing = (dataPlans = []) => {
       const now = new Date();
       const active = [];
       const inactive = [];
-      list.map((item) => {
-        const target = item.coverageEnd;
+      dataPlans.map((item) => {
+        const target = item.coverageEndDate;
         const diff = diffDays(now, new Date(target));
         if (diff > -1) inactive.push(item);
         else active.push(item);
       });
+      dispatch(setInsurancePlans({ active, inactive }));
+    };
 
-      setTimeout(() => {
-        dispatch(setInsurancePlans({ active, inactive }));
-      }, 1500);
-    }
-  }, [dispatch, plans]);
+    const hit = async () => {
+      console.log("Hit insurance plans...");
+      const res = await getInsurancePlans({
+        id: parsed.customerId || "943f9bd0-7484-4af2-82ca-68f09b3dbd5b",
+        insuranceId: parsed.insuranceId || "1",
+      });
+      if (res && res.insurancePlan) processing(res.insurancePlan);
+      console.log("Return Insurance Plans: ", res);
+    };
+    if (!parsed.customerId || !parsed.insuranceId)
+      alert("Customer or Insurance information required");
+    else if (!plans.active && !plans.inactive) hit();
+  }, [parsed.customerId, parsed.insuranceId, dispatch, plans]);
 
   return "";
 }

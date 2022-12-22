@@ -47,9 +47,9 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
         // const isLast = index === polis.length - 1;
         const number = index + 1;
         return (
-          <div key={item.coverageStart} className={style.polisFileGroup}>
+          <div key={item.coverageStartDate} className={style.polisFileGroup}>
             <div className={style.polisTransactionDate}>
-              {format(new Date(item.coverageStart), "dd/MM/yyy - H:mm")}
+              {format(new Date(item.coverageStartDate), "dd/MM/yyy - H:mm")}
             </div>
             <PolisItem
               title={`Tanda Bukti Transaksi ${number}`}

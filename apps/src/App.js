@@ -20,10 +20,20 @@ const App = () => (
           <Route path="/">
             <Route index element={<Test />} />
             <Route path="insurance">
-              <Route index element={<Navigate replace to="detail" />} />
+              <Route
+                index
+                element={
+                  <Navigate replace to={`detail${window.location.search}`} />
+                }
+              />
               <Route path="detail" element={<Product />} />
               <Route path="dokumen" element={<Document />} />
-              <Route path="*" element={<Navigate replace to="detail" />} />
+              <Route
+                path="*"
+                element={
+                  <Navigate replace to={`detail${window.location.search}`} />
+                }
+              />
             </Route>
           </Route>
         </Routes>

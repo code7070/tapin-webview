@@ -33,6 +33,15 @@ const apiList = [
         name: "insurancePlans",
         url: "insurancePlans",
       },
+      {
+        url: "gcs",
+        children: [
+          {
+            name: "downloadFile",
+            url: "downloadFile",
+          },
+        ],
+      },
     ],
   },
 ];

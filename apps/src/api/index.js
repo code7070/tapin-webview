@@ -83,18 +83,12 @@ const handlePOSTRequest = async (api, body, asFormData = false) => {
 };
 
 /** Edit this part */
-export const getArticleList = (data) =>
-  handlePOSTRequest("getArticleList", data);
-
-export const getArticleDetail = (id) =>
-  handlePOSTRequest("getArticleDetail", { id });
-
-export const createArticle = (data) => handlePOSTRequest("createArticle", data);
-
-export const getToken = (data) => handlePOSTRequest("getToken", data);
 
 export const getInsurancePlans = ({ id, insuranceId }) =>
   handleGETRequest("insurancePlans", {
     customerId: `${id}`,
     insuranceProductId: `${insuranceId}`,
   });
+
+export const downloadFile = ({ fileName }) =>
+  handleGETRequest("downloadFile", { fileName });

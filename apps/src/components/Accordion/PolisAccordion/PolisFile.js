@@ -2,23 +2,31 @@ import PropTypes from "prop-types";
 import { parse } from "query-string";
 import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
-import Icon from "components/Icon/Icon";
+import { Loading, Icon } from "components";
 import style from "./PolisAccordion.module.scss";
+import { downloadFile } from "api";
+import { useState } from "react";
 
 const PolisItem = ({ title, linkText, linkHref, inactive }) => {
+  const [loading, setLoading] = useState(false);
+
   const offClass = inactive ? style.inactive : "";
   const fname = `${offClass} ${style.polisFileName}`;
   const flink = `${offClass} ${style.polisFileLink}`;
   const iconType = `PdfIcon${inactive ? "Disabled" : ""}`;
 
+  const clickFile = async () => {
+    setLoading(true);
+    await downloadFile({ fileName: linkHref });
+    setLoading(false);
+  };
+
   return (
     <div className={style.polisFileItem}>
-      <div className={style.polisFileWord}>
+      <button className={style.polisFileWord} onClick={clickFile}>
         <div className={fname}>{title}</div>
-        <a href={linkHref} target="_blank" rel="noreferrer" className={flink}>
-          {linkText}
-        </a>
-      </div>
+        {loading ? <Loading /> : <div className={flink}>{linkText}</div>}
+      </button>
       <div className="w-1/12">
         <Icon type={iconType} />
       </div>
@@ -53,16 +61,16 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
             </div>
             <PolisItem
               title={`Tanda Bukti Transaksi ${number}`}
-              linkText={item.transcationProof}
-              linkHref={item.transcationProof}
+              linkText={`${item.transactionProof}`.replace("./", "")}
+              linkHref={item.transactionProof}
               margin
-              inactive={inactive}
+              inactive={inactive || !item.transactionProof}
             />
             <PolisItem
               title={`Sertifikat Asuransi ${number}`}
               linkText={item.certificateCertificate}
               linkHref={item.insuranceCertificate}
-              inactive={inactive}
+              inactive={inactive || !item.insuranceCertificate}
             />
           </div>
         );

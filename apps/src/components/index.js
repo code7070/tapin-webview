@@ -9,6 +9,7 @@ const { default: Button } = require("./Button/Button");
 const { default: Modal } = require("./Modal/Modal");
 const { default: Image } = require("./Image/Image");
 const { default: LinkNewTab } = require("./Link/LinkNewTab");
+const { default: ErrorBox } = require("./ErrorBox/ErrorBox");
 
 export {
   Accordion,
@@ -20,4 +21,5 @@ export {
   Modal,
   Image,
   LinkNewTab,
+  ErrorBox,
 };

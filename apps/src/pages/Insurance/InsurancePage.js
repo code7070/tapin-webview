@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
-import { Header } from "components";
+import { ErrorBox, Header } from "components";
 import style from "./InsurancePage.module.scss";
 import { propTypesChildren } from "helpers/util";
 import { ClickToAction, InsuranceProvider, Tab } from "./InsuranceSection";
@@ -35,14 +35,10 @@ const CredentialChecker = ({ children }) => {
     return children;
   else
     return (
-      <div className="text-center my-10 mx-auto p-4 max-w-[320px] rounded-lg bg-red-100 border-4 border-red-300">
-        <div className="text-xl font-bold text-red-700 mb-3">
-          ACCESS NOT ALLOWED
-        </div>
-        <div className="text-md text-red-600">
-          Please complete all credential information
-        </div>
-      </div>
+      <ErrorBox
+        title="ACCESS NOT ALLOWED"
+        subtitle="Please complete all credential information"
+      />
     );
 };
 

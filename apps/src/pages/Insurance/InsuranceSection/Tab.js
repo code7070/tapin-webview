@@ -40,7 +40,7 @@ export default function InsuranceTab() {
 
   const plans = useSelector(({ insurancePlans }) => insurancePlans.plans);
 
-  const nav = (to) => navigate(`/insurance/ci/${to}${search}`);
+  const nav = (to) => navigate(`/insurance/${to}${search}`);
 
   const man = () => nav("detail");
   const doc = () => nav("dokumen");

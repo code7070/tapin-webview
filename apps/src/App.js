@@ -20,12 +20,10 @@ const App = () => (
           <Route path="/">
             <Route index element={<Test />} />
             <Route path="insurance">
-              <Route index element={<Navigate replace to="ci" />} />
-              <Route path="ci">
-                <Route index element={<Navigate replace to="detail" />} />
-                <Route path="detail" element={<Product />} />
-                <Route path="dokumen" element={<Document />} />
-              </Route>
+              <Route index element={<Navigate replace to="detail" />} />
+              <Route path="detail" element={<Product />} />
+              <Route path="dokumen" element={<Document />} />
+              <Route path="*" element={<Navigate replace to="detail" />} />
             </Route>
           </Route>
         </Routes>

@@ -21,6 +21,8 @@ export default function PolisAccordion({
 
   const classOpen = isOpen ? style.open : "";
 
+  const arrPolis = polisData ? polisData.slice(0, 3) : [];
+
   return (
     <div className={`${style.polisAccordion} ${classOpen}`}>
       <PolisTitle
@@ -30,12 +32,8 @@ export default function PolisAccordion({
         title={title}
       />
       <div className={style.content}>
-        <PolisGraph
-          inactive={inactive}
-          polisData={polisData || []}
-          isOpen={isOpen}
-        />
-        <PolisFile polisData={polisData || []} inactive={inactive} />
+        <PolisGraph inactive={inactive} polisData={arrPolis} isOpen={isOpen} />
+        <PolisFile polisData={arrPolis} inactive={inactive} />
         <PolisOwner />
         <PolisProvider />
       </div>

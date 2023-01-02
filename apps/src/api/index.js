@@ -27,10 +27,10 @@ const convertToFormData = (formData, data, previousKey) => {
 };
 
 const handleGeneralError = (error) => console.log("General Error", error);
-const handleGETRequest = async (api, { ...body }, urlAPI = "api") => {
+const handleGETRequest = async (api, { ...body }) => {
   const {
     result: { body: resultBody },
-  } = await MainService(api, urlAPI)
+  } = await MainService(api)
     .doRequest({ query: { ...body } })
     .then((result) => result)
     .catch((errorGeneral) => {

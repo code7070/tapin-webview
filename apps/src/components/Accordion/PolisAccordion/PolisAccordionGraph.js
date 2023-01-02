@@ -10,7 +10,7 @@ const DateLine = ({ position = "left", date = "" }) => {
     <div className={`absolute ${position}-0 top-0`} style={{ transform }}>
       <div className="w-px h-24 bg-ottoGrey-700" />
       <div className={style.polisTextDate}>
-        {format(new Date(date), "dd/MM")}
+        {date ? format(new Date(date), "dd/MM") : ""}
       </div>
     </div>
   );
@@ -50,13 +50,21 @@ GridView.propTypes = {
 
 const PolisBar = ({ item, index, dateSort, isOpen, grid }) => {
   const num = index + 1;
-  const startPos = dateSort.indexOf(item.coverageStartDate);
-  const endPos = dateSort.indexOf(item.coverageEndDate);
+  let startPos = dateSort.indexOf(item.coverageStartDate);
+  let endPos = dateSort.indexOf(item.coverageEndDate);
   let width = `0%`;
   if (isOpen) width = `${(endPos - startPos) * grid}%`;
+
+  if (dateSort.length <= 2) {
+    startPos = 0;
+    endPos = 100;
+    width = "100%";
+  }
+
   const barClass = style[`polis${num}`];
   const styles = { width, left: `${startPos * grid}%` };
   const polisName = `Polis ${item.receiptNo}`;
+
   return (
     <div key={polisName} className={barClass} style={styles}>
       {polisName}
@@ -76,28 +84,34 @@ function PolisAccordionGraph({ polisData, isOpen, inactive }) {
   if (inactive) return "";
   const polis = [...polisData];
 
-  const dateSort = [];
+  const tempDateSort = [];
+  let dateSort = [];
+
   polis.map((x) => {
-    dateSort.push(x.coverageStartDate);
-    dateSort.push(x.coverageEndDate);
-    dateSort.sort();
+    tempDateSort.push(x.coverageStartDate);
+    tempDateSort.push(x.coverageEndDate);
+    tempDateSort.sort();
+  });
+
+  tempDateSort.map((x, i) => {
+    const n = `${tempDateSort[i]}`.slice(0, 10);
+    const m = `${tempDateSort[i + 1]}`.slice(0, 10);
+    if (n !== m) dateSort.push(n);
   });
 
   const forNum = [...dateSort];
   forNum.pop();
 
   const coverage = [];
-  forNum.map((date) => {
+  tempDateSort.map((date) => {
     let x = [];
+    const par = (num) => parseInt(num, 10);
     polis.map(({ coverageEndDate, coverageStartDate, coverageAmount }) => {
       if (date >= coverageStartDate && date < coverageEndDate)
-        x.push(coverageAmount);
+        x.push(par(coverageAmount));
     });
     return (
-      x.length &&
-      coverage.push(
-        x.reduce((prev, curr) => parseInt(prev, 10) + parseInt(curr, 10))
-      )
+      x.length && coverage.push(x.reduce((prev, curr) => par(prev) + par(curr)))
     );
   });
 

@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { PolisAccordion } from "components";
-import InsurancePage from "../InsurancePage";
+import InsurancePage from "../InsuranceWrapper";
 import { useSelector } from "react-redux";
 
 export default function InsuranceDocument() {

@@ -1,10 +1,16 @@
 {
   "extends": [
+    "stylelint-scss",
     "stylelint-config-standard-scss",
     "stylelint-prettier/recommended",
     "stylelint-config-tailwindcss/scss"
   ],
   "plugins": ["stylelint-scss"],
+  "ignoreFiles": [
+    "src/pages/Insurance/InsuranceWrapper.module.scss",
+    "src/pages/Insurance/Sections/Tab.module.scss",
+    "src/pages/Insurance/Contents/InsuranceProduct.module.scss"
+  ],
   "rules": {
     "selector-class-pattern": "^[a-z][a-zA-Z0-9_-]+$",
     "at-rule-no-unknown": [

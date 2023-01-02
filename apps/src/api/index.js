@@ -27,10 +27,10 @@ const convertToFormData = (formData, data, previousKey) => {
 };
 
 const handleGeneralError = (error) => console.log("General Error", error);
-const handleGETRequest = async (api, { ...body }) => {
+const handleGETRequest = async (api, { ...body }, urlAPI = "api") => {
   const {
     result: { body: resultBody },
-  } = await MainService(api)
+  } = await MainService(api, urlAPI)
     .doRequest({ query: { ...body } })
     .then((result) => result)
     .catch((errorGeneral) => {
@@ -43,7 +43,12 @@ const handleGETRequest = async (api, { ...body }) => {
   return resultBody;
 };
 
-const handlePOSTRequest = async (api, body, asFormData = false) => {
+const handlePOSTRequest = async (
+  api,
+  body,
+  urlAPI = "api",
+  asFormData = false
+) => {
   const formData = new FormData();
   let actualBody = { ...body };
 
@@ -55,7 +60,7 @@ const handlePOSTRequest = async (api, body, asFormData = false) => {
 
   const {
     result: { body: resultBody },
-  } = await MainService(api)
+  } = await MainService(api, urlAPI)
     .doRequest({
       body: actualBody,
       hooks: {

@@ -3,7 +3,7 @@ import { parse } from "query-string";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useLocation } from "react-router-dom";
-import InsurancePage from "../InsurancePage";
+import InsurancePage from "../InsuranceWrapper";
 import InsuranceCI from "./InsuranceCI";
 
 const insuranceMapping = [
@@ -24,18 +24,16 @@ export default function InsuranceProduct() {
     const found = insuranceMapping.find(
       (item) => item.id === parseInt(parsed.insuranceId, 10)
     );
-    setTimeout(() => {
-      let view;
-      if (found) view = found.content;
-      else
-        view = (
-          <ErrorBox
-            title="Insurance Not Found"
-            subtitle="Insurance target is not found"
-          />
-        );
-      setProduct(view);
-    }, 500);
+    let view;
+    if (found) view = found.content;
+    else
+      view = (
+        <ErrorBox
+          title="Insurance Not Found"
+          subtitle="Insurance target is not found"
+        />
+      );
+    setProduct(view);
   }, [parsed.insuranceId]);
 
   return <InsurancePage>{product}</InsurancePage>;

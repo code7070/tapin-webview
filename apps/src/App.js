@@ -6,11 +6,9 @@ import "./scss/global.scss";
 
 const Test = lazy(() => import("./pages/Test/Test"));
 const Document = lazy(() =>
-  import("./pages/Insurance/InsuranceContent.js/InsuranceDocument")
+  import("pages/Insurance/Contents/InsuranceDocument")
 );
-const Product = lazy(() =>
-  import("./pages/Insurance/InsuranceContent.js/InsuranceProduct")
-);
+const Product = lazy(() => import("pages/Insurance/Contents/InsuranceProduct"));
 
 const App = () => (
   <Provider store={store}>

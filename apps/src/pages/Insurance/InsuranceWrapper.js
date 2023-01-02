@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import { ErrorBox, Header } from "components";
-import style from "./InsurancePage.module.scss";
+import style from "./InsuranceWrapper.module.scss";
 import { propTypesChildren } from "helpers/util";
-import { ClickToAction, InsuranceProvider, Tab } from "./InsuranceSection";
+import { ClickToAction, InsuranceProvider, Tab } from "./Sections";
 import useInsurancePlans from "hooks/useInsurancePlans";
 import { parse } from "query-string";
 

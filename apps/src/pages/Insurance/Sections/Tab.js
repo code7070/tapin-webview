@@ -50,7 +50,7 @@ export default function InsuranceTab() {
 
   let view = "";
   if (!plans.active && !plans.inactive) view = <TabPlaceholder />;
-  else if (plans.active || plans.inactive)
+  else if (plans.active.length > 0 || plans.inactive.length > 0)
     view = (
       <div className="insuranceTab w-full flex items-center">
         <TabItem isActive={activeTab === "detail"} onClick={man}>

@@ -113,18 +113,13 @@ function PolisAccordionGraph({ polisData, isOpen, inactive }) {
   forNum.pop();
 
   const coverage = [];
-  tempDateSort.map(() => {
+  dateSort.map((date) => {
     let x = [];
     const par = (num) => parseInt(num, 10);
-    polis.map(
-      // ({ coverageEndDate, coverageStartDate, coverageAmount }, index) => {
-      ({ coverageAmount }) => {
-        // const checkDate = date >= coverageStartDate && date < coverageEndDate;
-        // console.log({ checkDate }, par(coverageAmount), polis[index]);
-        // if (checkDate) x.push(par(coverageAmount));
-        x.push(par(coverageAmount));
-      }
-    );
+    polis.map(({ coverageStartDate, coverageEndDate, coverageAmount }) => {
+      const checkDate = date >= coverageStartDate && date < coverageEndDate;
+      if (checkDate) x.push(par(coverageAmount));
+    });
     return (
       x.length && coverage.push(x.reduce((prev, curr) => par(prev) + par(curr)))
     );

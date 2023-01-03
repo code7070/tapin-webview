@@ -50,15 +50,25 @@ GridView.propTypes = {
 
 const PolisBar = ({ item, index, dateSort, isOpen, grid }) => {
   const num = index + 1;
-  let startPos = dateSort.indexOf(item.coverageStartDate);
-  let endPos = dateSort.indexOf(item.coverageEndDate);
-  let width = `0%`;
-  if (isOpen) width = `${(endPos - startPos) * grid}%`;
 
-  if (dateSort.length <= 2) {
+  const isSingleDate = dateSort.length <= 2;
+  const dofor = (date) => format(new Date(date), "yyyy-MM-dd");
+  const startDate = dofor(item.coverageStartDate);
+  const endDate = dofor(item.coverageEndDate);
+  let startPos = dateSort.indexOf(startDate);
+  let endPos = dateSort.indexOf(endDate);
+  let width = `0%`;
+
+  if (isSingleDate) {
     startPos = 0;
     endPos = 100;
-    width = "100%";
+  }
+
+  if (isOpen) {
+    const numWidth = endPos - startPos || 1;
+    width = `${numWidth * grid}%`;
+
+    if (isSingleDate) width = "100%";
   }
 
   const barClass = style[`polis${num}`];

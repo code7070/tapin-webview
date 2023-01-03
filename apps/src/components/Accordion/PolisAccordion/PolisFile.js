@@ -4,11 +4,15 @@ import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import { Loading, Icon } from "components";
 import style from "./PolisAccordion.module.scss";
-import { downloadFile } from "api";
+// import { downloadFile } from "api";
 import { useState } from "react";
+import { v4 } from "uuid";
+import download from "downloadjs";
 
 const PolisItem = ({ title, linkText, linkHref, inactive }) => {
   const [loading, setLoading] = useState(false);
+
+  const params = parse(window.location.search);
 
   const offClass = inactive ? style.inactive : "";
   const fname = `${offClass} ${style.polisFileName}`;
@@ -16,9 +20,31 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
   const iconType = `PdfIcon${inactive ? "Disabled" : ""}`;
 
   const clickFile = async () => {
-    setLoading(true);
-    await downloadFile({ fileName: linkHref });
-    setLoading(false);
+    if (linkHref) {
+      setLoading(true);
+      // await downloadFile({ fileName: linkHref });
+      const fileName = `fileName=${encodeURIComponent(linkHref)}`;
+      const url = `https://weekend-dev.ottodigital.id/apii/v1/gcs/downloadFile?${fileName}`;
+      await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          Authorizaion: `Bearer ${params.accessToken}`,
+          "X-TRACE-ID": v4(),
+        },
+      })
+        .then((resp) => {
+          console.log("resp DONE: ", resp);
+          if (resp.status === 200) return resp.blob();
+          return alert(`Error ${resp.status}: ${resp.statusText}`);
+        })
+        .then((blob) => {
+          download(blob, `${linkHref}.pdf`.replace("./", ""));
+        })
+        .catch(() => setLoading(false))
+        .then(() => setLoading(false));
+      // setLoading(false);
+    }
   };
 
   return (

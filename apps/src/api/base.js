@@ -72,6 +72,7 @@ const MainService = new ApiTree(RootService, [
           Authorization: `Bearer ${params.accessToken}`,
           "X-TRACE-ID": v4(),
         };
+        console.log("API payload: ", newPayload);
         next(newPayload);
       },
       async fail({ payload, retry, result, next }) {

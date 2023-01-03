@@ -32,7 +32,7 @@ export default function PolisAccordion({
         title={title}
       />
       <div className={style.content}>
-        <PolisGraph inactive={inactive} polisData={arrPolis} isOpen={isOpen} />
+        <PolisGraph polisData={arrPolis} inactive={inactive} isOpen={isOpen} />
         <PolisFile polisData={arrPolis} inactive={inactive} />
         <PolisOwner />
         <PolisProvider />

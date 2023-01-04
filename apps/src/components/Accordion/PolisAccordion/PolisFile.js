@@ -80,10 +80,16 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
       {polis.map((item, index) => {
         // const isLast = index === polis.length - 1;
         const number = index + 1;
+        let polisDate = item.coverageStartDate;
+        let formatDate = "dd/MM/yyy - H:mm";
+        if (inactive) {
+          polisDate = item.coverageEndDate;
+          formatDate = "dd/MM/yyy";
+        }
         return (
           <div key={item.coverageStartDate} className={style.polisFileGroup}>
             <div className={style.polisTransactionDate}>
-              {format(new Date(item.coverageStartDate), "dd/MM/yyy - H:mm")}
+              {format(new Date(polisDate), formatDate)}
             </div>
             <PolisItem
               title={`Tanda Bukti Transaksi ${number}`}

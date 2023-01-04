@@ -15,7 +15,10 @@ export default function Header({ title = "Header Title" }) {
       <Button classExtend="btn-ghost btn-circle" onClick={onBack}>
         <Icon type="ArrowLeft" />
       </Button>
-      <div className="flex-1 justify-center text-center text-lg font-semibold text-ottoGrey-100">
+      <div
+        className="flex-1 justify-center text-center text-lg font-semibold text-ottoGrey-100 line-clamp-1"
+        title={title}
+      >
         {title}
       </div>
     </div>

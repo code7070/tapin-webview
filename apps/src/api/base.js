@@ -72,7 +72,8 @@ const MainService = new ApiTree(RootService, [
           Authorization: `Bearer ${params.accessToken}`,
           "X-TRACE-ID": v4(),
         };
-        console.log("API payload: ", newPayload);
+        if (process.env.REACT_APP_ENVIRONMENT === "development")
+          console.log("API payload: ", newPayload);
         next(newPayload);
       },
       async fail({ payload, retry, result, next }) {

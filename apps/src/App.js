@@ -10,34 +10,36 @@ const Document = lazy(() =>
 );
 const Product = lazy(() => import("pages/Insurance/Contents/InsuranceProduct"));
 
-const App = () => (
-  <Provider store={store}>
-    <div className="App">
-      <Suspense fallback="Loading...">
-        <Routes>
-          <Route path="/">
-            <Route index element={<Test />} />
-            <Route path="insurance">
-              <Route
-                index
-                element={
-                  <Navigate replace to={`detail${window.location.search}`} />
-                }
-              />
-              <Route path="detail" element={<Product />} />
-              <Route path="dokumen" element={<Document />} />
-              <Route
-                path="*"
-                element={
-                  <Navigate replace to={`detail${window.location.search}`} />
-                }
-              />
+const App = () => {
+  return (
+    <Provider store={store}>
+      <div className="App">
+        <Suspense fallback="Loading...">
+          <Routes>
+            <Route path="/">
+              <Route index element={<Test />} />
+              <Route path="insurance">
+                <Route
+                  index
+                  element={
+                    <Navigate replace to={`detail${window.location.search}`} />
+                  }
+                />
+                <Route path="detail" element={<Product />} />
+                <Route path="dokumen" element={<Document />} />
+                <Route
+                  path="*"
+                  element={
+                    <Navigate replace to={`detail${window.location.search}`} />
+                  }
+                />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </Suspense>
-    </div>
-  </Provider>
-);
+          </Routes>
+        </Suspense>
+      </div>
+    </Provider>
+  );
+};
 
 export default App;

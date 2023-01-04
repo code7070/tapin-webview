@@ -49,7 +49,8 @@ export default function InsuranceTab() {
   if (path.includes("/dokumen")) activeTab = "dokumen";
 
   let view = "";
-  if (!plans.active && !plans.inactive) view = <TabPlaceholder />;
+  if (!plans.active && !plans.inactive && !plans.meta)
+    view = <TabPlaceholder />;
   else if (plans.active.length > 0 || plans.inactive.length > 0)
     view = (
       <div className="insuranceTab w-full flex items-center">

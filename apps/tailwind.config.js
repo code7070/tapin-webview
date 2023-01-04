@@ -3,7 +3,7 @@
 // const colors = require("tailwindcss/colors");
 
 module.exports = {
-  plugins: [require("daisyui")],
+  plugins: [require("daisyui"), require("@tailwindcss/line-clamp")],
   theme: {
     extend: {
       colors: {

@@ -9,6 +9,7 @@
     "@apicase/core": "^0.17.0",
     "@apicase/services": "^0.8.1",
     "@reduxjs/toolkit": "^1.9.1",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "daisyui": "^2.27.0",
     "date-fns": "^2.29.3",
     "dotenv": "^8.2.0",

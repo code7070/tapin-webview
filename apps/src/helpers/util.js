@@ -176,3 +176,5 @@ export function numMillion(num = 0) {
   // const number = `${parseInt(num, 10)}`;
   return convertIntl(parseInt(num, 10)).replace("jt", "Juta");
 }
+
+export const inDev = process.env.REACT_APP_ENVIRONMENT === "development";

@@ -79,9 +79,9 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
 
   return (
     <div>
-      {polis.map((item, index) => {
+      {polis.map((item) => {
         // const isLast = index === polis.length - 1;
-        const number = index + 1;
+        // const number = index + 1;
         let polisDate = item.coverageStartDate;
         let formatDate = "dd/MM/yyy - H:mm";
         if (inactive) {
@@ -94,14 +94,14 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
               {format(new Date(polisDate), formatDate)}
             </div>
             <PolisItem
-              title={`Tanda Bukti Transaksi ${number}`}
+              title="Tanda Bukti Transaksi"
               linkText={`${item.transactionProof}`.replace("./", "")}
               linkHref={item.transactionProof}
               margin
               inactive={inactive || !item.transactionProof}
             />
             <PolisItem
-              title={`Sertifikat Asuransi ${number}`}
+              title="Sertifikat Asuransi"
               linkText={item.certificateCertificate}
               linkHref={item.insuranceCertificate}
               inactive={inactive || !item.insuranceCertificate}

@@ -19,8 +19,10 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
   const flink = `${offClass} ${style.polisFileLink}`;
   const iconType = `PdfIcon${inactive ? "Disabled" : ""}`;
 
+  const classPolis = `${style.polisFileWord} ${inactive ? style.inactive : ""}`;
+
   const clickFile = async () => {
-    if (linkHref) {
+    if (linkHref && !inactive) {
       setLoading(true);
       // await downloadFile({ fileName: linkHref });
       const fileName = `fileName=${encodeURIComponent(linkHref)}`;
@@ -49,7 +51,7 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
 
   return (
     <div className={style.polisFileItem}>
-      <button className={style.polisFileWord} onClick={clickFile}>
+      <button className={classPolis} onClick={clickFile}>
         <div className={fname}>{title}</div>
         {loading ? <Loading /> : <div className={flink}>{linkText}</div>}
       </button>

@@ -101,6 +101,10 @@
 
 .polisFileWord {
   @apply pr-4 flex-1 w-4/5 block text-left;
+
+  &.inactive {
+    @apply pointer-events-none;
+  }
 }
 
 .polisFileName {

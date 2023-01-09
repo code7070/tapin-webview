@@ -1,6 +1,6 @@
 .polisAccordion {
   transition: all 0.25s;
-  @apply relative overflow-hidden rounded-md border border-ottoGrey-500 mb-4 min-h-[64px];
+  @apply relative overflow-hidden rounded-md border border-ottoGrey-500 min-h-[64px] mb-4;
 
   * {
     transition: all 0.25s;

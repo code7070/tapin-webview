@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PropTypes from "prop-types";
 import { parse } from "query-string";
 import { useLocation } from "react-router-dom";
@@ -51,10 +52,17 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
 
   return (
     <div className={style.polisFileItem}>
-      <button className={classPolis} onClick={clickFile}>
+      <a
+        href={linkHref}
+        target="_blank"
+        className="block w-full"
+        rel="noreferrer noopener"
+      >
+        {/* <button className={classPolis} onClick={clickFile}> */}
         <div className={fname}>{title}</div>
         {loading ? <Loading /> : <div className={flink}>{linkText}</div>}
-      </button>
+        {/* </button> */}
+      </a>
       <div className="w-1/12">
         <Icon type={iconType} />
       </div>

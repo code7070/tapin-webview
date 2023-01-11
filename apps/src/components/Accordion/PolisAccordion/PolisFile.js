@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import { parse } from "query-string";
 import { useLocation } from "react-router-dom";
-import { format } from "date-fns";
+import { format, subDays } from "date-fns";
 import { Loading, Icon } from "components";
 import style from "./PolisAccordion.module.scss";
 // import { downloadFile } from "api";
@@ -90,16 +90,17 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
       {polis.map((item) => {
         // const isLast = index === polis.length - 1;
         // const number = index + 1;
-        let polisDate = item.coverageStartDate;
+        let polisDate = new Date(item.coverageStartDate);
         let formatDate = "dd/MM/yyy - H:mm";
         if (inactive) {
-          polisDate = item.coverageEndDate;
+          console.log("Inactive polis: ", item);
+          polisDate = subDays(new Date(item.coverageEndDate), 1);
           formatDate = "dd/MM/yyy";
         }
         return (
           <div key={item.coverageStartDate} className={style.polisFileGroup}>
             <div className={style.polisTransactionDate}>
-              {format(new Date(polisDate), formatDate)}
+              {format(polisDate, formatDate)}
             </div>
             <PolisItem
               title="Tanda Bukti Transaksi"

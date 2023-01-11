@@ -1,20 +1,16 @@
 import PropTypes from "prop-types";
-import { format, subDays } from "date-fns";
+import { format } from "date-fns";
 import style from "./PolisAccordion.module.scss";
 import { numMillion } from "helpers/util";
 
-const DateLine = ({ position = "left", date = "", dateType }) => {
+const DateLine = ({ position = "left", date = "" }) => {
   let transform = "";
   if (position === "right") transform = "translate(100%, 0)";
-
-  let targetDate = new Date(date);
-  if (dateType === "endDate") targetDate = subDays(new Date(date), 1);
-
   return (
     <div className={`absolute ${position}-0 top-0`} style={{ transform }}>
       <div className="w-px h-24 bg-ottoGrey-700" />
       <div className={style.polisTextDate}>
-        {date ? format(targetDate, "dd/MM") : ""}
+        {date ? format(new Date(date), "dd/MM") : ""}
       </div>
     </div>
   );
@@ -23,7 +19,6 @@ const DateLine = ({ position = "left", date = "", dateType }) => {
 DateLine.propTypes = {
   position: PropTypes.string,
   date: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  dateType: PropTypes.string,
 };
 
 const GridView = ({ forNum, grid, coverage, dateSort = [] }) =>
@@ -31,13 +26,14 @@ const GridView = ({ forNum, grid, coverage, dateSort = [] }) =>
     <div className="flex relative">
       {forNum.map((x, index) => {
         const width = `${grid}%`;
-        const value = coverage[index] > 0 ? numMillion(coverage[index]) : "-";
+        const coverageValue =
+          coverage[index] > 0 ? numMillion(coverage[index]) : "-";
         return (
-          <div key={x.date} style={{ width }} className={`relative h-24`}>
-            <div className={style.polisCoverageAmmount}>{value}</div>
-            <DateLine {...dateSort[index]} />
+          <div key={x} style={{ width }} className={`relative h-24`}>
+            <div className={style.polisCoverageAmmount}>{coverageValue}</div>
+            <DateLine date={dateSort[index]} />
             {index + 2 === dateSort.length && (
-              <DateLine position="right" {...dateSort[index + 1]} />
+              <DateLine position="right" date={dateSort[index + 1]} />
             )}
           </div>
         );
@@ -59,8 +55,8 @@ const PolisBar = ({ item, index, dateSort, isOpen, grid }) => {
   const dofor = (date) => format(new Date(date), "yyyy-MM-dd");
   const startDate = dofor(item.coverageStartDate);
   const endDate = dofor(item.coverageEndDate);
-  let startPos = dateSort.map((i) => i.date).indexOf(startDate);
-  let endPos = dateSort.map((i) => i.date).indexOf(endDate);
+  let startPos = dateSort.indexOf(startDate);
+  let endPos = dateSort.indexOf(endDate);
   let width = `0%`;
 
   if (isSingleDate) {
@@ -73,6 +69,8 @@ const PolisBar = ({ item, index, dateSort, isOpen, grid }) => {
     width = `${numWidth * grid}%`;
 
     if (isSingleDate) width = "100%";
+
+    console.log({ startPos, endPos, width });
   }
 
   const barClass = style[`polis${num}`];
@@ -101,19 +99,16 @@ function PolisAccordionGraph({ polisData, isOpen, inactive }) {
   const tempDateSort = [];
   let dateSort = [];
 
-  polis.map(({ coverageStartDate: startDate, coverageEndDate: endDate }) => {
-    tempDateSort.push({ date: startDate, dateType: "startDate" });
-    tempDateSort.push({ date: endDate, dateType: "endDate" });
-  });
-
-  tempDateSort.sort((a, b) => {
-    return new Date(a.date) - new Date(b.date);
+  polis.map((x) => {
+    tempDateSort.push(x.coverageStartDate);
+    tempDateSort.push(x.coverageEndDate);
+    tempDateSort.sort();
   });
 
   tempDateSort.map((x, i) => {
-    const n = `${tempDateSort[i].date}`.slice(0, 10);
-    const m = `${tempDateSort[i + 1]?.date}`.slice(0, 10);
-    if (n !== m) dateSort.push({ date: n, dateType: tempDateSort[i].dateType });
+    const n = `${tempDateSort[i]}`.slice(0, 10);
+    const m = `${tempDateSort[i + 1]}`.slice(0, 10);
+    if (n !== m) dateSort.push(n);
   });
 
   const forNum = [...dateSort];
@@ -124,8 +119,7 @@ function PolisAccordionGraph({ polisData, isOpen, inactive }) {
     let x = [];
     const par = (num) => parseInt(num, 10);
     polis.map(({ coverageStartDate, coverageEndDate, coverageAmount }) => {
-      const checkDate =
-        date.date >= coverageStartDate && date.date < coverageEndDate;
+      const checkDate = date >= coverageStartDate && date < coverageEndDate;
       if (checkDate) x.push(par(coverageAmount));
     });
     return (

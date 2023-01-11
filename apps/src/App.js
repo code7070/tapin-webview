@@ -12,17 +12,19 @@ const Document = lazy(() =>
 const Product = lazy(() => import("pages/Insurance/Contents/InsuranceProduct"));
 
 const PageSkeleton = () => (
-  <div className="px-2">
-    <div className="flex">
-      <div className="mr-2 flex-1">
-        <Skeleton height={68} />
+  <div className="max-w-md mx-auto">
+    <div className="px-2">
+      <div className="flex">
+        <div className="mr-2 flex-1">
+          <Skeleton height={68} />
+        </div>
+        <div className="ml-2 flex-1">
+          <Skeleton height={68} />
+        </div>
       </div>
-      <div className="ml-2 flex-1">
-        <Skeleton height={68} />
+      <div className="p-2">
+        <Skeleton height={200} count={3} />
       </div>
-    </div>
-    <div className="p-2">
-      <Skeleton height={200} count={3} />
     </div>
   </div>
 );

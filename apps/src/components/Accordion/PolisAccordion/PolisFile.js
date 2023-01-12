@@ -1,5 +1,6 @@
 /* eslint-disable */
 import PropTypes from "prop-types";
+import download from "downloadjs";
 import { parse } from "query-string";
 import { useLocation } from "react-router-dom";
 import { format, subDays } from "date-fns";
@@ -8,7 +9,6 @@ import style from "./PolisAccordion.module.scss";
 // import { downloadFile } from "api";
 import { useState } from "react";
 import { v4 } from "uuid";
-import download from "downloadjs";
 
 const PolisItem = ({ title, linkText, linkHref, inactive }) => {
   const [loading, setLoading] = useState(false);
@@ -22,11 +22,13 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
 
   const classPolis = `${style.polisFileWord} ${inactive ? style.inactive : ""}`;
 
+  const fileName = `${linkText}`.replace("./");
+  const displayName = fileName.split("/");
+
   const clickFile = async () => {
     if (linkHref && !inactive) {
       setLoading(true);
-      // await downloadFile({ fileName: linkHref });
-      const fileName = `fileName=${encodeURIComponent(linkHref)}`;
+      const fileName = `fileName=${linkHref}`;
       const url = `https://weekend-dev.ottodigital.id/apii/v1/gcs/downloadFile?${fileName}`;
       await fetch(url, {
         method: "GET",
@@ -36,35 +38,34 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
           "X-TRACE-ID": v4(),
         },
       })
-        .then((resp) => {
-          console.log("resp DONE: ", resp);
-          if (resp.status === 200) return resp.blob();
-          return alert(`Error ${resp.status}: ${resp.statusText}`);
+        .then(function (resp) {
+          return new Blob(['{"name": "test"}']);
         })
-        .then((blob) => {
-          download(blob, `${linkHref}.pdf`.replace("./", ""));
+        .then(function (blob) {
+          const name = `${linkHref}`.replace("./", "");
+          download(blob, name, "application/json");
+          setLoading(false);
         })
-        .catch(() => setLoading(false))
-        .then(() => setLoading(false));
+        .catch(() => setLoading(false));
       // setLoading(false);
     }
   };
 
   return (
     <div className={style.polisFileItem}>
-      <a
+      {/* <a
         href={linkHref}
         target="_blank"
         className="block w-full"
         rel="noreferrer noopener"
-      >
-        {/* <button className={classPolis} onClick={clickFile}> */}
+      > */}
+      <button className={classPolis} onClick={clickFile} disabled={loading}>
         <div className={fname}>{title}</div>
-        {loading ? <Loading /> : <div className={flink}>{linkText}</div>}
-        {/* </button> */}
-      </a>
+        <div className={flink}>{displayName[displayName.length - 1]}</div>
+      </button>
+      {/* </a> */}
       <div className="w-1/12">
-        <Icon type={iconType} />
+        {loading ? <Loading /> : <Icon type={iconType} />}
       </div>
     </div>
   );
@@ -113,7 +114,7 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
             />
             <PolisItem
               title="Sertifikat Asuransi"
-              linkText={item.certificateCertificate}
+              linkText={item.certificateCertificate || ""}
               linkHref={item.insuranceCertificate}
               inactive={inactive || !item.insuranceCertificate}
             />

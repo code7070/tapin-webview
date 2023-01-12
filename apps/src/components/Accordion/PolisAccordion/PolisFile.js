@@ -92,15 +92,17 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
         // const number = index + 1;
         let polisDate = new Date(item.coverageStartDate);
         let formatDate = "dd/MM/yyy - H:mm";
+        let wording = "";
         if (inactive) {
           console.log("Inactive polis: ", item);
           polisDate = subDays(new Date(item.coverageEndDate), 1);
           formatDate = "dd/MM/yyy";
+          wording = "Berlaku hingga ";
         }
         return (
           <div key={item.coverageStartDate} className={style.polisFileGroup}>
             <div className={style.polisTransactionDate}>
-              {format(polisDate, formatDate)}
+              {`${wording} ${format(polisDate, formatDate)}`}
             </div>
             <PolisItem
               title="Tanda Bukti Transaksi"

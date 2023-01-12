@@ -43,7 +43,7 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
         })
         .then(function (blob) {
           const name = `${linkHref}`.replace("./", "");
-          download(blob, name, "application/json");
+          download(blob, name, "application/pdf");
           setLoading(false);
         })
         .catch(() => setLoading(false));

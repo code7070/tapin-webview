@@ -5,7 +5,6 @@ import store from "store/store";
 import "./scss/global.scss";
 import Skeleton from "react-loading-skeleton";
 
-const Test = lazy(() => import("./pages/Test/Test"));
 const Document = lazy(() =>
   import("pages/Insurance/Contents/InsuranceDocument")
 );
@@ -36,7 +35,15 @@ const App = () => {
         <Suspense fallback={<PageSkeleton />}>
           <Routes>
             <Route path="/">
-              <Route index element={<Test />} />
+              <Route
+                index
+                element={
+                  <Navigate
+                    replace
+                    to={`insurance/detail${window.location.search}`}
+                  />
+                }
+              />
               <Route path="insurance">
                 <Route
                   index

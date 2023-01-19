@@ -38,14 +38,35 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
           "X-TRACE-ID": v4(),
         },
       })
-        .then(function (resp) {
-          return new Blob(['{"name": "test"}']);
+        .then((resp) => {
+          const blobSave = (fileName = "") => {
+            try {
+              const arr = new Uint8Array(resp);
+              const blob = new Blob([arr], { type: "application/pdf" });
+              const url = window.URL.createObjectURL(blob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.setAttribute("download", fileName);
+              document.body.appendChild(link);
+              console.log("Downloading: ", fileName);
+              link.click();
+              link.remove();
+              setLoading(false);
+            } catch (e) {
+              console.error("Failed to generate document: ", e);
+            }
+          };
+
+          blobSave(displayName.join("-"));
         })
-        .then(function (blob) {
-          const name = `${linkHref}`.replace("./", "");
-          download(blob, name, "application/pdf");
-          setLoading(false);
-        })
+        // .then(function (resp) {
+        //   return new Blob(['{"name": "test"}']);
+        // })
+        // .then(function (blob) {
+        //   const name = `${linkHref}`.replace("./", "");
+        //   download(blob, name, "application/pdf");
+        //   setLoading(false);
+        // })
         .catch(() => setLoading(false));
       // setLoading(false);
     }

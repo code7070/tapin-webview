@@ -9,7 +9,8 @@
   "ignoreFiles": [
     "src/pages/Insurance/InsuranceWrapper.module.scss",
     "src/pages/Insurance/Sections/Tab.module.scss",
-    "src/pages/Insurance/Contents/InsuranceProduct.module.scss"
+    "src/pages/Insurance/Contents/InsuranceProduct.module.scss",
+    "src/scss/global.scss"
   ],
   "rules": {
     "selector-class-pattern": "^[a-z][a-zA-Z0-9_-]+$",

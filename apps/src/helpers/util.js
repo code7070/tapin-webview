@@ -178,3 +178,5 @@ export function numMillion(num = 0) {
 }
 
 export const inDev = process.env.REACT_APP_ENVIRONMENT === "development";
+
+export const isAndroid = /Android/.test(window.navigator.userAgent);

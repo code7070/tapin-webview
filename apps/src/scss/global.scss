@@ -58,11 +58,11 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
-.otToast {
+.Toastify__toast {
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.3) !important;
   @apply rounded-lg #{!important};
 }
 
-.otToast-progress {
+.Toastify__progress-bar {
   background: linear-gradient(to right, #2d3944, #3b536b) !important;
 }

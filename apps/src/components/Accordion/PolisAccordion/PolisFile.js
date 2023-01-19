@@ -9,6 +9,7 @@ import style from "./PolisAccordion.module.scss";
 // import { downloadFile } from "api";
 import { useState } from "react";
 import { v4 } from "uuid";
+import { pdfBuffer } from "./pdf-buffer";
 
 const PolisItem = ({ title, linkText, linkHref, inactive }) => {
   const [loading, setLoading] = useState(false);
@@ -38,35 +39,30 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
           "X-TRACE-ID": v4(),
         },
       })
-        .then((resp) => {
-          const blobSave = (fileName = "") => {
-            try {
-              const arr = new Uint8Array(resp);
-              const blob = new Blob([arr], { type: "application/pdf" });
-              const url = window.URL.createObjectURL(blob);
-              const link = document.createElement("a");
-              link.href = url;
-              link.setAttribute("download", fileName);
-              document.body.appendChild(link);
-              console.log("Downloading: ", fileName);
-              link.click();
-              link.remove();
-              setLoading(false);
-            } catch (e) {
-              console.error("Failed to generate document: ", e);
-            }
-          };
-
-          blobSave(displayName.join("-"));
+        // .then((resp) => {
+        //   const datares = pdfBuffer.toString("base64");
+        //   const blob = new Blob([new Uint8Array(datares)]);
+        //   const url = window.URL.createObjectURL(blob);
+        //   const link = document.createElement("a");
+        //   link.href = url;
+        //   link.setAttribute("download", displayName.join("-"));
+        //   document.body.appendChild(link);
+        //   console.log("Downloading: ", displayName.join("-"));
+        //   link.click();
+        //   link.remove();
+        // })
+        .then(async (resp) => {
+          console.log("RESPONSE: ", resp);
+          const reader = resp.body.getReader();
+          console.log("READER: ", reader);
+          const resReader = await reader.read();
+          console.log("RES READER: ", resReader);
+          const decoder = new TextDecoder("utf-8");
+          const decoded = decoder.decode(resReader.value);
+          console.log("DECODED: ", decoded);
+          download(decoded, displayName.join("-"), "application/pdf");
         })
-        // .then(function (resp) {
-        //   return new Blob(['{"name": "test"}']);
-        // })
-        // .then(function (blob) {
-        //   const name = `${linkHref}`.replace("./", "");
-        //   download(blob, name, "application/pdf");
-        //   setLoading(false);
-        // })
+        .then(() => setLoading(false))
         .catch(() => setLoading(false));
       // setLoading(false);
     }

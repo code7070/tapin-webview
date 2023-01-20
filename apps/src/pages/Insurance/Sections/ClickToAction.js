@@ -17,6 +17,8 @@ const ClickToAction = ({ tab }) => {
   let text = "Beli Asuransi";
   let onClick = () => {
     if (isAndroid) {
+      toast("Beli Asuransi");
+
       nativeDo.buyInsurance({ productId: 1 });
 
       // suggested function
@@ -25,7 +27,7 @@ const ClickToAction = ({ tab }) => {
         data: { productId: 1 },
       });
     } else {
-      webkit.nativeDo.messageHandlers.postMessage({
+      webkit.messageHandlers.nativeDo.postMessage({
         command: "buyInsurance",
         data: { productId: 1 },
       });

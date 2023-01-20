@@ -60,6 +60,8 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
           const decoder = new TextDecoder("utf-8");
           const decoded = decoder.decode(resReader.value);
           console.log("DECODED: ", decoded);
+          const con = Buffer.concat(decoded);
+          console.log("BUFFER CONCAT: ", con);
           download(decoded, displayName.join("-"), "application/pdf");
         })
         .then(() => setLoading(false))

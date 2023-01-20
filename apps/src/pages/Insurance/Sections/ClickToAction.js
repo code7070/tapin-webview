@@ -16,15 +16,20 @@ const ClickToAction = ({ tab }) => {
 
   let text = "Beli Asuransi";
   let onClick = () => {
-    toast("Beli Asuransi");
-    if (isAndroid) nativeDo.buyInsurance();
-    else
-      webkit.nativeDo.postMessage({
+    if (isAndroid) {
+      nativeDo.buyInsurance({ productId: 1 });
+
+      // suggested function
+      window.InterfaceObject.nativeDo({
         command: "buyInsurance",
-        data: {
-          productId: 1,
-        },
+        data: { productId: 1 },
       });
+    } else {
+      webkit.nativeDo.messageHandlers.postMessage({
+        command: "buyInsurance",
+        data: { productId: 1 },
+      });
+    }
   };
   if (tab === "dokumen") {
     text = "Hubungi / Klaim";

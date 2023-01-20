@@ -17,8 +17,12 @@ export default function Header({ title = "Header Title" }) {
     } else {
       toast("Closing WebView...");
 
-      if (isAndroid) nativeDo.closeWebView();
-      else
+      if (isAndroid) {
+        nativeDo.closeWebView();
+
+        // suggested function
+        window.InterfaceObject.nativeDo({ command: "closeWebView", data: {} });
+      } else
         webkit.messageHandlers.nativeDo.postMessage({
           command: "closeWebView",
           data: {},

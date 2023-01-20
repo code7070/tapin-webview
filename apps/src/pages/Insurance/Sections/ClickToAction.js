@@ -19,7 +19,7 @@ const ClickToAction = ({ tab }) => {
     if (isAndroid) {
       toast("Beli Asuransi");
 
-      nativeDo.buyInsurance({ productId: 1 });
+      // nativeDo.buyInsurance({ productId: 1 });
 
       // suggested function
       window.InterfaceObject.nativeDo({

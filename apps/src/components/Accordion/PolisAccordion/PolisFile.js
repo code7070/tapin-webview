@@ -43,7 +43,7 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
       })
         .then((res) => res.json())
         .then((resp) => {
-          window.open(resp.file[0], "_blank");
+          window.open(resp.file[0]);
           setLoading(false);
         })
         .catch(() => setLoading(false));

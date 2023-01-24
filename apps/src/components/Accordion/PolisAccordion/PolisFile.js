@@ -44,7 +44,12 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
         .then((res) => res.json())
         .then((resp) => {
           // window.open(resp.file[0]);
-          window.location.href = resp.file[0];
+          const fileUrl = resp.file[0];
+          const a = document.createElement("a");
+          a.download;
+          a.href = fileUrl;
+          a.click();
+          a.remove();
           setLoading(false);
         })
         .catch(() => setLoading(false));

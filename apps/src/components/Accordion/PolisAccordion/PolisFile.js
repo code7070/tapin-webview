@@ -41,23 +41,11 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
           "X-TRACE-ID": v4(),
         },
       })
-        // .then((resp) => {
-        //   const datares = pdfBuffer.toString("base64");
-        //   const blob = new Blob([new Uint8Array(datares)]);
-        //   const url = window.URL.createObjectURL(blob);
-        //   const link = document.createElement("a");
-        //   link.href = url;
-        //   link.setAttribute("download", displayName.join("-"));
-        //   document.body.appendChild(link);
-        //   console.log("Downloading: ", displayName.join("-"));
-        //   link.click();
-        //   link.remove();
-        // })
-        .then(async (resp) => {
-          console.log("Resp: ", resp);
-          download(resp, displayName.join("-"), "application/pdf");
+        .then((res) => res.json())
+        .then((resp) => {
+          window.open(resp.file[0], "_blank");
+          setLoading(false);
         })
-        .then(() => setLoading(false))
         .catch(() => setLoading(false));
       // setLoading(false);
     }

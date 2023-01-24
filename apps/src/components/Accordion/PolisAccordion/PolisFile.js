@@ -23,14 +23,16 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
 
   const classPolis = `${style.polisFileWord} ${inactive ? style.inactive : ""}`;
 
-  const fileName = `${linkText}`.replace("./");
+  const fileName = `${linkText}`.replace("./", "");
   const displayName = fileName.split("/");
+
+  console.log("HARD: ", fileName);
 
   const clickFile = async () => {
     if (linkHref && !inactive) {
       setLoading(true);
-      const fileName = `fileName=${linkHref}`;
-      const url = `https://weekend-dev.ottodigital.id/apii/v1/gcs/downloadFile?${fileName}`;
+      const params = `fileName=${fileName}`;
+      const url = `https://weekend-dev.ottodigital.id/apii/v1/gcs/downloadFile?${params}`;
       await fetch(url, {
         method: "GET",
         headers: {
@@ -52,17 +54,8 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
         //   link.remove();
         // })
         .then(async (resp) => {
-          console.log("RESPONSE: ", resp);
-          const reader = resp.body.getReader();
-          console.log("READER: ", reader);
-          const resReader = await reader.read();
-          console.log("RES READER: ", resReader);
-          const decoder = new TextDecoder("utf-8");
-          const decoded = decoder.decode(resReader.value);
-          console.log("DECODED: ", decoded);
-          const con = Buffer.concat(decoded);
-          console.log("BUFFER CONCAT: ", con);
-          download(decoded, displayName.join("-"), "application/pdf");
+          console.log("Resp: ", resp);
+          download(resp, displayName.join("-"), "application/pdf");
         })
         .then(() => setLoading(false))
         .catch(() => setLoading(false));

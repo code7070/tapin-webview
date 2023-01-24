@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import CookieBrowser from "js-cookie";
+import { parse } from "query-string";
+import { v4 } from "uuid";
 
 function easing(t) {
   return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
@@ -180,3 +182,17 @@ export function numMillion(num = 0) {
 export const inDev = process.env.REACT_APP_ENVIRONMENT === "development";
 
 export const isAndroid = /Android/.test(window.navigator.userAgent);
+
+export const webFetch = async (url) => {
+  if (!url) return {};
+
+  const params = parse(window.location.search);
+  return await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      Authorizaion: `Bearer ${params.accessToken}`,
+      "X-TRACE-ID": v4(),
+    },
+  }).then((res) => res.json());
+};

@@ -32,10 +32,10 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
       const a = document.createElement("a");
       a.download;
       a.href = fileUrl;
+      setLoading(false);
       a.click();
       a.remove();
       document.removeChild(a);
-      setLoading(false);
       console.log("GCS FILE RES: ", gcsFile);
     }
   };

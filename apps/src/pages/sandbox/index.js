@@ -5,6 +5,7 @@ const urlMap = {
   undefined: "https://weekend-dev.ottodigital.id/",
   development: "http://localhost:4000/",
   staging: "https://weekend-dev.ottodigital.id/",
+  local: "https://weekend-dev.ottodigital.id/",
   production: "https://weekend-dev.ottodigital.id/",
 };
 

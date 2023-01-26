@@ -36,7 +36,7 @@ export default function FormSandbox() {
     <div className="container">
       <div className="max-w-sm mx-auto">
         <div className="text-2xl font-bold mb-6">FORM SANDBOX 3</div>
-        <form action={`${url}?${params}`} method="GET">
+        <form action={`${url}?${params}`} method="POST">
           <div className="form-control mb-4">
             <label className="label-text" htmlFor="token">
               USER-ACCESS-TOKEN

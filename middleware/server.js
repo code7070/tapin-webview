@@ -67,7 +67,7 @@ app.get("/insurance", (req, res) => {
   const token = tokenHeader || tokenBody || tokenQuery;
   const refToken = refTokenHeader || refTokenBody || refTokenQuery;
 
-  if (tokenHeader || refTokenHeader) {
+  if (token || refToken) {
     res.cookie(tokenName, token);
     res.cookie(refTokenName, refToken);
   }

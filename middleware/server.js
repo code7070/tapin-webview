@@ -55,7 +55,10 @@ app.get("/*", (req, res) => {
   const token = "USER-ACCESS-TOKEN";
   const refToken = "USER-REFRESH-TOKEN";
 
-  if (req.header[token] || req.header[refToken]) {
+  const tokenHeader = req.headers[token];
+  const refTokenHeader = req.headers[refToken];
+
+  if (tokenHeader || refTokenHeader) {
     res.cookie(token, req.header[token]);
     res.cookie(refToken, req.header[refToken]);
   }

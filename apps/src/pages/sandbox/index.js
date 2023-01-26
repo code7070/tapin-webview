@@ -37,6 +37,7 @@ export default function FormSandbox() {
   return (
     <div className="container">
       <div className="max-w-sm mx-auto">
+        <div className="text-xs">environment: {env}</div>
         <div className="text-2xl font-bold mb-6">FORM SANDBOX 3</div>
         <form action={`${url}?${params}`} method="POST">
           <div className="form-control mb-4">

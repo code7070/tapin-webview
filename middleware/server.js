@@ -58,8 +58,8 @@ app.get("/*", (req, res) => {
   const tokenHeader = req.headers[tokenName];
   const refTokenHeader = req.headers[refTokenName];
 
-  const tokenBody = req.body[tokenName];
-  const refTokenBody = req.body[tokenName];
+  const tokenBody = req.body ? req.body[tokenName] : "";
+  const refTokenBody = req.body ? req.body[tokenName] : "";
 
   const token = tokenHeader || tokenBody;
   const refToken = refTokenHeader || refTokenBody;

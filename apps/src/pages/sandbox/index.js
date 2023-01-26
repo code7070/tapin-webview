@@ -1,6 +1,12 @@
 import { Button } from "components";
 import { useState } from "react";
 
+const urlMap = {
+  development: "http://localhost:4000/",
+  staging: "https://weekend-dev.ottodigital.id/",
+  production: "https://weekend-dev.ottodigital.id/",
+};
+
 export default function FormSandbox() {
   const [insId, setInsId] = useState(1);
   const [custId, setCustId] = useState(170);
@@ -8,15 +14,30 @@ export default function FormSandbox() {
   const changeIns = (e) => setInsId(e.target.value || "");
   const changeCust = (e) => setCustId(e.target.value || "");
 
-  const url = "https://weekend-dev.ottodigital.id/insurance/dokumen";
+  const url = `${urlMap[process.env.REACT_APP_ENVIRONMENT]}insurance/detail`;
   const params = `customerId=${custId}&insuranceId=${insId}`;
+
+  // const submit = (e) => {
+  //   console.log("Form: ", e);
+  //   e.preventDefault();
+  //   fetch(`${url}?${params}`, {
+  //     method: "GET",
+  //     headers: {
+  //       "USER-ACCESS-TOKEN": e.target[0].value,
+  //       "USER-REFRESH-TOKEN": e.target[1].value,
+  //     },
+  //   }).then((res) => {
+  //     console.log("Responses: ", res);
+  //     window.open(`${url}?${params}`);
+  //   });
+  // };
 
   return (
     <div className="container">
       <div className="max-w-sm mx-auto">
-        <div className="text-2xl font-bold mb-6">FORM SANDBOX</div>
+        <div className="text-2xl font-bold mb-6">FORM SANDBOX 3</div>
         <form action={`${url}?${params}`} method="GET">
-          <div className="form-control mb-2">
+          <div className="form-control mb-4">
             <label className="label-text" htmlFor="token">
               USER-ACCESS-TOKEN
             </label>
@@ -27,7 +48,7 @@ export default function FormSandbox() {
               placeholder="Access Token"
             />
           </div>
-          <div className="form-control mb-2">
+          <div className="form-control mb-4">
             <label className="label-text" htmlFor="refToken">
               USER-REFRESH-TOKEN
             </label>
@@ -38,7 +59,7 @@ export default function FormSandbox() {
               placeholder="Refresh Token"
             />
           </div>
-          <div className="form-control mb-2">
+          <div className="form-control mb-4">
             <label className="label-text" htmlFor="id">
               Customer Id
             </label>
@@ -51,7 +72,7 @@ export default function FormSandbox() {
               onChange={changeCust}
             />
           </div>
-          <div className="form-control mb-2 disabled">
+          <div className="form-control mb-4 disabled">
             <label className="label-text" htmlFor="insuranceId">
               Insurance ID
             </label>

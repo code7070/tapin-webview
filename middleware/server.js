@@ -52,15 +52,21 @@ app.get("/not-found", (req, res) => {
 //
 // Route to handle every routing
 app.get("/*", (req, res) => {
-  const token = "USER-ACCESS-TOKEN";
-  const refToken = "USER-REFRESH-TOKEN";
+  const tokenName = "USER-ACCESS-TOKEN";
+  const refTokenName = "USER-REFRESH-TOKEN";
 
-  const tokenHeader = req.headers[token];
-  const refTokenHeader = req.headers[refToken];
+  const tokenHeader = req.headers[tokenName];
+  const refTokenHeader = req.headers[refTokenName];
+
+  const tokenBody = req.body[tokenName];
+  const refTokenBody = req.body[tokenName];
+
+  const token = tokenHeader || tokenBody;
+  const refToken = refTokenHeader || refTokenBody;
 
   if (tokenHeader || refTokenHeader) {
-    res.cookie(token, req.header[token]);
-    res.cookie(refToken, req.header[refToken]);
+    res.cookie(tokenName, token);
+    res.cookie(refTokenName, refToken);
   }
 
   return res.sendFile(path.join(__dirname, targetFolder, "index.html"));

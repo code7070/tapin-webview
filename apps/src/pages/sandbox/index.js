@@ -2,6 +2,7 @@ import { Button } from "components";
 import { useState } from "react";
 
 const urlMap = {
+  undefined: "https://weekend-dev.ottodigital.id/",
   development: "http://localhost:4000/",
   staging: "https://weekend-dev.ottodigital.id/",
   production: "https://weekend-dev.ottodigital.id/",
@@ -14,7 +15,8 @@ export default function FormSandbox() {
   const changeIns = (e) => setInsId(e.target.value || "");
   const changeCust = (e) => setCustId(e.target.value || "");
 
-  const url = `${urlMap[process.env.REACT_APP_ENVIRONMENT]}insurance/detail`;
+  const env = process.env.REACT_APP_ENVIRONMENT;
+  const url = `${urlMap[env]}insurance/detail`;
   const params = `customerId=${custId}&insuranceId=${insId}`;
 
   // const submit = (e) => {

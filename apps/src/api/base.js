@@ -6,6 +6,7 @@ import fetch from "@apicase/adapter-fetch";
 import apiList from "./list";
 import { v4 } from "uuid";
 import { parse } from "query-string";
+import { getCookie } from "helpers/util";
 
 // VARIABLE LIST
 // make sure match for your APP
@@ -59,6 +60,7 @@ const handleFailed = (errorCode, payload, retry, result, next) => {
 // END OF FAIL API ACTIVITY
 
 const params = parse(window.location.search);
+const token = getCookie("USER-ACCESS-TOKEN") || params.accessToken;
 
 const MainService = new ApiTree(RootService, [
   {
@@ -69,7 +71,7 @@ const MainService = new ApiTree(RootService, [
         const newPayload = { ...payload };
         newPayload.headers = {
           ...payload.headers,
-          Authorization: `Bearer ${params.accessToken}`,
+          Authorization: `Bearer ${token}`,
           "X-TRACE-ID": v4(),
         };
         if (process.env.REACT_APP_ENVIRONMENT === "development")

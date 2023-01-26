@@ -48,8 +48,18 @@ app.get("/not-found", (req, res) => {
   res.status(404).sendFile(path.join(__dirname, targetFolder, "index.html"));
 });
 
+//
+//
 // Route to handle every routing
 app.get("/*", (req, res) => {
+  const token = "USER-ACCESS-TOKEN";
+  const refToken = "USER-REFRESH-TOKEN";
+
+  if (req.header[token] || req.header[refToken]) {
+    res.cookie(token, req.header[token]);
+    res.cookie(refToken, req.header[refToken]);
+  }
+
   return res.sendFile(path.join(__dirname, targetFolder, "index.html"));
 });
 

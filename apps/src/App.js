@@ -9,6 +9,7 @@ const Document = lazy(() =>
   import("pages/Insurance/Contents/InsuranceDocument")
 );
 const Product = lazy(() => import("pages/Insurance/Contents/InsuranceProduct"));
+const FormSandbox = lazy(() => import("pages/sandbox"));
 
 const PageSkeleton = () => (
   <div className="max-w-md mx-auto">
@@ -38,10 +39,7 @@ const App = () => {
               <Route
                 index
                 element={
-                  <Navigate
-                    replace
-                    to={`insurance/detail${window.location.search}`}
-                  />
+                  <Navigate replace to={`sandbox?${window.location.search}`} />
                 }
               />
               <Route path="insurance">
@@ -60,6 +58,7 @@ const App = () => {
                   }
                 />
               </Route>
+              <Route path="sandbox" element={<FormSandbox />} />
             </Route>
           </Routes>
         </Suspense>

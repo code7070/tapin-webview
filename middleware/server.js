@@ -50,8 +50,8 @@ app.get("/not-found", (req, res) => {
 
 //
 //
-// Route to handle every routing
-app.get("/*", (req, res) => {
+//
+app.get("/insurance", (req, res) => {
   const tokenName = "USER-ACCESS-TOKEN";
   const refTokenName = "USER-REFRESH-TOKEN";
 
@@ -59,16 +59,26 @@ app.get("/*", (req, res) => {
   const refTokenHeader = req.headers[refTokenName];
 
   const tokenBody = req.body ? req.body[tokenName] : "";
-  const refTokenBody = req.body ? req.body[tokenName] : "";
+  const refTokenBody = req.body ? req.body[refTokenName] : "";
 
-  const token = tokenHeader || tokenBody;
-  const refToken = refTokenHeader || refTokenBody;
+  const tokenQuery = req.query[tokenName] || "";
+  const refTokenQuery = req.query[refTokenName] || "";
+
+  const token = tokenHeader || tokenBody || tokenQuery;
+  const refToken = refTokenHeader || refTokenBody || refTokenQuery;
 
   if (tokenHeader || refTokenHeader) {
     res.cookie(tokenName, token);
     res.cookie(refTokenName, refToken);
   }
 
+  return res.sendFile(path.join(__dirname, targetFolder, "index.html"));
+});
+
+//
+//
+// Route to handle every routing
+app.get("/*", (req, res) => {
   return res.sendFile(path.join(__dirname, targetFolder, "index.html"));
 });
 

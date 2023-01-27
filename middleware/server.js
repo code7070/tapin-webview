@@ -76,12 +76,14 @@ app.get("/*", (req, res) => {
   const token = tokenHeader || tokenBody || tokenQuery;
   const refToken = refTokenHeader || refTokenBody || refTokenQuery;
 
-  if (token || refToken) {
-    res.cookie(tokenName, token);
-    res.cookie(refTokenName, refToken);
-  }
+  // if (token || refToken) {
 
-  res.cookie("Server Loader", true);
+  // }
+
+  res.cookie(tokenName, istokenHeaders);
+  res.cookie(refTokenName, isrefTokenHeaders);
+
+  res.cookie("Server Loader", new Date());
 
   return res.sendFile(path.join(__dirname, targetFolder, "index.html"));
 });

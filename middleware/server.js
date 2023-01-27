@@ -58,8 +58,14 @@ app.get("/*", (req, res) => {
   const tokenName = "USER-ACCESS-TOKEN";
   const refTokenName = "USER-REFRESH-TOKEN";
 
-  const tokenHeader = req.headers[tokenName];
-  const refTokenHeader = req.headers[refTokenName];
+  const istokenHeaders = req.headers[tokenName];
+  const isrefTokenHeaders = req.headers[refTokenName];
+
+  const istokenHeader = req.header[tokenName];
+  const isrefTokenHeader = req.header[refTokenName];
+
+  const tokenHeader = istokenHeaders || istokenHeader;
+  const refTokenHeader = isrefTokenHeaders || isrefTokenHeader;
 
   const tokenBody = req.body ? req.body[tokenName] : "";
   const refTokenBody = req.body ? req.body[refTokenName] : "";

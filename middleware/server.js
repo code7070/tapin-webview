@@ -75,6 +75,8 @@ app.get("/*", (req, res) => {
     res.cookie(refTokenName, refToken);
   }
 
+  res.cookie("Server Loader", true);
+
   return res.sendFile(path.join(__dirname, targetFolder, "index.html"));
 });
 

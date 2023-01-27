@@ -7,9 +7,9 @@ import { Loading, Icon } from "components";
 import style from "./PolisAccordion.module.scss";
 // import { downloadFile } from "api";
 import { useState } from "react";
-import { webFetch } from "helpers/util";
+import { linkCreator, webFetch } from "helpers/util";
 
-const PolisItem = ({ title, linkText, linkHref, inactive }) => {
+const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
   const [loading, setLoading] = useState(false);
 
   const offClass = inactive ? style.inactive : "";
@@ -22,21 +22,23 @@ const PolisItem = ({ title, linkText, linkHref, inactive }) => {
   const fileName = `${linkText}`.replace("./", "");
   const displayName = fileName.split("/");
 
+  const onCatch = (res) => {
+    console.log("Catch: ", res);
+    setLoading(false);
+  };
+
   const clickFile = async () => {
-    if (linkHref && !inactive) {
+    if (id && backUrl && !inactive) {
       setLoading(true);
       const params = `fileName=${fileName}`;
-      const url = `https://weekend-dev.ottodigital.id/apii/v1/gcs/downloadFile?${params}`;
-      const gcsFile = await webFetch(url);
+      const baseUrl = process.env.REACT_APP_BASE_URL;
+      // const uri = `${baseUrl}/insurancePlans/${id}/${backUrl}`;
+      const url = `${baseUrl}/apii/v1/gcs/downloadFile?${params}`;
+      const gcsFile = await webFetch(url, onCatch);
+      // const gcsFile = await webFetch(uri, onCatch);
       const fileUrl = gcsFile.file[0];
-      const a = document.createElement("a");
-      a.download;
-      a.href = fileUrl;
       setLoading(false);
-      a.click();
-      a.remove();
-      document.removeChild(a);
-      console.log("GCS FILE RES: ", gcsFile);
+      linkCreator(fileUrl);
     }
   };
 
@@ -77,7 +79,6 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
         let formatDate = "dd/MM/yyy - H:mm";
         let wording = "";
         if (inactive) {
-          console.log("Inactive polis: ", item);
           polisDate = subDays(new Date(item.coverageEndDate), 1);
           formatDate = "dd/MM/yyy";
           wording = "Berlaku hingga ";
@@ -90,15 +91,17 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
             <PolisItem
               title="Tanda Bukti Transaksi"
               linkText={`${item.transactionProof}`.replace("./", "")}
-              linkHref={item.transactionProof}
-              margin
               inactive={inactive || !item.transactionProof}
+              id={item.id}
+              backUrl="transactionProof"
+              margin
             />
             <PolisItem
               title="Sertifikat Asuransi"
               linkText={item.certificateCertificate || ""}
-              linkHref={item.insuranceCertificate}
               inactive={inactive || !item.insuranceCertificate}
+              backUrl="insuranceCertificate"
+              id={item.id}
             />
           </div>
         );

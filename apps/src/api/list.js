@@ -32,6 +32,10 @@ const apiList = [
       {
         name: "insurancePlans",
         url: "insurancePlans",
+        children: [
+          { name: "transactionProof", url: "/:id/transctionProof" },
+          { name: "insuranceCertificate", url: "/:id/insuranceCertificate" },
+        ],
       },
       {
         url: "gcs",

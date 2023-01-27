@@ -183,7 +183,7 @@ export const inDev = process.env.REACT_APP_ENVIRONMENT === "development";
 
 export const isAndroid = /Android/.test(window.navigator.userAgent);
 
-export const webFetch = async (url) => {
+export const webFetch = async (url, onCatch) => {
   if (!url) return {};
 
   const params = parse(window.location.search);
@@ -193,6 +193,19 @@ export const webFetch = async (url) => {
       "Content-Type": "application/json; charset=utf-8",
       Authorizaion: `Bearer ${params.accessToken}`,
       "X-TRACE-ID": v4(),
+      "X-CUSTOMER-ID": params.customerId,
     },
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch((res) => onCatch(res));
 };
+
+export function linkCreator(href = "") {
+  const a = document.createElement("a");
+  a.download;
+  a.href = href;
+  a.target = "_blank";
+  a.click();
+  a.remove();
+  document.removeChild(a);
+}

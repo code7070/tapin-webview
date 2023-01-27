@@ -39,7 +39,7 @@ export default function FormSandbox() {
     <div className="container">
       <div className="max-w-sm mx-auto">
         <div className="text-xs">environment: {env}</div>
-        <div className="text-2xl font-bold mb-6">FORM SANDBOX 3</div>
+        <div className="text-2xl font-bold mb-6">FORM SANDBOX 4</div>
         <form action={`${url}?${params}`} method="GET">
           <div className="form-control mb-4">
             <label className="label-text" htmlFor="token">

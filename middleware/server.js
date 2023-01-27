@@ -58,27 +58,11 @@ app.get("/*", (req, res) => {
   const tokenName = "USER-ACCESS-TOKEN";
   const refTokenName = "USER-REFRESH-TOKEN";
 
-  const istokenHeaders = req.headers[tokenName];
-  const isrefTokenHeaders = req.headers[refTokenName];
+  const istokenHeaders = req.headers[tokenName.toLowerCase()];
+  const isrefTokenHeaders = req.headers[refTokenName.toLowerCase()];
 
-  const istokenHeader = req.header[tokenName];
-  const isrefTokenHeader = req.header[refTokenName];
-
-  const tokenHeader = istokenHeaders || istokenHeader;
-  const refTokenHeader = isrefTokenHeaders || isrefTokenHeader;
-
-  const tokenBody = req.body ? req.body[tokenName] : "";
-  const refTokenBody = req.body ? req.body[refTokenName] : "";
-
-  const tokenQuery = req.query[tokenName] || "";
-  const refTokenQuery = req.query[refTokenName] || "";
-
-  const token = tokenHeader || tokenBody || tokenQuery;
-  const refToken = refTokenHeader || refTokenBody || refTokenQuery;
-
-  // if (token || refToken) {
-
-  // }
+  // console.log("Headers: ", req.headers);
+  // console.log({ istokenHeaders, isrefTokenHeaders });
 
   res.cookie(tokenName, istokenHeaders);
   res.cookie(refTokenName, isrefTokenHeaders);

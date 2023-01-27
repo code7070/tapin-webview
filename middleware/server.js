@@ -50,8 +50,11 @@ app.get("/not-found", (req, res) => {
 
 //
 //
+
 //
-app.get("/insurance", (req, res) => {
+//
+// Route to handle every routing
+app.get("/*", (req, res) => {
   const tokenName = "USER-ACCESS-TOKEN";
   const refTokenName = "USER-REFRESH-TOKEN";
 
@@ -72,13 +75,6 @@ app.get("/insurance", (req, res) => {
     res.cookie(refTokenName, refToken);
   }
 
-  return res.sendFile(path.join(__dirname, targetFolder, "index.html"));
-});
-
-//
-//
-// Route to handle every routing
-app.get("/*", (req, res) => {
   return res.sendFile(path.join(__dirname, targetFolder, "index.html"));
 });
 

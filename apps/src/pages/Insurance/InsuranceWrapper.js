@@ -58,6 +58,10 @@ export default function InsurancePage({ children }) {
   return (
     <section className={style.insuranceDetail}>
       <Header title="My Critical Illness Protection" />
+      <div className="max-w-sm text-xs mx-auto mt-3">
+        COOKIES: <br />
+        {JSON.stringify(document.cookie)}
+      </div>
       <CredentialChecker>
         <InsuranceContent activeTab={activeTab}>{children}</InsuranceContent>
       </CredentialChecker>

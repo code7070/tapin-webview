@@ -204,7 +204,6 @@ export function linkCreator(href = "") {
   const a = document.createElement("a");
   a.download;
   a.href = href;
-  a.target = "_blank";
   a.click();
   a.remove();
   document.removeChild(a);

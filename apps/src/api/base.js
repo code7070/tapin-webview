@@ -64,7 +64,7 @@ const token = getCookie("USER-ACCESS-TOKEN") || params.accessToken;
 
 const MainService = new ApiTree(RootService, [
   {
-    url: "api",
+    url: "ottobiz-api",
     children: apiList,
     hooks: {
       before({ payload, next }) {

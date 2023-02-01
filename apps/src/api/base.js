@@ -58,9 +58,11 @@ const handleFailed = (errorCode, payload, retry, result, next) => {
   }
 };
 // END OF FAIL API ACTIVITY
-
+const inProd = process.env.REACT_APP_ENVIRONMENT === "production";
 const params = parse(window.location.search);
-const token = getCookie("USER-ACCESS-TOKEN") || params.accessToken;
+const cookieToken = getCookie("USER-ACCESS-TOKEN");
+const paramsToken = params.accessToken;
+const token = inProd ? cookieToken : cookieToken || paramsToken;
 
 const MainService = new ApiTree(RootService, [
   {

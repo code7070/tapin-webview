@@ -59,7 +59,7 @@ export default function InsurancePage({ children }) {
     <section className={style.insuranceDetail}>
       <Header title="My Critical Illness Protection" />
       <div className="max-w-sm text-xs mx-auto mt-3">
-        COOKIES: <br />
+        COOKIES LIST: <br />
         {JSON.stringify(document.cookie)}
       </div>
       <CredentialChecker>

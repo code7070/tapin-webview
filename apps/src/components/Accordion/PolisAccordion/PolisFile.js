@@ -32,10 +32,10 @@ const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
       setLoading(true);
       const params = `fileName=${fileName}`;
       const baseUrl = process.env.REACT_APP_BASE_URL;
-      // const uri = `${baseUrl}/insurancePlans/${id}/${backUrl}`;
-      const url = `${baseUrl}/apii/v1/gcs/downloadFile?${params}`;
-      const gcsFile = await webFetch(url, onCatch);
-      // const gcsFile = await webFetch(uri, onCatch);
+      const uri = `${baseUrl}/insurancePlans/${id}/${backUrl}`;
+      // const url = `${baseUrl}/apii/v1/gcs/downloadFile?${params}`;
+      // const gcsFile = await webFetch(url, onCatch);
+      const gcsFile = await webFetch(uri, onCatch);
       const fileUrl = gcsFile.file[0];
       setLoading(false);
       linkCreator(fileUrl);

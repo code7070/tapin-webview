@@ -8,6 +8,7 @@ import style from "./PolisAccordion.module.scss";
 // import { downloadFile } from "api";
 import { useState } from "react";
 import { linkCreator, webFetch } from "helpers/util";
+import { toast } from "react-toastify";
 
 const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,7 @@ const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
   const displayName = fileName.split("/");
 
   const onCatch = (res) => {
+    toast("Gagal mendapatkan file");
     console.log("Catch: ", res);
     setLoading(false);
   };
@@ -33,8 +35,6 @@ const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
       // const params = `fileName=${fileName}`;
       const baseUrl = process.env.REACT_APP_BASE_URL;
       const uri = `${baseUrl}/insurancePlans/${id}/${backUrl}`;
-      // const url = `${baseUrl}/apii/v1/gcs/downloadFile?${params}`;
-      // const gcsFile = await webFetch(url, onCatch);
       const fetchFile = await webFetch(uri, onCatch);
       const fileUrl = fetchFile.file[0];
       setLoading(false);

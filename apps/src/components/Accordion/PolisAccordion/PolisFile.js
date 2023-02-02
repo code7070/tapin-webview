@@ -34,7 +34,7 @@ const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
       setLoading(true);
       // const params = `fileName=${fileName}`;
       const baseUrl = process.env.REACT_APP_BASE_URL;
-      const uri = `${baseUrl}/insurancePlans/${id}/${backUrl}`;
+      const uri = `${baseUrl}/ottobiz-api/insurancePlans/${id}/${backUrl}`;
       const fetchFile = await webFetch(uri, onCatch);
       const fileUrl = fetchFile.file[0];
       setLoading(false);

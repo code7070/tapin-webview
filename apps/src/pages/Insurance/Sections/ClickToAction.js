@@ -22,10 +22,12 @@ const ClickToAction = ({ tab }) => {
       // nativeDo.buyInsurance({ productId: 1 });
 
       // suggested function
-      window.InterfaceObject.nativeDo({
-        command: "buyInsurance",
-        data: { productId: 1 },
-      });
+      window.InterfaceObject.nativeDo(
+        JSON.stringify({
+          command: "buyInsurance",
+          data: { productId: 1 },
+        })
+      );
     } else {
       webkit.messageHandlers.nativeDo.postMessage({
         command: "buyInsurance",

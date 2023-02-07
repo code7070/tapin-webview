@@ -21,7 +21,9 @@ export default function Header({ title = "Header Title" }) {
         nativeDo.closeWebView();
 
         // suggested function
-        window.InterfaceObject.nativeDo({ command: "closeWebView", data: {} });
+        window.InterfaceObject.nativeDo(
+          JSON.stringify({ command: "closeWebView", data: {} })
+        );
       } else
         webkit.messageHandlers.nativeDo.postMessage({
           command: "closeWebView",
@@ -59,7 +61,7 @@ export default function Header({ title = "Header Title" }) {
         progressClassName="otToast-progress"
         position="bottom-center"
         closeButton={false}
-        autoClose={600000}
+        autoClose={3000}
       />
     </>
   );

@@ -58,6 +58,8 @@ const handleFailed = (errorCode, payload, retry, result, next) => {
   }
 };
 // END OF FAIL API ACTIVITY
+
+// Token Taken
 const inProd = process.env.REACT_APP_ENVIRONMENT === "production";
 const params = parse(window.location.search);
 const cookieToken = getCookie("USER-ACCESS-TOKEN");

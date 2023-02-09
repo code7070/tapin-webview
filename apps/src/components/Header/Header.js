@@ -17,18 +17,14 @@ export default function Header({ title = "Header Title" }) {
     } else {
       toast("Closing WebView...");
 
+      const nativeData = JSON.stringify({ command: "closeWebView", data: {} });
+
       if (isAndroid) {
         nativeDo.closeWebView();
 
         // suggested function
-        window.InterfaceObject.nativeDo(
-          JSON.stringify({ command: "closeWebView", data: {} })
-        );
-      } else
-        webkit.messageHandlers.nativeDo.postMessage({
-          command: "closeWebView",
-          data: {},
-        });
+        window.InterfaceObject.nativeDo(nativeData);
+      } else webkit.messageHandlers.nativeDo.postMessage(nativeData);
     }
   }, [navigate]);
 

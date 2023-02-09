@@ -5,34 +5,27 @@ import { Button } from "components";
 import PopupContact from "components/Popup/PopupContact";
 import { toast } from "react-toastify";
 import { isAndroid } from "helpers/util";
-import { parse } from "query-string";
 
 const ClickToAction = ({ tab }) => {
   const [isOpen, setOpen] = useState(false);
-  const parsed = parse(window.location.search);
 
   const open = () => setOpen(true);
   const close = () => setOpen(false);
 
   let text = "Beli Asuransi";
   let onClick = () => {
-    if (isAndroid) {
-      toast("Beli Asuransi");
+    toast("Beli Asuransi");
 
-      // nativeDo.buyInsurance({ productId: 1 });
+    const data = { productId: 1 };
+    const nativeData = JSON.stringify({ command: "buyInsurance", data });
+
+    if (isAndroid) {
+      nativeDo.buyInsurance(data);
 
       // suggested function
-      window.InterfaceObject.nativeDo(
-        JSON.stringify({
-          command: "buyInsurance",
-          data: { productId: 1 },
-        })
-      );
+      window.InterfaceObject.nativeDo(nativeData);
     } else {
-      webkit.messageHandlers.nativeDo.postMessage({
-        command: "buyInsurance",
-        data: { productId: 1 },
-      });
+      webkit.messageHandlers.nativeDo.postMessage(nativeData);
     }
   };
   if (tab === "dokumen") {

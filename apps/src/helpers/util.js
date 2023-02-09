@@ -191,7 +191,7 @@ export const webFetch = async (url, onCatch) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      Authorizaion: `Bearer ${params.accessToken}`,
+      Authorizaion: ``,
       "X-TRACE-ID": v4(),
       "X-CUSTOMER-ID": params.customerId,
     },

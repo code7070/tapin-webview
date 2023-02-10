@@ -5,8 +5,7 @@ import { ApiService, ApiTree } from "@apicase/services";
 import fetch from "@apicase/adapter-fetch";
 import apiList from "./list";
 import { v4 } from "uuid";
-import { parse } from "query-string";
-import { getCookie } from "helpers/util";
+import { getAccessToken } from "helpers/util";
 
 // VARIABLE LIST
 // make sure match for your APP
@@ -60,11 +59,7 @@ const handleFailed = (errorCode, payload, retry, result, next) => {
 // END OF FAIL API ACTIVITY
 
 // Token Taken
-const inProd = process.env.REACT_APP_ENVIRONMENT === "production";
-const params = parse(window.location.search);
-const cookieToken = getCookie("USER-ACCESS-TOKEN");
-const paramsToken = params.accessToken;
-const token = inProd ? cookieToken : cookieToken || paramsToken;
+const token = getAccessToken();
 
 const MainService = new ApiTree(RootService, [
   {

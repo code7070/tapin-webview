@@ -183,15 +183,26 @@ export const inDev = process.env.REACT_APP_ENVIRONMENT === "development";
 
 export const isAndroid = /Android/.test(window.navigator.userAgent);
 
+export const getAccessToken = () => {
+  const inProd = process.env.REACT_APP_ENVIRONMENT === "production";
+  const params = parse(window.location.search);
+  const cookieToken = getCookie("USER-ACCESS-TOKEN");
+  const paramsToken = params.accessToken;
+  const token = inProd ? cookieToken : cookieToken || paramsToken;
+
+  return token;
+};
+
 export const webFetch = async (url, onCatch) => {
   if (!url) return {};
 
   const params = parse(window.location.search);
+
   return await fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      Authorization: `Bearer ${params.accessToken}`,
+      Authorization: `Bearer ${getAccessToken()}`,
       "X-TRACE-ID": v4(),
       "X-CUSTOMER-ID": params.customerId,
     },

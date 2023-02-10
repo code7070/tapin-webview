@@ -98,10 +98,10 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
             />
             <PolisItem
               title="Sertifikat Asuransi"
-              linkText={item.certificateCertificate || ""}
+              linkText={item.insuranceCertificate || ""}
               inactive={inactive || !item.insuranceCertificate}
-              backUrl="insuranceCertificate"
               id={item.id}
+              backUrl="insuranceCertificate"
             />
           </div>
         );

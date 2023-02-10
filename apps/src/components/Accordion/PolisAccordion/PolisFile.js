@@ -12,7 +12,6 @@ import { toast } from "react-toastify";
 
 const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
   const [loading, setLoading] = useState(false);
-  const [resp, setResp] = useState(false);
 
   const offClass = inactive ? style.inactive : "";
   const fname = `${offClass} ${style.polisFileName}`;
@@ -37,9 +36,7 @@ const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
       const baseUrl = process.env.REACT_APP_BASE_URL;
       const uri = `${baseUrl}/ottobiz-insurance/v1/insurancePlans/${id}/${backUrl}`;
       const fetchFile = await webFetch(uri, onCatch);
-      setResp(JSON.stringify(fetchFile));
       const fileUrl = fetchFile[backUrl].fileUrl[0];
-      console.log("Fetched: ", { fetchFile, fileUrl });
       setLoading(false);
       linkCreator(fileUrl);
     }
@@ -56,7 +53,6 @@ const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
           {loading ? <Loading /> : <Icon type={iconType} />}
         </div>
       </div>
-      <div className="text-xs">{resp}</div>
     </div>
   );
 };

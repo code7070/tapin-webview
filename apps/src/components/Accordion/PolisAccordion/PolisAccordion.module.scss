@@ -112,7 +112,7 @@
 }
 
 .polisFileLink {
-  @apply text-ottoBlue-200 text-xs hover:underline block w-full break-words;
+  @apply text-ottoBlue-200 text-xs hover:underline block w-full break-words line-clamp-1;
 
   @media (min-width: 380px) {
     @apply text-sm;

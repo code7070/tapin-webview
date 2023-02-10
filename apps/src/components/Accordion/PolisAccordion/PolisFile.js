@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 
 const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
   const [loading, setLoading] = useState(false);
+  const [resp, setResp] = useState(false);
 
   const offClass = inactive ? style.inactive : "";
   const fname = `${offClass} ${style.polisFileName}`;
@@ -36,7 +37,7 @@ const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
       const baseUrl = process.env.REACT_APP_BASE_URL;
       const uri = `${baseUrl}/ottobiz-insurance/v1/insurancePlans/${id}/${backUrl}`;
       const fetchFile = await webFetch(uri, onCatch);
-      alert(JSON.stringify(fetchFile));
+      setResp(JSON.stringify(fetchFile));
       const fileUrl = fetchFile[backUrl].fileUrl[0];
       console.log("Fetched: ", { fetchFile, fileUrl });
       setLoading(false);
@@ -45,14 +46,17 @@ const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
   };
 
   return (
-    <div className={style.polisFileItem}>
-      <button className={classPolis} onClick={clickFile} disabled={loading}>
-        <div className={fname}>{title}</div>
-        <div className={flink}>{displayName[displayName.length - 1]}</div>
-      </button>
-      <div className="w-1/12">
-        {loading ? <Loading /> : <Icon type={iconType} />}
+    <div>
+      <div className={style.polisFileItem}>
+        <button className={classPolis} onClick={clickFile} disabled={loading}>
+          <div className={fname}>{title}</div>
+          <div className={flink}>{displayName[displayName.length - 1]}</div>
+        </button>
+        <div className="w-1/12">
+          {loading ? <Loading /> : <Icon type={iconType} />}
+        </div>
       </div>
+      <div className="text-xs">{resp}</div>
     </div>
   );
 };

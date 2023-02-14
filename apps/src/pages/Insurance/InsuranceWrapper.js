@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import { ErrorBox, Header } from "components";
 import style from "./InsuranceWrapper.module.scss";
-import { getCookie, propTypesChildren } from "helpers/util";
+import { propTypesChildren } from "helpers/util";
 import { ClickToAction, InsuranceProvider, Tab } from "./Sections";
 import useInsurancePlans from "hooks/useInsurancePlans";
 import { parse } from "query-string";
@@ -31,11 +31,9 @@ InsuranceContent.propTypes = {
 const CredentialChecker = ({ children }) => {
   const { search } = useLocation();
   const parsed = parse(search);
-  const cookieToken = getCookie("USER-ACCESS-TOKEN");
-  const paramsToken = parsed.accessToken;
-  const token = cookieToken || paramsToken;
+  // const token = getAccessToken()
   // const refToken = getCookie("USER-REFRESH-TOKEN")
-  if (token && parsed.customerId && parsed.insuranceId) return children;
+  if (parsed.customerId && parsed.insuranceId) return children;
   else
     return (
       <ErrorBox

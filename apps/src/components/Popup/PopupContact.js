@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import { parse } from "query-string";
 import { Modal, Icon } from "components";
-import { detectBrowser } from "helpers/util";
+import { detectDevice } from "helpers/util";
 
 const ContactBox = ({ name, icon, linkText, linkHref }) => {
   return (
@@ -50,7 +50,7 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
   const { search } = useLocation();
   const { device = "unlisted" } = parse(search);
 
-  let deviceType = `${detectBrowser(device)}`.toLowerCase();
+  let deviceType = `${detectDevice(device)}`.toLowerCase();
   // console.log({ deviceType });
   const addressLink = linkAddress[deviceType];
 

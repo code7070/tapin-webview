@@ -7,7 +7,7 @@ import { Loading, Icon } from "components";
 import style from "./PolisAccordion.module.scss";
 // import { downloadFile } from "api";
 import { useState } from "react";
-import { linkCreator, webFetch } from "helpers/util";
+import { isAppleDevice, linkCreator, webFetch } from "helpers/util";
 import { toast } from "react-toastify";
 
 const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
@@ -36,9 +36,10 @@ const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
       const baseUrl = process.env.REACT_APP_BASE_URL;
       const uri = `${baseUrl}/ottobiz-insurance/v1/insurancePlans/${id}/${backUrl}`;
       const fetchFile = await webFetch(uri, onCatch);
-      const fileUrl = fetchFile[backUrl].fileUrl;
+      let targetUrl = fetchFile[backUrl].fileUrl;
       setLoading(false);
-      linkCreator(fileUrl);
+      if (isAppleDevice()) targetUrl = fetchFile[backUrl].redirectUrl;
+      linkCreator(targetUrl);
     }
   };
 

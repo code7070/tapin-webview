@@ -139,7 +139,7 @@ export const propTypesNode = [
 
 export const propTypesChildren = PropTypes.oneOfType(propTypesNode);
 
-export function detectBrowser(defaultValue = "Unlisted") {
+export function detectDevice(defaultValue = "Unlisted") {
   let userAgent = window.navigator.userAgent;
   let browserName = defaultValue;
   // console.log(userAgent);
@@ -164,6 +164,11 @@ export function detectBrowser(defaultValue = "Unlisted") {
   else if (userAgent.match(/ipad/i)) browserName = "iPad";
 
   return browserName;
+}
+
+export function isAppleDevice(defaultValue = "Unlisted") {
+  const device = detectDevice(defaultValue);
+  return device === "iPhone" || device === "iPad";
 }
 
 export function convertIntl(num) {

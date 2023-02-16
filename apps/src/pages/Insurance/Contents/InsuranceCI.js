@@ -1,6 +1,7 @@
 import { useState } from "react";
 import style from "./InsuranceProduct.module.scss";
 import { Accordion, LinkNewTab } from "components";
+import { isAppleDevice } from "helpers/util";
 
 export default function InsuranceCI() {
   const [isOpen, setOpen] = useState(false);
@@ -13,6 +14,8 @@ export default function InsuranceCI() {
   const listStyle = "list-disc [&>*]:leading-normal [&>*]:mb-4";
   const description = `${style.description} body-text`;
   const headStyle = style.heading;
+
+  const linkEquity = `${isAppleDevice() ? "web" : ""}https://equity.co.id`;
 
   return (
     <div>
@@ -110,10 +113,7 @@ export default function InsuranceCI() {
                   dokumen klaim di bawah ini atau dapat menghubungi Contact
                   Center kami di 1500 079 (Senin – Jumat, Pukul 08.30–17.00)
                   maupun via website Equity Life Indonesia{" "}
-                  <LinkNewTab href="https://equity.co.id">
-                    (www.equity.co.id)
-                  </LinkNewTab>
-                  .
+                  <LinkNewTab href={linkEquity}>(www.equity.co.id)</LinkNewTab>.
                 </li>
                 <li>
                   Pastikan Anda memberikan formulir dan dokumen klaim secara
@@ -158,7 +158,7 @@ export default function InsuranceCI() {
             contact.center@equity.id
           </a>{" "}
           atau kunjungi website PT Equity Life Indonesia di{" "}
-          <LinkNewTab href="https://equity.co.id">www.equity.co.id</LinkNewTab>
+          <LinkNewTab href={linkEquity}>www.equity.co.id</LinkNewTab>
         </div>
       </div>
     </div>

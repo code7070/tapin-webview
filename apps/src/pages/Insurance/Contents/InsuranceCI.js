@@ -14,8 +14,7 @@ export default function InsuranceCI() {
   const listStyle = "list-disc [&>*]:leading-normal [&>*]:mb-4";
   const description = `${style.description} body-text`;
   const headStyle = style.heading;
-
-  const linkEquity = `${isAppleDevice() ? "web" : ""}https://equity.co.id`;
+  const linkEquity = `${isAppleDevice() ? "web:" : ""}https://equity.co.id`;
 
   return (
     <div>

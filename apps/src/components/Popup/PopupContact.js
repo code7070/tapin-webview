@@ -53,7 +53,8 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
   let deviceType = `${detectDevice(device)}`.toLowerCase();
   // console.log({ deviceType });
   const addressLink = linkAddress[deviceType];
-  const linkEquity = `${isAppleDevice() ? "web" : ""}https://equity.co.id`;
+  const ogLink = "https://equity.co.id";
+  const linkEquity = `${isAppleDevice() ? "web:" : ""}${ogLink}`;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="PT Equity Life">
@@ -70,7 +71,12 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
         linkHref="mailto:contact.center@equity.id"
         linkText="contact.center@equity.id"
       />
-      <ContactBox name="Website" icon="Web" linkHref={linkEquity} />
+      <ContactBox
+        name="Website"
+        icon="Web"
+        linkText={ogLink}
+        linkHref={linkEquity}
+      />
       <ContactBox
         name="Alamat"
         icon="Home"

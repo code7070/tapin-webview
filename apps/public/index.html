@@ -18,6 +18,29 @@
     />
 
     <title>%REACT_APP_META_TITLE%</title>
+    <meta name="title" content="%REACT_APP_META_TITLE%" />
+    <meta name="description" content="%REACT_APP_META_DESC%" />
+    <meta name="image" content="%REACT_APP_META_IMG%" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%REACT_APP_META_URL%" />
+    <meta property="og:title" content="%REACT_APP_META_TITLE%" />
+    <meta property="og:description" content="%REACT_APP_META_DESC%" />
+    <meta
+      property="og:image"
+      content="%REACT_APP_META_URL%%REACT_APP_META_IMG%"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="%REACT_APP_META_URL%" />
+    <meta property="twitter:title" content="%REACT_APP_META_TITLE%" />
+    <meta property="twitter:description" content="%REACT_APP_META_DESC%" />
+    <meta
+      property="twitter:image"
+      content="%REACT_APP_META_URL%%REACT_APP_META_IMG%"
+    />
 
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />

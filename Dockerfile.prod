@@ -20,7 +20,7 @@ RUN yarn install
 
 # Bundle static
 FROM node:18.7-alpine AS serve
-COPY --from=serve /server ./server
+COPY --from=build-serve /server ./server
 COPY --from=build-app /src/build_deploy ./build
 EXPOSE 3000
 

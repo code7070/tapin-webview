@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { parse } from "query-string";
 import { Modal, Icon } from "components";
 import { detectDevice, isAppleDevice } from "helpers/util";
+import eliContact from "helpers/eli-contact";
 
 const ContactBox = ({ name, icon, linkText, linkHref }) => {
   return (
@@ -32,28 +33,14 @@ ContactBox.propTypes = {
   linkHref: PropTypes.string,
 };
 
-const linkAddress = {
-  unlisted: "https://goo.gl/maps/EZ5kbEMzgpKgZjYF7",
-  android: "https://goo.gl/maps/EZ5kbEMzgpKgZjYF7",
-  ios: "maps://?address=Jl.%20Jend.%20Sudirman%20No.%2086,%20Central%20Jakarta,%20Jakarta%2010220,%20Indonesia&auid=6459330042965116742&ll=-6.210914,106.818670&lsp=9902$t=m",
-  apple:
-    "maps://?address=Jl.%20Jend.%20Sudirman%20No.%2086,%20Central%20Jakarta,%20Jakarta%2010220,%20Indonesia&auid=6459330042965116742&ll=-6.210914,106.818670&lsp=9902$t=m",
-  mac: "maps://?address=Jl.%20Jend.%20Sudirman%20No.%2086,%20Central%20Jakarta,%20Jakarta%2010220,%20Indonesia&auid=6459330042965116742&ll=-6.210914,106.818670&lsp=9902$t=m",
-  ipad: "maps://?address=Jl.%20Jend.%20Sudirman%20No.%2086,%20Central%20Jakarta,%20Jakarta%2010220,%20Indonesia&auid=6459330042965116742&ll=-6.210914,106.818670&lsp=9902$t=m",
-  iphone:
-    "maps://?address=Jl.%20Jend.%20Sudirman%20No.%2086,%20Central%20Jakarta,%20Jakarta%2010220,%20Indonesia&auid=6459330042965116742&ll=-6.210914,106.818670&lsp=9902$t=m",
-  appleMaps:
-    "https://maps.apple.com/?address=Jl.%20Jend.%20Sudirman%20No.%2086,%20Central%20Jakarta,%20Jakarta%2010220,%20Indonesia&auid=6459330042965116742&ll=-6.210914,106.818670&lsp=9902$t=m",
-};
-
 export default function PopupContact({ isOpen = true, onClose = () => {} }) {
   const { search } = useLocation();
   const { device = "unlisted" } = parse(search);
 
   let deviceType = `${detectDevice(device)}`.toLowerCase();
   // console.log({ deviceType });
-  const addressLink = linkAddress[deviceType];
-  const ogLink = "https://equity.co.id";
+  const addressLink = eliContact.address[deviceType];
+  const ogLink = eliContact.site;
   const linkEquity = `${isAppleDevice() ? "web:" : ""}${ogLink}`;
 
   return (
@@ -68,8 +55,8 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
       <ContactBox
         name="Email"
         icon="Email"
-        linkHref="mailto:contact.center@equity.id"
-        linkText="contact.center@equity.id"
+        linkHref={`mailto:${eliContact.mail}`}
+        linkText={eliContact.mail}
       />
       <ContactBox
         name="Website"
@@ -81,7 +68,7 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
         name="Alamat"
         icon="Home"
         linkHref={addressLink}
-        linkText="PT Equity Life Indonesia, Sahid Sudirman Center lantai 43 Jl. Jend Sudirman No. 86, Jakarta 10220"
+        linkText={eliContact.addressText}
       />
     </Modal>
   );

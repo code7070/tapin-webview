@@ -2,6 +2,7 @@ import { useState } from "react";
 import style from "./InsuranceProduct.module.scss";
 import { Accordion, LinkNewTab } from "components";
 import { isAppleDevice } from "helpers/util";
+import eliContact from "helpers/eli-contact";
 
 export default function InsuranceCI() {
   const [isOpen, setOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function InsuranceCI() {
   const listStyle = "list-disc [&>*]:leading-normal [&>*]:mb-4";
   const description = `${style.description} body-text`;
   const headStyle = style.heading;
-  const linkEquity = `${isAppleDevice() ? "web:" : ""}https://equity.co.id`;
+  const linkEquity = `${isAppleDevice() ? "web:" : ""}${eliContact.site}`;
 
   return (
     <div>
@@ -153,11 +154,11 @@ export default function InsuranceCI() {
           Untuk informasi lebih lanjut terkait dengan produk My CI Protection,
           Tertanggung dapat menghubungi Contact Center di 1500 079 di hari Senin
           – Jumat pukul 08.30 – 17.00 atau email ke{" "}
-          <a href="mailto:contact.center@equity.id" className="hover:underline">
-            contact.center@equity.id
+          <a href={`mailto:${eliContact.mail}`} className="hover:underline">
+            {eliContact.mail}
           </a>{" "}
           atau kunjungi website PT Equity Life Indonesia di{" "}
-          <LinkNewTab href={linkEquity}>www.equity.co.id</LinkNewTab>
+          <LinkNewTab href={linkEquity}>{eliContact.siteText}</LinkNewTab>
         </div>
       </div>
     </div>

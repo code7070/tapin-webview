@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import { format, subDays } from "date-fns";
 import { Loading, Icon } from "components";
 import style from "./PolisAccordion.module.scss";
-// import { downloadFile } from "api";
 import { useState } from "react";
 import { isAppleDevice, linkCreator, webFetch } from "helpers/util";
 import { toast } from "react-toastify";
@@ -44,17 +43,21 @@ const PolisItem = ({ title, linkText, inactive, id, backUrl = "" }) => {
   };
 
   return (
-    <div>
+    <button
+      className="block w-full cursor-pointer"
+      onClick={clickFile}
+      disabled={loading}
+    >
       <div className={style.polisFileItem}>
-        <button className={classPolis} onClick={clickFile} disabled={loading}>
+        <div className={classPolis}>
           <div className={fname}>{title}</div>
           <div className={flink}>{displayName[displayName.length - 1]}</div>
-        </button>
+        </div>
         <div className="w-1/12">
           {loading ? <Loading /> : <Icon type={iconType} />}
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

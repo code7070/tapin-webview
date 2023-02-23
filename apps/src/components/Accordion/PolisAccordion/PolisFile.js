@@ -86,7 +86,8 @@ const PolisAccordionFile = ({ inactive, polisData }) => {
         let formatDate = "dd/MM/yyy - H:mm";
         let wording = "";
         if (inactive) {
-          polisDate = subDays(new Date(item.coverageEndDate), 1);
+          // polisDate = subDays(new Date(item.coverageEndDate), 1);
+          polisDate = new Date(item.coverageEndDate);
           formatDate = "dd/MM/yyy";
           wording = "Berlaku hingga ";
         }

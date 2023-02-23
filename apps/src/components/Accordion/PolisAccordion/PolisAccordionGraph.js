@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
-import { format, subDays } from "date-fns";
+import { format } from "date-fns";
 import style from "./PolisAccordion.module.scss";
 import { numMillion } from "helpers/util";
 
-const DateLine = ({ position = "left", date = "", dateType }) => {
+const DateLine = ({ position = "left", date = "" }) => {
   let transform = "";
   if (position === "right") transform = "translate(100%, 0)";
 
   let targetDate = new Date(date);
-  if (dateType === "endDate") targetDate = subDays(new Date(date), 1);
+  // if (dateType === "endDate") targetDate = subDays(new Date(date), 1);
 
   return (
     <div className={`absolute ${position}-0 top-0`} style={{ transform }}>

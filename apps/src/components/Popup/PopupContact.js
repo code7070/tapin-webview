@@ -38,14 +38,14 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
   const { device = "unlisted" } = parse(search);
 
   let deviceType = `${detectDevice(device)}`.toLowerCase();
-  // console.log({ deviceType });
+
   const addressLink = eliContact.address[deviceType];
   const ogLink = eliContact.site;
   const linkEquity = `${isAppleDevice() ? "web:" : ""}${ogLink}`;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="PT Equity Life">
-      <div className="mb-8 text-center">Device: {deviceType}</div>
+      {/* <div className="mb-8 text-center">Device: {deviceType}</div> */}
       <ContactBox
         name="Telepon"
         icon="Phone"

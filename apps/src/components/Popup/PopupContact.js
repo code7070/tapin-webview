@@ -11,13 +11,13 @@ const ContactBox = ({ name, icon, linkText, linkHref }) => {
       <div className="mr-2">
         <Icon type={icon} />
       </div>
-      <div className="flex-1 break-all">
+      <div className="flex-1">
         <div className="font-bold">{name}</div>
         <a
           target="_blank"
           rel="noreferrer"
           href={linkHref}
-          className="text-sm text-ottoBlue-200 hover:underline"
+          className="text-sm text-ottoBlue-200 hover:underline tracking-wide break-words"
         >
           {linkText || linkHref}
         </a>
@@ -61,7 +61,7 @@ export default function PopupContact({ isOpen = true, onClose = () => {} }) {
       <ContactBox
         name="Website"
         icon="Web"
-        linkText={ogLink}
+        linkText={eliContact.siteText}
         linkHref={linkEquity}
       />
       <ContactBox

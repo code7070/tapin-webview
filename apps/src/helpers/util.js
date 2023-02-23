@@ -220,7 +220,9 @@ export function linkCreator(href = "") {
   const a = document.createElement("a");
   a.download;
   a.href = href;
-  a.click();
-  a.remove();
-  document.removeChild(a);
+  setTimeout(() => {
+    a.click();
+    a.remove();
+    document.removeChild(a);
+  }, 1000);
 }

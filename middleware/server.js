@@ -52,6 +52,13 @@ app.get("/not-found", (req, res) => {
 //
 
 //
+// health-check
+app.get("/health-check", function (req, res) {
+  res.status(200).send("Ok");
+});
+//
+
+//
 //
 // Route to handle every routing
 app.get("/*", (req, res) => {

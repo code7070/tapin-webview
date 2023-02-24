@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import CookieBrowser from "js-cookie";
 import { parse } from "query-string";
 import { v4 } from "uuid";
+import { toast } from "react-toastify";
 
 function easing(t) {
   return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
@@ -221,6 +222,7 @@ export function linkCreator(href = "") {
   a.download;
   a.href = href;
   setTimeout(() => {
+    toast.dismiss();
     a.click();
     a.remove();
     document.removeChild(a);

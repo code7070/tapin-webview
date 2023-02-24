@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "store/store";
 import "./scss/global.scss";
 import Skeleton from "react-loading-skeleton";
+import { ToastContainer } from "react-toastify";
 
 const Document = lazy(() =>
   import("pages/Insurance/Contents/InsuranceDocument")
@@ -64,6 +65,13 @@ const App = () => {
           </Routes>
         </Suspense>
       </div>
+      <ToastContainer
+        className="otToast"
+        progressClassName="otToast-progress"
+        position="bottom-center"
+        closeButton={false}
+        autoClose={3000}
+      />
     </Provider>
   );
 };

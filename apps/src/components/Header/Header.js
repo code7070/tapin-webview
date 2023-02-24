@@ -1,7 +1,7 @@
 /* eslint-disable */
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { Button, Icon } from "components";
 import style from "./Header.module.scss";
 import { useCallback, useEffect } from "react";
@@ -52,13 +52,6 @@ export default function Header({ title = "Header Title" }) {
           {title}
         </div>
       </div>
-      <ToastContainer
-        className="otToast"
-        progressClassName="otToast-progress"
-        position="bottom-center"
-        closeButton={false}
-        autoClose={3000}
-      />
     </>
   );
 }

@@ -12,7 +12,8 @@ export default function InsuranceCI() {
     else setOpen(false);
   };
 
-  const listStyle = "list-disc [&>*]:leading-normal [&>*]:mb-4";
+  const listStyle =
+    "list-disc [&>li]:leading-normal [&>li]:mb-4 [&>li]:ml-[2em]";
   const description = `${style.description} body-text`;
   const headStyle = style.heading;
   const linkEquity = `${isAppleDevice() ? "web:" : ""}${eliContact.site}`;
@@ -41,13 +42,13 @@ export default function InsuranceCI() {
             onClick={() => toggleOpen("manfaat")}
           >
             <div className={description}>
-              Jika Tertanggung untuk pertama kalinya didiagnosis salah satu
-              penyakit dari 3 (tiga) kritis yang dipertanggungkan dalam
-              Sertifikat Asuransi dan terjadi dalam Masa Asuransi, maka
-              Penanggung akan memberikan Manfaat Asuransi sebesar 100% Uang
-              Pertanggungan dan selanjutnya Kepesertaan Asuransi berakhir. Jenis
-              penyakit kritis yang dipertanggungkan sebagai berikut: stroke,
-              kanker dan serangan jantung.
+              Jika Tertanggung untuk pertama kalinya didiagnosis salah satu dari
+              3 (tiga) penyakit kritis yang dipertanggungkan dalam Sertifikat
+              Asuransi dan terjadi dalam Masa Asuransi, maka Penanggung akan
+              memberikan Manfaat Asuransi sebesar 100% Uang Pertanggungan dan
+              selanjutnya Kepesertaan Asuransi berakhir. Jenis penyakit kritis
+              yang dipertanggungkan sebagai berikut: stroke, kanker dan serangan
+              jantung.
             </div>
           </Accordion>
           <Accordion
@@ -143,8 +144,8 @@ export default function InsuranceCI() {
                 </li>
                 <li>
                   Pembayaran klaim akan ditransfer maksimal 14 (empat belas)
-                  hari kerja setelah dokumen klaim lengkap diterima oleh PT
-                  Equity Life Indonesia
+                  hari kerja setelah dokumen klaim diterima secara lengkap dan
+                  disetujui oleh PT. Equity Life
                 </li>
               </ul>
             </div>

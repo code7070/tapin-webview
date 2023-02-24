@@ -125,22 +125,24 @@ export default function InsuranceCI() {
                   puluh) hari kalender sejak Anda didiagnosis menderita salah
                   satu dari 3 (tiga) penyakit kritis yang dipertanggungkan
                   dengan melampirkan:
-                </li>
-                <li>Fotokopi identitas diri (eKTP/Paspor) Tertanggung.</li>
-                <li>
-                  Mengisi formulir pengajuan pembayaran Manfaat Asuransi yang
-                  disediakan oleh Penanggung dengan lengkap dan jelas.
-                </li>
-                <li>
-                  Formulir perawatan medis/resume medis/keterangan dari dokter
-                  tentang penyakit kritis yang dijamin oleh Penanggung
-                  berdasarkan Polis.
-                </li>
-                <li>Sertifikat Asuransi.</li>
-                <li>
-                  Melampirkan keterangan-keterangan atau dokumen-dokumen lain
-                  yang dianggap perlu oleh Penanggung, sehubungan dengan
-                  analisis klaim tersebut.
+                  <ul className={`mt-3 ${listStyle}`}>
+                    <li>Fotokopi identitas diri (eKTP/Paspor) Tertanggung.</li>
+                    <li>
+                      Mengisi formulir pengajuan pembayaran Manfaat Asuransi
+                      yang disediakan oleh Penanggung dengan lengkap dan jelas.
+                    </li>
+                    <li>
+                      Formulir perawatan medis/resume medis/keterangan dari
+                      dokter tentang penyakit kritis yang dijamin oleh
+                      Penanggung berdasarkan Polis.
+                    </li>
+                    <li>Sertifikat Asuransi.</li>
+                    <li>
+                      Melampirkan keterangan-keterangan atau dokumen-dokumen
+                      lain yang dianggap perlu oleh Penanggung, sehubungan
+                      dengan analisis klaim tersebut.
+                    </li>
+                  </ul>
                 </li>
                 <li>
                   Pembayaran klaim akan ditransfer maksimal 14 (empat belas)

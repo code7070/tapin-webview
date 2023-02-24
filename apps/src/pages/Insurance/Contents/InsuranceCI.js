@@ -13,7 +13,7 @@ export default function InsuranceCI() {
   };
 
   const listStyle =
-    "list-disc [&>li]:leading-normal [&>li]:mb-4 [&>li]:ml-[2em]";
+    "list-disc [&>li]:leading-normal [&>li]:mb-3 [&>li]:ml-[2em]";
   const description = `${style.description} body-text`;
   const headStyle = style.heading;
   const linkEquity = `${isAppleDevice() ? "web:" : ""}${eliContact.site}`;

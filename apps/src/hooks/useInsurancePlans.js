@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { insurancePlanList } from "api/dummy";
 import { differenceInDays as diffDays } from "date-fns";
@@ -11,6 +11,7 @@ import { inDev } from "helpers/util";
 function useInsurancePlans() {
   const { search } = useLocation();
   const navigate = useNavigate();
+  const [resAPI, setRes] = useState(false);
   const parsed = parse(search);
   const plans = useSelector(({ insurancePlans }) => insurancePlans.plans);
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function useInsurancePlans() {
         });
         dispatch(setPlans({ active: [], inactive: [], meta: res.meta }));
       }
+      setRes(res);
       if (inDev) console.log("Return plans: ", res);
     };
     if (!parsed.customerId || !parsed.insuranceId) {
@@ -50,7 +52,7 @@ function useInsurancePlans() {
     } else if (!plans.active && !plans.inactive) hit();
   }, [parsed.customerId, parsed.insuranceId, dispatch, plans, navigate]);
 
-  return "";
+  return resAPI;
 }
 
 export default useInsurancePlans;
